@@ -110,24 +110,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ─── FAQ ACCORDION ────────────────────────────
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const answer   = btn.nextElementSibling;
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
+  // // ─── FAQ ACCORDION ────────────────────────────
+  // document.querySelectorAll('.faq-q').forEach(btn => {
+  //   btn.addEventListener('click', () => {
+  //     const answer   = btn.nextElementSibling;
+  //     const expanded = btn.getAttribute('aria-expanded') === 'true';
 
-      // Close all others
-      document.querySelectorAll('.faq-q').forEach(b => {
-        if (b !== btn) {
-          b.setAttribute('aria-expanded', 'false');
-          b.nextElementSibling.classList.remove('open');
-        }
-      });
+  //     // Close all others
+  //     document.querySelectorAll('.faq-q').forEach(b => {
+  //       if (b !== btn) {
+  //         b.setAttribute('aria-expanded', 'false');
+  //         b.nextElementSibling.classList.remove('open');
+  //       }
+  //     });
 
-      btn.setAttribute('aria-expanded', !expanded);
-      answer.classList.toggle('open', !expanded);
-    });
-  });
+  //     btn.setAttribute('aria-expanded', !expanded);
+  //     answer.classList.toggle('open', !expanded);
+  //   });
+  // });
 
   // ─── SCROLL REVEAL ────────────────────────────
   const revealEls = document.querySelectorAll(
