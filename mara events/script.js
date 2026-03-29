@@ -1,5 +1,5 @@
 /* =============================================
-   EVENTRY — script.js
+   MARA EVENTS — script.js
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
