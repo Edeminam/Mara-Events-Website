@@ -27,6 +27,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // /* ── 1. NAVBAR — scroll-aware style + mobile toggle ────────── */
+  // (function initNavbar () {
+  //   const navbar     = $('#navbar');
+  //   const navToggle  = $('#navToggle');
+  //   const mobileMenu = $('#mobileMenu');
+  //   if (!navbar) return;
+ 
+  //   // Scrolled class
+  //   const onScroll = () => {
+  //     navbar.classList.toggle('scrolled', window.scrollY > 60);
+  //   };
+  //   window.addEventListener('scroll', onScroll, { passive: true });
+  //   onScroll();
+ 
+  //   // Mobile toggle
+  //   navToggle?.addEventListener('click', () => {
+  //     const open = mobileMenu.classList.toggle('open');
+  //     navToggle.setAttribute('aria-expanded', open);
+  //     // Animate hamburger → X
+  //     const spans = $$('span', navToggle);
+  //     if (open) {
+  //       spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+  //       spans[1].style.opacity = '0';
+  //       spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+  //     } else {
+  //       spans.forEach(s => (s.style.transform = s.style.opacity = ''));
+  //     }
+  //   });
+ 
+  //   // Close mobile menu on link click
+  //   $$('a', mobileMenu).forEach(a => {
+  //     a.addEventListener('click', () => {
+  //       mobileMenu.classList.remove('open');
+  //       navToggle.setAttribute('aria-expanded', 'false');
+  //       const spans = $$('span', navToggle);
+  //       spans.forEach(s => (s.style.transform = s.style.opacity = ''));
+  //     });
+  //   });
+  // })();
+
   // ─── TESTIMONIAL SLIDER ───────────────────────
   const track    = document.getElementById('testimonialTrack');
   const dots     = document.querySelectorAll('.t-dot');

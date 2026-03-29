@@ -1549,6 +1549,10 @@ section {
     padding: 0 20px;
   }
 
+  .hero-title {
+    font-size: 52px;
+  }
+
   .hero-meta-group {
     flex-direction: column;
     gap: 12px;
