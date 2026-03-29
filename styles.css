@@ -1549,8 +1549,8 @@ section {
     padding: 0 20px;
   }
 
-  .hero-content .hero-title {
-    font-size: 52px;
+  .hero-content, .hero-title {
+    font-size: 12px;
   }
 
   .hero-meta-group {
