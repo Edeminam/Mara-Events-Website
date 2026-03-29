@@ -715,6 +715,25 @@ section {
   margin-bottom: 64px;
 }
 
+.main-events-grid .event-card-body h3 {
+  grid-column: 1 / -1;  
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-dark);
+}
+
+.main-events-grid .event-card-body p {
+  grid-column: 1 / -1;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
 .event-card {
   border-radius: var(--radius);
   overflow: hidden;
@@ -911,7 +930,7 @@ section {
    BROCHURE & CATALOGUE
    ============================================= */
 
-   .banner {
+   .banner-brochure {
       position: relative;
       width: 100%;
       /* max-width: 1200px; */
@@ -924,7 +943,7 @@ section {
     }
  
     /* Subtle dot-grid texture overlay */
-    .banner::before {
+    .banner-brochure::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -934,7 +953,7 @@ section {
     }
  
     /* Soft glow highlight top-center */
-    .banner::after {
+    .banner-brochure::after {
       content: '';
       position: absolute;
       top: -60px;
@@ -946,12 +965,12 @@ section {
       pointer-events: none;
     }
  
-    .banner__content {
+    .banner-brochure__content {
       position: relative;
       z-index: 1;
     }
  
-    .banner__title {
+    .banner-brochure__title {
       font-size: clamp(26px, 4vw, 40px);
       font-weight: 700;
       color: var(--text-light);
@@ -960,7 +979,7 @@ section {
       margin-bottom: 10px;
     }
  
-    .banner__body {
+    .banner-brochure__body {
       font-size: clamp(14px, 1.6vw, 16px);
       font-weight: 200;
       color: var(--text-light);
@@ -969,7 +988,7 @@ section {
       margin: 0 auto 12px;
     }
  
-    .banner__tagline {
+    .banner-brochure__tagline {
       font-size: clamp(14px, 1.5vw, 16px);
       font-weight: 600;
       color: var(--text-light);
@@ -1024,7 +1043,7 @@ section {
     }
 
 /* =============================================
-   TEAM
+   SHOWCASE
    ============================================= */
 .team {
   padding: 80px 0;
@@ -1329,72 +1348,6 @@ section {
   70%  { transform: scale(1.35); opacity: 0; }
   100% { transform: scale(1.35); opacity: 0; }
 }
-
-/* =============================================
-   FAQ
-   ============================================= */
-/* .faq-section {
-  padding: 80px 0;
-  background: var(--bg-mid);
-}
-
-.faq-list {
-  margin-top: 48px;
-  border-top: 1px solid var(--border);
-}
-
-.faq-item {
-  border-bottom: 1px solid var(--border);
-}
-
-.faq-q {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-dark);
-  text-align: left;
-  gap: 24px;
-  transition: var(--transition);
-}
-
-.faq-q:hover {
-  color: var(--accent-hover);
-}
-
-.faq-icon {
-  font-size: 24px;
-  font-weight: 300;
-  color: var(--text-muted);
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-
-.faq-q[aria-expanded="true"] .faq-icon {
-  transform: rotate(45deg);
-}
-
-.faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.3s ease;
-}
-
-.faq-a.open {
-  max-height: 300px;
-  padding-bottom: 24px;
-}
-
-.faq-a p {
-  font-size: 14px;
-  font-family: monospace;
-  line-height: 1.7;
-  color: var(--text-muted);
-  max-width: 680px;
-} */
 
 /* =============================================
    FOOTER
