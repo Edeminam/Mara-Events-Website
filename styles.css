@@ -1658,6 +1658,26 @@ section {
     padding: 0;
   }
 
+  /* Banner Brochure */
+  .banner-brochure {
+    padding: 40px 20px;
+  }
+
+  .banner-brochure h1 {
+    font-size: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .banner-brochure p {
+    font-size: 14px;
+    max-width: 100%;
+  } 
+
+  .banner__btn1, .banner__btn2 {
+    padding: 10px 10px;
+    font-size: 12px;
+  }
+
   .footer-mid {
     grid-template-columns: 1fr;
   }
