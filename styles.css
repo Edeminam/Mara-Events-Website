@@ -1633,6 +1633,15 @@ section {
     gap: 48px;
   }
 
+  .book-trust{
+    display: none;
+    visibility: hidden;
+  }
+
+  .book-sub{
+    margin-bottom: 0;
+  }
+
   /* Footer */
   .footer-top {
     flex-direction: column;
@@ -1691,6 +1700,15 @@ section {
   .banner__btn1, .banner__btn2 {
     padding: 12px 12px;
     font-size: 12px;
+  }
+
+   .book-trust{
+    display: none;
+    visibility: hidden;
+  }
+
+  .book-sub{
+    margin-bottom: 0;
   }
 
   .footer-mid {
