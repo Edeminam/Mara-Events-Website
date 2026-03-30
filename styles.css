@@ -851,11 +851,6 @@ section {
   flex-shrink: 0;
 }
 
-.t-av1 { background: linear-gradient(135deg, #9ab8a8, #5f8070); }
-.t-av2 { background: linear-gradient(135deg, #a8b8a8, #686878); }
-.t-av3 { background: linear-gradient(135deg, #b8b0a8, #807068); }
-.t-av4 { background: linear-gradient(135deg, #a8b0b8, #686878); }
-
 .testimonial-author div {
   display: flex;
   flex-direction: column;

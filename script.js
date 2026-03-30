@@ -2,78 +2,232 @@
    MARA EVENTS — script.js
    ============================================= */
 
+"use strict";
+
+// document.addEventListener('DOMContentLoaded', () => {
+
+//   // ─── NAVBAR ───────────────────────────────────
+//   const navbar   = document.getElementById('navbar');
+//   const navToggle = document.getElementById('navToggle');
+//   const mobileMenu = document.getElementById('mobileMenu');
+
+//   window.addEventListener('scroll', () => {
+//     navbar.classList.toggle('scrolled', window.scrollY > 20);
+//   }, { passive: true });
+
+//   navToggle.addEventListener('click', () => {
+//     const isOpen = mobileMenu.classList.toggle('open');
+//     navToggle.classList.toggle('open', isOpen);
+//     navToggle.setAttribute('aria-expanded', isOpen);
+//   });
+
+//   // Close mobile menu on link click
+//   mobileMenu.querySelectorAll('a').forEach(link => {
+//     link.addEventListener('click', () => {
+//       mobileMenu.classList.remove('open');
+//       navToggle.classList.remove('open');
+//     });
+//   });
+
+//   /* ── 1. NAVBAR — scroll-aware style + mobile toggle ────────── */
+//   (function initNavbar () {
+//     const navbar     = $('#navbar');
+//     const navToggle  = $('#navToggle');
+//     const mobileMenu = $('#mobileMenu');
+//     if (!navbar) return;
+ 
+//     // Scrolled class
+//     const onScroll = () => {
+//       navbar.classList.toggle('scrolled', window.scrollY > 60);
+//     };
+//     window.addEventListener('scroll', onScroll, { passive: true });
+//     onScroll();
+ 
+//     // Mobile toggle
+//     navToggle?.addEventListener('click', () => {
+//       const open = mobileMenu.classList.toggle('open');
+//       navToggle.setAttribute('aria-expanded', open);
+//       // Animate hamburger → X
+//       const spans = $$('span', navToggle);
+//       if (open) {
+//         spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+//         spans[1].style.opacity = '0';
+//         spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+//       } else {
+//         spans.forEach(s => (s.style.transform = s.style.opacity = ''));
+//       }
+//     });
+ 
+//     // Close mobile menu on link click
+//     $$('a', mobileMenu).forEach(a => {
+//       a.addEventListener('click', () => {
+//         mobileMenu.classList.remove('open');
+//         navToggle.setAttribute('aria-expanded', 'false');
+//         const spans = $$('span', navToggle);
+//         spans.forEach(s => (s.style.transform = s.style.opacity = ''));
+//       });
+//     });
+//   })();
+
+//   // ─── TESTIMONIAL SLIDER ───────────────────────
+//   const track    = document.getElementById('testimonialTrack');
+//   const dots     = document.querySelectorAll('.t-dot');
+//   const prevBtn  = document.getElementById('prevBtn');
+//   const nextBtn  = document.getElementById('nextBtn');
+//   const cards    = track ? track.querySelectorAll('.testimonial-card') : [];
+//   let current    = 0;
+//   let autoSlide;
+
+//   function goTo(index) {
+//     current = (index + cards.length) % cards.length;
+//     track.style.transform = `translateX(-${current * 100}%)`;
+//     dots.forEach((d, i) => d.classList.toggle('active', i === current));
+//   }
+
+//   if (track && cards.length) {
+//     prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+//     nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+//     dots.forEach(d => {
+//       d.addEventListener('click', () => { goTo(+d.dataset.index); resetAuto(); });
+//     });
+
+//     function startAuto() {
+//       autoSlide = setInterval(() => goTo(current + 1), 5000);
+//     }
+//     function resetAuto() {
+//       clearInterval(autoSlide);
+//       startAuto();
+//     }
+//     startAuto();
+
+//     // Touch / swipe support
+//     let startX = 0;
+//     track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+//     track.addEventListener('touchend', e => {
+//       const diff = startX - e.changedTouches[0].clientX;
+//       if (Math.abs(diff) > 40) {
+//         diff > 0 ? goTo(current + 1) : goTo(current - 1);
+//         resetAuto();
+//       }
+//     });
+//   }
+
+//   // ─── SCROLL REVEAL ────────────────────────────
+//   const revealEls = document.querySelectorAll(
+//     'section > .container, .hero-content, .mission-inner, .partners-scroll, .pricing-grid, .team-grid, .book-inner, .footer-top'
+//   );
+
+//   revealEls.forEach(el => el.classList.add('reveal'));
+
+//   const observer = new IntersectionObserver((entries) => {
+//     entries.forEach((entry, i) => {
+//       if (entry.isIntersecting) {
+//         // Stagger children
+//         const children = entry.target.querySelectorAll(':scope > *');
+//         children.forEach((child, idx) => {
+//           setTimeout(() => child.classList.add('visible'), idx * 60);
+//         });
+//         entry.target.classList.add('visible');
+//         observer.unobserve(entry.target);
+//       }
+//     });
+//   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+//   revealEls.forEach(el => observer.observe(el));
+
+//   // Also reveal individual cards
+//   document.querySelectorAll('.event-card, .team-card, .pricing-card, .testimonial-card').forEach(el => {
+//     el.classList.add('reveal');
+//     observer.observe(el);
+//   });
+
+//   // ─── BOOKING FORM ─────────────────────────────
+//   const form = document.getElementById('bookForm');
+//   if (form) {
+//     form.addEventListener('submit', e => {
+//       e.preventDefault();
+//       const btn = form.querySelector('.form-submit');
+//       btn.textContent = '✓ Booking Confirmed!';
+//       btn.style.background = '#4a8a54';
+//       btn.style.color = '#fff';
+
+//       setTimeout(() => {
+//         btn.textContent = 'Book an Event';
+//         btn.style.background = '';
+//         btn.style.color = '';
+//         form.reset();
+//       }, 3500);
+//     });
+//   }
+
+//   // ─── SMOOTH ANCHOR SCROLL ─────────────────────
+//   document.querySelectorAll('a[href^="#"]').forEach(link => {
+//     link.addEventListener('click', e => {
+//       const targetId = link.getAttribute('href');
+//       if (targetId === '#') return;
+//       const target = document.querySelector(targetId);
+//       if (target) {
+//         e.preventDefault();
+//         const offset = navbar.offsetHeight + 16;
+//         const top = target.getBoundingClientRect().top + window.scrollY - offset;
+//         window.scrollTo({ top, behavior: 'smooth' });
+//       }
+//     });
+//   });
+
+//   // ─── PARALLAX HERO ────────────────────────────
+//   const heroBg = document.querySelector('.hero-bg');
+//   if (heroBg) {
+//     window.addEventListener('scroll', () => {
+//       if (window.scrollY < window.innerHeight) {
+//         heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+//       }
+//     }, { passive: true });
+//   }
+
+// });
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ─── NAVBAR ───────────────────────────────────
-  const navbar   = document.getElementById('navbar');
-  const navToggle = document.getElementById('navToggle');
+  // ─── NAVBAR ─────────────────────────────────────────────────────────
+  // ⚠️ ERROR 1 FIXED: Removed the duplicate IIFE navbar block that used
+  // an undefined $() helper — it threw a ReferenceError and crashed the
+  // entire DOMContentLoaded callback, killing the slider and everything else.
+
+  const navbar     = document.getElementById('navbar');
+  const navToggle  = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  }
 
-  navToggle.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    navToggle.classList.toggle('open', isOpen);
-    navToggle.setAttribute('aria-expanded', isOpen);
-  });
-
-  // Close mobile menu on link click
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      navToggle.classList.remove('open');
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
     });
-  });
 
-  /* ── 1. NAVBAR — scroll-aware style + mobile toggle ────────── */
-  (function initNavbar () {
-    const navbar     = $('#navbar');
-    const navToggle  = $('#navToggle');
-    const mobileMenu = $('#mobileMenu');
-    if (!navbar) return;
- 
-    // Scrolled class
-    const onScroll = () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
- 
-    // Mobile toggle
-    navToggle?.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', open);
-      // Animate hamburger → X
-      const spans = $$('span', navToggle);
-      if (open) {
-        spans[0].style.transform = 'translateY(7px) rotate(45deg)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-      } else {
-        spans.forEach(s => (s.style.transform = s.style.opacity = ''));
-      }
-    });
- 
-    // Close mobile menu on link click
-    $$('a', mobileMenu).forEach(a => {
-      a.addEventListener('click', () => {
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
+        navToggle.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
-        const spans = $$('span', navToggle);
-        spans.forEach(s => (s.style.transform = s.style.opacity = ''));
       });
     });
-  })();
+  }
 
-  // ─── TESTIMONIAL SLIDER ───────────────────────
-  const track    = document.getElementById('testimonialTrack');
-  const dots     = document.querySelectorAll('.t-dot');
-  const prevBtn  = document.getElementById('prevBtn');
-  const nextBtn  = document.getElementById('nextBtn');
-  const cards    = track ? track.querySelectorAll('.testimonial-card') : [];
-  let current    = 0;
+  // ─── TESTIMONIAL SLIDER ─────────────────────────────────────────────
+  const track   = document.getElementById('testimonialTrack');
+  const dots    = document.querySelectorAll('.t-dot');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cards   = track ? track.querySelectorAll('.testimonial-card') : [];
+  let current   = 0;
   let autoSlide;
 
   function goTo(index) {
@@ -82,21 +236,30 @@ document.addEventListener('DOMContentLoaded', () => {
     dots.forEach((d, i) => d.classList.toggle('active', i === current));
   }
 
+  // ⚠️ ERROR 3 FIXED: Moved startAuto and resetAuto ABOVE the if-block
+  // so they are fully defined before resetAuto references startAuto.
+  function startAuto() {
+    autoSlide = setInterval(() => goTo(current + 1), 2000);
+  }
+
+  function resetAuto() {
+    clearInterval(autoSlide);
+    startAuto();
+  }
+
   if (track && cards.length) {
-    prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
-    nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
     dots.forEach(d => {
-      d.addEventListener('click', () => { goTo(+d.dataset.index); resetAuto(); });
+      d.addEventListener('click', () => { goTo(parseInt(d.dataset.index, 10)); resetAuto(); });
     });
 
-    function startAuto() {
-      autoSlide = setInterval(() => goTo(current + 1), 5000);
-    }
-    function resetAuto() {
-      clearInterval(autoSlide);
-      startAuto();
-    }
-    startAuto();
+    startAuto(); // ✅ Now safely called after both functions are defined
+
+    // Pause on hover
+    track.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    track.addEventListener('mouseleave', () => startAuto());
 
     // Touch / swipe support
     let startX = 0;
@@ -108,9 +271,15 @@ document.addEventListener('DOMContentLoaded', () => {
         resetAuto();
       }
     });
+
+    // Keyboard support
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  { goTo(current - 1); resetAuto(); }
+      if (e.key === 'ArrowRight') { goTo(current + 1); resetAuto(); }
+    });
   }
 
-  // ─── SCROLL REVEAL ────────────────────────────
+  // ─── SCROLL REVEAL ──────────────────────────────────────────────────
   const revealEls = document.querySelectorAll(
     'section > .container, .hero-content, .mission-inner, .partners-scroll, .pricing-grid, .team-grid, .book-inner, .footer-top'
   );
@@ -118,9 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
   revealEls.forEach(el => el.classList.add('reveal'));
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Stagger children
         const children = entry.target.querySelectorAll(':scope > *');
         children.forEach((child, idx) => {
           setTimeout(() => child.classList.add('visible'), idx * 60);
@@ -133,13 +301,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealEls.forEach(el => observer.observe(el));
 
-  // Also reveal individual cards
   document.querySelectorAll('.event-card, .team-card, .pricing-card, .testimonial-card').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
   });
 
-  // ─── BOOKING FORM ─────────────────────────────
+  // ─── BOOKING FORM ───────────────────────────────────────────────────
   const form = document.getElementById('bookForm');
   if (form) {
     form.addEventListener('submit', e => {
@@ -148,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = '✓ Booking Confirmed!';
       btn.style.background = '#4a8a54';
       btn.style.color = '#fff';
-
       setTimeout(() => {
         btn.textContent = 'Book an Event';
         btn.style.background = '';
@@ -158,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ─── SMOOTH ANCHOR SCROLL ─────────────────────
+  // ─── SMOOTH ANCHOR SCROLL ───────────────────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const targetId = link.getAttribute('href');
@@ -166,14 +332,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
-        const offset = navbar.offsetHeight + 16;
+        const offset = (navbar ? navbar.offsetHeight : 0) + 16;
         const top = target.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top, behavior: 'smooth' });
       }
     });
   });
 
-  // ─── PARALLAX HERO ────────────────────────────
+  // ─── PARALLAX HERO ──────────────────────────────────────────────────
   const heroBg = document.querySelector('.hero-bg');
   if (heroBg) {
     window.addEventListener('scroll', () => {
@@ -185,61 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
 // // ─── HERO CAROUSEL ────────────────────────────
-// document.addEventListener('DOMContentLoaded', function() {
-//   const slides = document.getElementById('heroSlides');
-//   const dots = document.querySelectorAll('.hero-dot');
-//   const prevBtn = document.getElementById('heroPrev');
-//   const nextBtn = document.getElementById('heroNext');
-  
-//   let currentIndex = 0;
-//   const totalSlides = dots.length;
-  
-//   function updateCarousel() {
-//     slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    
-//     dots.forEach((dot, index) => {
-//       dot.classList.toggle('active', index === currentIndex);
-//     });
-//   }
-  
-//   function nextSlide() {
-//     currentIndex = (currentIndex + 1) % totalSlides;
-//     updateCarousel();
-//   }
-  
-//   function prevSlide() {
-//     currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-//     updateCarousel();
-//   }
-  
-//   // Auto-advance
-//   let autoAdvance = setInterval(nextSlide, 5000);
-  
-//   // Controls
-//   nextBtn.addEventListener('click', () => {
-//     clearInterval(autoAdvance);
-//     nextSlide();
-//     autoAdvance = setInterval(nextSlide, 5000);
-//   });
-  
-//   prevBtn.addEventListener('click', () => {
-//     clearInterval(autoAdvance);
-//     prevSlide();
-//     autoAdvance = setInterval(nextSlide, 5000);
-//   });
-  
-//   dots.forEach((dot, index) => {
-//     dot.addEventListener('click', () => {
-//       clearInterval(autoAdvance);
-//       currentIndex = index;
-//       updateCarousel();
-//       autoAdvance = setInterval(nextSlide, 5000);
-//     });
-//   });
-// });
-
 
 (function () {
  
@@ -501,63 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
  
 })();
  
-
-
-// WhatsApp Button
-
-/*
-     * CONFIGURATION
-     * Replace the values below with your own details.
-     */
-//     const WA_CONFIG = {
-//       phone:   "2349011046473",            // ← your number (no +, no spaces)
-//       message: "Hi! I'd like to chat 👋",  // ← pre-filled message (optional)
-//       label:   "Chat with us!",            // ← tooltip text
-//       badge:   0,                          // ← unread count (0 to hide)
-//     };
- 
-//     /* ── Apply config ── */
-//     const link   = document.querySelector(".wa-float");
-//     const label  = document.querySelector(".wa-label");
-//     const unread = document.querySelector(".wa-unread");
- 
-//     const encoded = encodeURIComponent(WA_CONFIG.message);
-//     link.href = `https://wa.me/${WA_CONFIG.phone}?text=${encoded}`;
-//     label.textContent = WA_CONFIG.label;
- 
-//     if (WA_CONFIG.badge > 0) {
-//       unread.textContent = WA_CONFIG.badge > 9 ? "9+" : WA_CONFIG.badge;
-//       unread.style.display = "flex";
-//     } else {
-//       unread.style.display = "none";
-//     }
- 
-//     /* ── Dismiss badge on click ── */
-//     link.addEventListener("click", () => {
-//       unread.style.display = "none";
-//     });
-
-//     // WhatsApp Button scroll show
-// let lastScrollY = window.scrollY;
-// const waBtn = document.querySelector('.wa-float');
-
-// window.addEventListener('scroll', () => {
-//   const currentScrollY = window.scrollY;
-
-//   if (currentScrollY < lastScrollY && currentScrollY > 100) {
-//     // scrolling UP
-//     waBtn.classList.add('show');
-//   } else {
-//     // scrolling DOWN
-//     waBtn.classList.remove('show');
-//   }
-
-//   lastScrollY = currentScrollY;
-// });
-
-// if (currentScrollY > 200 && currentScrollY < lastScrollY) {
-//   waBtn.classList.add('show');
-// }
+// ─── WHATSAPP CONFIGURATION────────────────────────────
 
 (function initWhatsApp () {
     /* ---- Config — update phone & message as needed ---- */
