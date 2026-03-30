@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 (function () {
  
   /* ── Config ─────────────────────────────── */
-  const AUTO_DELAY      = 5000;  // ms between auto-advances
+  const AUTO_DELAY      = 2000;  // ms between auto-advances
   const SWIPE_THRESHOLD = 48;    // px minimum swipe distance
   const DRAG_THRESHOLD  = 40;    // px minimum pointer drag
  
