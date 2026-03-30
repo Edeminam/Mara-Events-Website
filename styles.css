@@ -1590,6 +1590,11 @@ section {
     align-items: flex-start;
   }
 
+  #events-btn {
+    display: none;
+    visibility: hidden;
+  }
+
   .main-events-grid {
     grid-template-columns: 1fr;
   }
@@ -1656,6 +1661,11 @@ section {
 
   .pricing-grid {
     padding: 0;
+  }
+
+ #events-btn {
+    display: none;
+    visibility: hidden;
   }
 
   /* Banner Brochure */
