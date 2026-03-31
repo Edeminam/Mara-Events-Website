@@ -1520,6 +1520,11 @@ section {
   }
 }
 
+.partners-track {
+    gap: 40px; /* tighter gap on small screens */
+    animation-duration: 18s;
+}
+
 /* Tablet: ≤768px */
 @media (max-width: 768px) {
   /* Nav */
