@@ -139,13 +139,13 @@
       <div class="partner-item"><img src="images/TWT.png"           alt="TWT"                      width="120" height="40"></div>
       <div class="partner-item"><img src="images/Ria.png"           alt="Ria"                      width="160" height="40"></div>
       <div class="partner-item">
-        <svg width="200" height="40" viewBox="0 0 130 40">
+        <svg width="220" height="40" viewBox="0 0 130 40">
           <text x="10" y="28" font-family="serif" font-size="20" fill="#8a9aaa" font-weight="500">360Studio_empire</text>
         </svg>
       </div>
       <div class="partner-item"><img src="images/IDYLL.png"         alt="IDYLL"                    width="110" height="40"></div>
 
-      <!-- ⚠️ FIX: Exact duplicate set — required for the -50% animation
+      <!-- Exact duplicate set — required for the -50% animation
            to loop seamlessly. When the first set scrolls fully out of view,
            the duplicate is already in place, creating an infinite smooth loop. -->
       <div class="partner-item"><img src="images/Logo tover.png"    alt="Tovero"                  width="160" height="40"></div>
@@ -158,7 +158,7 @@
       <div class="partner-item"><img src="images/TWT.png"           alt="TWT"                      width="120" height="40"></div>
       <div class="partner-item"><img src="images/Ria.png"           alt="Ria"                      width="160" height="40"></div>
       <div class="partner-item">
-        <svg width="200" height="40" viewBox="0 0 130 40">
+        <svg width="220" height="40" viewBox="0 0 130 40">
           <text x="10" y="28" font-family="serif" font-size="20" fill="#8a9aaa" font-weight="500">360Studio_empire</text>
         </svg>
       </div>
@@ -425,23 +425,30 @@
             <label for="event">EVENT:</label>
             <div class="select-wrap">
               <select id="event" name="event">
-                <option value="futuretech">Weddings</option>
-                <option value="nightbeats">Conferences & Seminars</option>
-                <option value="ai-summit">Vendor Management</option>
-                <option value="rhythm-blast">Annual General Meetings</option>
-                <option value="creative-leaders">Anniversaries</option>
-                <option value="creative-leaders">VIP Dinners</option>
-                <option value="creative-leaders">Product Launches</option>
-                <option value="creative-leaders">Award Ceremonies</option>
-                <option value="creative-leaders">Trade Shows</option>
-                <option value="creative-leaders">Exhibition Booths</option>
-                <option value="creative-leaders">Baby Showers</option>
-                <option value="creative-leaders">Gender Reveal Parties</option>
-                <option value="creative-leaders">Pool Parties</option>
+                <option value="weddings">Weddings</option>
+                <option value="conferences-seminars">Conferences & Seminars</option>
+                <option value="vendor-management">Vendor Management</option>
+                <option value="annual-general-meetings">Annual General Meetings</option>
+                <option value="anniversaries">Anniversaries</option>
+                <option value="vip-dinners">VIP Dinners</option>
+                <option value="product-launches">Product Launches</option>
+                <option value="award-ceremonies">Award Ceremonies</option>
+                <option value="trade-shows">Trade Shows</option>
+                <option value="exhibition-booths">Exhibition Booths</option>
+                <option value="baby-showers">Baby Showers</option>
+                <option value="gender-reveal">Gender Reveal Parties</option>
+                <option value="pool-parties">Pool Parties</option>
+                <option value="other">Others</option>
               </select>
               <span class="select-arrow">›</span>
             </div>
           </div>
+
+          <div class="form-group" id="otherEventGroup" style="display: none;">
+          <label for="otherEvent">PLEASE SPECIFY:</label>
+          <input type="text" id="otherEvent" name="otherEvent" placeholder="Enter event type" />
+        </div>
+        
           <button type="submit" class="form-submit">Book an Event</button>
           <p class="form-terms">By submitting, you agree to our <a href="#">terms of service</a>.</p>
         </form>

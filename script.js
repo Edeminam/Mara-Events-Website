@@ -307,19 +307,71 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ─── BOOKING FORM ───────────────────────────────────────────────────
+  // const form = document.getElementById('bookForm');
+  // if (form) {
+  //   form.addEventListener('submit', e => {
+  //     e.preventDefault();
+  //     const btn = form.querySelector('.form-submit');
+  //     btn.textContent = '✓ Booking Confirmed!';
+  //     btn.style.background = '#4a8a54';
+  //     btn.style.color = '#fff';
+  //     setTimeout(() => {
+  //       btn.textContent = 'Book an Event';
+  //       btn.style.background = '';
+  //       btn.style.color = '';
+  //       form.reset();
+  //     }, 3500);
+  //   });
+  // }
+
+
+  // ─── BOOKING FORM NEW ───────────────────────────────────────────────────
+
   const form = document.getElementById('bookForm');
+  const eventSelect = document.getElementById("event");
+  const otherEventGroup = document.getElementById("otherEventGroup");
+  const otherEventInput = document.getElementById("otherEvent");
+
+  // Handle dropdown change
+  eventSelect.addEventListener("change", function () {
+    if (this.value === "other") {
+      otherEventGroup.style.display = "block";
+      otherEventInput.required = true;
+    } else {
+      otherEventGroup.style.display = "none";
+      otherEventInput.required = false;
+      otherEventInput.value = "";
+    }
+  });
+
+  // Handle form submission
   if (form) {
     form.addEventListener('submit', e => {
       e.preventDefault();
+
+      // ✅ Validate "Others" input
+      if (eventSelect.value === "other" && otherEventInput.value.trim() === "") {
+        alert("Please specify your event type.");
+        otherEventInput.focus();
+        return;
+      }
+
       const btn = form.querySelector('.form-submit');
       btn.textContent = '✓ Booking Confirmed!';
       btn.style.background = '#4a8a54';
       btn.style.color = '#fff';
+
       setTimeout(() => {
         btn.textContent = 'Book an Event';
         btn.style.background = '';
         btn.style.color = '';
+
         form.reset();
+
+        // ✅ Reset "Others" field UI
+        otherEventGroup.style.display = "none";
+        otherEventInput.required = false;
+        otherEventInput.value = "";
       }, 3500);
     });
   }
