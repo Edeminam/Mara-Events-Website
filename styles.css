@@ -767,6 +767,10 @@ section {
   color: var(--text-dark);
 }
 
+.events-header, .section-heading span{
+  color: var(--accent);
+}
+
 .event-card-meta {
   display: flex;
   align-items: center;
@@ -777,9 +781,9 @@ section {
   margin-bottom: 16px;
 }
 
-.dot {
+/* .dot {
   color: var(--accent);
-}
+} */
 
 .event-card-link {
   font-size: 13px;
@@ -1351,6 +1355,10 @@ section {
   border-bottom: 1px solid rgba(232,240,239,0.1);
   gap: 24px;
   flex-wrap: wrap;
+}
+
+.footer-top span{
+  color: var(--accent);
 }
 
 .footer-heading {

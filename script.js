@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── SCROLL REVEAL ──────────────────────────────────────────────────
   const revealEls = document.querySelectorAll(
-    'section > .container, .hero-content, .mission-inner, .partners-scroll, .pricing-grid, .team-grid, .book-inner, .footer-top'
+    'section > .container, .hero-content, .mission-inner, .events-card, .partners-scroll, .pricing-grid, .team-grid, .book-inner, .footer-top'
   );
 
   revealEls.forEach(el => el.classList.add('reveal'));
@@ -538,12 +538,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
  
   /* ── Hover pause (mouse only) ────────────── */
-  section.addEventListener("mouseenter", () => {
-    if (!isTouchPrimary) pauseAuto();
-  });
-  section.addEventListener("mouseleave", () => {
-    if (!isTouchPrimary) resumeAuto();
-  });
+  // section.addEventListener("mouseenter", () => {
+  //   if (!isTouchPrimary) pauseAuto();
+  // });
+  // section.addEventListener("mouseleave", () => {
+  //   if (!isTouchPrimary) resumeAuto();
+  // });
  
   /* ── Focus pause ─────────────────────────── */
   section.addEventListener("focusin",  pauseAuto);
