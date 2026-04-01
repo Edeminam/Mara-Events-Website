@@ -750,3 +750,111 @@ document.addEventListener('DOMContentLoaded', () => {
  
     targets.forEach(el => io.observe(el));
   })();
+
+  // ─── EMAILJS ─────────────────────────────────────────────────────────
+  (function(){
+    emailjs.init("djfFVv8ATRg9mo_1u"); // replace with your EmailJS public key
+  })();
+  // ─── EMAILJS ─────────────────────────────────────────────────────────
+// (function initEmailJS () {
+//     const form = document.getElementById('bookForm');
+//     if (!form) return;
+
+//     emailjs.init('YOUR_USER_ID');
+
+//     form.addEventListener('submit', (e) => {
+//       e.preventDefault();
+
+//       const formData = {
+//         name: form.name.value,
+//         email: form.email.value,
+//         phone: form.phone.value,
+//         event: form.event.value,
+//         date: form.date.value,
+//         message: form.message.value,
+//       };
+
+//       emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+//         .then((response) => {
+//           alert('Message sent successfully!');
+//           form.reset();
+//         })
+//         .catch((error) => {
+//           alert('Failed to send message. Please try again.');
+//           console.error('Error:', error);
+//         });
+//     });
+//   })();
+
+
+  // 1️⃣ Initialize EmailJS (REQUIRED)
+  (function () {
+    emailjs.init("djfFVv8ATRg9mo_1u"); // 🔴 Replace with your actual public key
+  })();
+
+  const form = document.getElementById('bookForm');
+  const eventSelect = document.getElementById("event");
+  const otherEventGroup = document.getElementById("otherEventGroup");
+  const otherEventInput = document.getElementById("otherEvent");
+
+  // 2️⃣ Show/hide "Others" field
+  eventSelect.addEventListener("change", function () {
+    if (this.value === "other") {
+      otherEventGroup.style.display = "block";
+      otherEventInput.required = true;
+    } else {
+      otherEventGroup.style.display = "none";
+      otherEventInput.required = false;
+      otherEventInput.value = "";
+    }
+  });
+
+  // 3️⃣ Handle form submit
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Validate "Others"
+      if (eventSelect.value === "other" && otherEventInput.value.trim() === "") {
+        alert("Please specify your event type.");
+        return;
+      }
+
+      const btn = form.querySelector('.form-submit');
+
+      // 4️⃣ Prepare data
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        event:
+          eventSelect.value === "other"
+            ? otherEventInput.value
+            : eventSelect.options[eventSelect.selectedIndex].text
+      };
+
+      // 5️⃣ Send email
+      emailjs.send("service_6vspc2j", "template_87ahk4b", formData)
+        .then(function (response) {
+          console.log("SUCCESS:", response);
+
+          btn.textContent = '✓ Booking Confirmed!';
+          btn.style.background = '#4a8a54';
+          btn.style.color = '#fff';
+
+          setTimeout(() => {
+            btn.textContent = 'Book an Event';
+            btn.style.background = '';
+            btn.style.color = '';
+            form.reset();
+
+            otherEventGroup.style.display = "none";
+            otherEventInput.required = false;
+          }, 3500);
+        })
+        .catch(function (error) {
+          console.error("FAILED:", error);
+          alert("Failed to send booking. Please try again.");
+        });
+    });
+  }

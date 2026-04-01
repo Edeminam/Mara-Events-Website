@@ -1038,7 +1038,7 @@ section {
    ============================================= */
 .team {
   padding: 80px 0;
-  background: var(--bg-mid);
+  background: var(--bg-light);
 }
 
 .cards-row {
@@ -1047,6 +1047,7 @@ section {
     gap: 16px;
     /* max-width: 960px; */
     width: 100%;
+    padding: 0 20px;
     /* background: #111; */
     border-radius: 20px;
     overflow: hidden;
@@ -1065,6 +1066,11 @@ section {
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  .card:hover img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
   }
  
   .card-overlay {

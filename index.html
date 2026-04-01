@@ -199,7 +199,7 @@
         <!-- Event 1 -->
         <div class="event-card" data-index="0">
           <div class="event-card-img-wrap">
-            <img src="images/elegant-indian-wedding.jpg" alt="All kinds of wedding" loading="lazy" />
+            <img src="images/elegant-indian-wedding.jpg" alt="All kinds of wedding" />
           </div>
           <div class="event-card-body">
             <h3>WEDDINGS & BRIDAL CELEBRATIONS</h3>
@@ -274,7 +274,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- TESTIMONIALS -->
   <section class="testimonials" id="testimonials">
     <div class="container">
@@ -364,39 +364,39 @@
 
     <div class="cards-row">
  
-  <!-- Card 1: text top-left -->
-  <div class="card card--top-left">
-    <img src="images/event.jpg" alt="End-to-End Planning" />
-    <div class="card-overlay">
-      <div class="text-badge">
-        <h3>End-to-End Planning</h3>
-        <p>From first concept to final toast, we manage every detail, vendor, &amp; timeline, and delivery.</p>
+      <!-- Card 1: text top-left -->
+      <div class="card card--top-left">
+        <img src="images/event.jpg" alt="End-to-End Planning" />
+        <div class="card-overlay">
+          <div class="text-badge">
+            <h3>End-to-End Planning</h3>
+            <p>From first concept to final toast, we manage every detail, vendor, &amp; timeline, and delivery.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
  
-  <!-- Card 2: text bottom-center -->
-  <div class="card card--bottom-center">
-    <img src="images/dance.jpg" alt="Complete Event Management" />
-    <div class="card-overlay">
-      <div class="text-badge">
-        <h3>Complete Event Management</h3>
-        <p>We oversee every stage of your event, ensuring precision, coordination, and a seamless experience from start to finish.</p>
+      <!-- Card 2: text bottom-center -->
+      <div class="card card--bottom-center">
+        <img src="images/dance.jpg" alt="Complete Event Management" />
+        <div class="card-overlay">
+          <div class="text-badge">
+            <h3>Complete Event Management</h3>
+            <p>We oversee every stage of your event, ensuring precision, coordination, and a seamless experience from start to finish.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
  
-  <!-- Card 3: text top-right -->
-  <div class="card card--top-right">
-    <img src="images/arewaaaa.jpg" alt="Custom-Crafted Events" />
-    <div class="card-overlay">
-      <div class="text-badge">
-        <h3>Custom-Crafted Events</h3>
-        <p>Every event is a unique story. We don’t believe in one-size-fits-all. From intimate gatherings to large-scale celebrations, we design experiences that reflect your personality, style, and vision.</p>
+      <!-- Card 3: text top-right -->
+      <div class="card card--top-right">
+        <img src="images/arewaaaa.jpg" alt="Custom-Crafted Events" />
+        <div class="card-overlay">
+          <div class="text-badge">
+            <h3>Custom-Crafted Events</h3>
+            <p>Every event is a unique story. We don’t believe in one-size-fits-all. From intimate gatherings to large-scale celebrations, we design experiences that reflect your personality, style, and vision.</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
   </section>
 
   <!-- BOOK AN EVENT -->
@@ -411,7 +411,8 @@
             <span>Managing Top Events Since 2022</span>
           </div>
         </div>
-        <form class="book-form" id="bookForm">
+
+        <form class="book-form" id="bookForm" action="mailto:maraeventsplanning@gmail.com" method="POST" enctype="text/plain">
           <div class="form-group">
             <label for="name">NAME:</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" required />
@@ -448,9 +449,9 @@
           </div>
 
           <div class="form-group" id="otherEventGroup" style="display: none;">
-          <label for="otherEvent">PLEASE SPECIFY:</label>
-          <input type="text" id="otherEvent" name="otherEvent" placeholder="Enter event type" />
-        </div>
+            <label for="otherEvent">PLEASE SPECIFY:</label>
+            <input type="text" id="otherEvent" name="otherEvent" placeholder="Enter event type" />
+          </div>
         
           <button type="submit" class="form-submit">Book an Event</button>
           <p class="form-terms">By submitting, you agree to our <a href="#">terms of service</a>.</p>
@@ -571,6 +572,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
