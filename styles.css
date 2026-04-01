@@ -520,13 +520,13 @@ section {
   text-align: center;
 }
 
-.attendee-avatars {
+/* .attendee-avatars {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0;
   margin-bottom: 40px;
-}
+} */
 
 .avatar {
   width: 44px;
@@ -541,13 +541,14 @@ section {
   margin-left: 0;
 }
 
-.av1 { background: linear-gradient(135deg, #9ab8a8, #5f8070); }
+/* .av1 { background: linear-gradient(135deg, #9ab8a8, #5f8070); }
 .av2 { background: linear-gradient(135deg, #a8a8b8, #686878); }
 .av3 { background: linear-gradient(135deg, #b8a89a, #806858); }
 .av4 { background: linear-gradient(135deg, #98b8b0, #587870); }
-.av5 { background: linear-gradient(135deg, #b0a8b8, #707088); }
+.av5 { background: linear-gradient(135deg, #b0a8b8, #707088); } */
 
-.attendee-count {
+.who {
+  padding-bottom: 1rem;
   margin-left: 16px;
   font-size: 13px;
   font-weight: 600;
@@ -1483,7 +1484,7 @@ section {
   color: rgba(232,240,239,0.5);
   padding-top: 1rem;
   line-height: 1.6;
-  max-width: 300px;
+  max-width: 380px;
 }
 
 .footer-links-group h5 {
