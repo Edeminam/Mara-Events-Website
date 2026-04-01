@@ -1263,6 +1263,72 @@ section {
   text-decoration: underline;
 }
 
+/* FAQ SECTION */
+
+.faq-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 80px 0;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 40px auto 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 15px 0;
+}
+
+/* QUESTION BUTTON */
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 0;
+}
+
+/* ICON */
+.faq-icon {
+  font-size: 22px;
+  transition: transform 0.3s ease;
+}
+
+/* ANSWER */
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.faq-a p {
+  margin-top: 10px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ACTIVE STATE */
+.faq-item.active .faq-a {
+  max-height: 300px;
+  opacity: 1;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg); /* turns + into × */
+}
+
 /* WhatsApp Button */
 
 .wa-btn {

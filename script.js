@@ -4,189 +4,6 @@
 
 "use strict";
 
-// document.addEventListener('DOMContentLoaded', () => {
-
-//   // ─── NAVBAR ───────────────────────────────────
-//   const navbar   = document.getElementById('navbar');
-//   const navToggle = document.getElementById('navToggle');
-//   const mobileMenu = document.getElementById('mobileMenu');
-
-//   window.addEventListener('scroll', () => {
-//     navbar.classList.toggle('scrolled', window.scrollY > 20);
-//   }, { passive: true });
-
-//   navToggle.addEventListener('click', () => {
-//     const isOpen = mobileMenu.classList.toggle('open');
-//     navToggle.classList.toggle('open', isOpen);
-//     navToggle.setAttribute('aria-expanded', isOpen);
-//   });
-
-//   // Close mobile menu on link click
-//   mobileMenu.querySelectorAll('a').forEach(link => {
-//     link.addEventListener('click', () => {
-//       mobileMenu.classList.remove('open');
-//       navToggle.classList.remove('open');
-//     });
-//   });
-
-//   /* ── 1. NAVBAR — scroll-aware style + mobile toggle ────────── */
-//   (function initNavbar () {
-//     const navbar     = $('#navbar');
-//     const navToggle  = $('#navToggle');
-//     const mobileMenu = $('#mobileMenu');
-//     if (!navbar) return;
- 
-//     // Scrolled class
-//     const onScroll = () => {
-//       navbar.classList.toggle('scrolled', window.scrollY > 60);
-//     };
-//     window.addEventListener('scroll', onScroll, { passive: true });
-//     onScroll();
- 
-//     // Mobile toggle
-//     navToggle?.addEventListener('click', () => {
-//       const open = mobileMenu.classList.toggle('open');
-//       navToggle.setAttribute('aria-expanded', open);
-//       // Animate hamburger → X
-//       const spans = $$('span', navToggle);
-//       if (open) {
-//         spans[0].style.transform = 'translateY(7px) rotate(45deg)';
-//         spans[1].style.opacity = '0';
-//         spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-//       } else {
-//         spans.forEach(s => (s.style.transform = s.style.opacity = ''));
-//       }
-//     });
- 
-//     // Close mobile menu on link click
-//     $$('a', mobileMenu).forEach(a => {
-//       a.addEventListener('click', () => {
-//         mobileMenu.classList.remove('open');
-//         navToggle.setAttribute('aria-expanded', 'false');
-//         const spans = $$('span', navToggle);
-//         spans.forEach(s => (s.style.transform = s.style.opacity = ''));
-//       });
-//     });
-//   })();
-
-//   // ─── TESTIMONIAL SLIDER ───────────────────────
-//   const track    = document.getElementById('testimonialTrack');
-//   const dots     = document.querySelectorAll('.t-dot');
-//   const prevBtn  = document.getElementById('prevBtn');
-//   const nextBtn  = document.getElementById('nextBtn');
-//   const cards    = track ? track.querySelectorAll('.testimonial-card') : [];
-//   let current    = 0;
-//   let autoSlide;
-
-//   function goTo(index) {
-//     current = (index + cards.length) % cards.length;
-//     track.style.transform = `translateX(-${current * 100}%)`;
-//     dots.forEach((d, i) => d.classList.toggle('active', i === current));
-//   }
-
-//   if (track && cards.length) {
-//     prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
-//     nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
-//     dots.forEach(d => {
-//       d.addEventListener('click', () => { goTo(+d.dataset.index); resetAuto(); });
-//     });
-
-//     function startAuto() {
-//       autoSlide = setInterval(() => goTo(current + 1), 5000);
-//     }
-//     function resetAuto() {
-//       clearInterval(autoSlide);
-//       startAuto();
-//     }
-//     startAuto();
-
-//     // Touch / swipe support
-//     let startX = 0;
-//     track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-//     track.addEventListener('touchend', e => {
-//       const diff = startX - e.changedTouches[0].clientX;
-//       if (Math.abs(diff) > 40) {
-//         diff > 0 ? goTo(current + 1) : goTo(current - 1);
-//         resetAuto();
-//       }
-//     });
-//   }
-
-//   // ─── SCROLL REVEAL ────────────────────────────
-//   const revealEls = document.querySelectorAll(
-//     'section > .container, .hero-content, .mission-inner, .partners-scroll, .pricing-grid, .team-grid, .book-inner, .footer-top'
-//   );
-
-//   revealEls.forEach(el => el.classList.add('reveal'));
-
-//   const observer = new IntersectionObserver((entries) => {
-//     entries.forEach((entry, i) => {
-//       if (entry.isIntersecting) {
-//         // Stagger children
-//         const children = entry.target.querySelectorAll(':scope > *');
-//         children.forEach((child, idx) => {
-//           setTimeout(() => child.classList.add('visible'), idx * 60);
-//         });
-//         entry.target.classList.add('visible');
-//         observer.unobserve(entry.target);
-//       }
-//     });
-//   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
-//   revealEls.forEach(el => observer.observe(el));
-
-//   // Also reveal individual cards
-//   document.querySelectorAll('.event-card, .team-card, .pricing-card, .testimonial-card').forEach(el => {
-//     el.classList.add('reveal');
-//     observer.observe(el);
-//   });
-
-//   // ─── BOOKING FORM ─────────────────────────────
-//   const form = document.getElementById('bookForm');
-//   if (form) {
-//     form.addEventListener('submit', e => {
-//       e.preventDefault();
-//       const btn = form.querySelector('.form-submit');
-//       btn.textContent = '✓ Booking Confirmed!';
-//       btn.style.background = '#4a8a54';
-//       btn.style.color = '#fff';
-
-//       setTimeout(() => {
-//         btn.textContent = 'Book an Event';
-//         btn.style.background = '';
-//         btn.style.color = '';
-//         form.reset();
-//       }, 3500);
-//     });
-//   }
-
-//   // ─── SMOOTH ANCHOR SCROLL ─────────────────────
-//   document.querySelectorAll('a[href^="#"]').forEach(link => {
-//     link.addEventListener('click', e => {
-//       const targetId = link.getAttribute('href');
-//       if (targetId === '#') return;
-//       const target = document.querySelector(targetId);
-//       if (target) {
-//         e.preventDefault();
-//         const offset = navbar.offsetHeight + 16;
-//         const top = target.getBoundingClientRect().top + window.scrollY - offset;
-//         window.scrollTo({ top, behavior: 'smooth' });
-//       }
-//     });
-//   });
-
-//   // ─── PARALLAX HERO ────────────────────────────
-//   const heroBg = document.querySelector('.hero-bg');
-//   if (heroBg) {
-//     window.addEventListener('scroll', () => {
-//       if (window.scrollY < window.innerHeight) {
-//         heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-//       }
-//     }, { passive: true });
-//   }
-
-// });
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -305,24 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
     el.classList.add('reveal');
     observer.observe(el);
   });
-
-  // ─── BOOKING FORM ───────────────────────────────────────────────────
-  // const form = document.getElementById('bookForm');
-  // if (form) {
-  //   form.addEventListener('submit', e => {
-  //     e.preventDefault();
-  //     const btn = form.querySelector('.form-submit');
-  //     btn.textContent = '✓ Booking Confirmed!';
-  //     btn.style.background = '#4a8a54';
-  //     btn.style.color = '#fff';
-  //     setTimeout(() => {
-  //       btn.textContent = 'Book an Event';
-  //       btn.style.background = '';
-  //       btn.style.color = '';
-  //       form.reset();
-  //     }, 3500);
-  //   });
-  // }
 
 
   // ─── BOOKING FORM NEW ───────────────────────────────────────────────────
@@ -729,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
  
   /* ── 7. INTERSECTION-based fade-in for cards / sections ────── */
   (function initFadeIn () {
-    const targets = $$('.event-card, .testimonial-card, .mission-inner, .about-us-inner, .book-inner');
+    const targets = document.querySelectorAll('.event-card, .testimonial-card, .mission-inner, .about-us-inner, .book-inner');
     if (!('IntersectionObserver' in window)) return;
  
     targets.forEach((el, i) => {
@@ -751,53 +550,95 @@ document.addEventListener('DOMContentLoaded', () => {
     targets.forEach(el => io.observe(el));
   })();
 
+
+
   // ─── EMAILJS ─────────────────────────────────────────────────────────
-  (function(){
-    emailjs.init("djfFVv8ATRg9mo_1u"); // replace with your EmailJS public key
-  })();
-  // ─── EMAILJS ─────────────────────────────────────────────────────────
-// (function initEmailJS () {
-//     const form = document.getElementById('bookForm');
-//     if (!form) return;
+//   // 1️⃣ Initialize EmailJS (REQUIRED)
+//   document.addEventListener("DOMContentLoaded", function () {
 
-//     emailjs.init('YOUR_USER_ID');
+//   emailjs.init("djfFVv8ATRg9mo_1u");
 
-//     form.addEventListener('submit', (e) => {
-//       e.preventDefault();
+//   const form = document.getElementById('bookForm');
+//   const eventSelect = document.getElementById("event");
+//   const otherEventGroup = document.getElementById("otherEventGroup");
+//   const otherEventInput = document.getElementById("otherEvent");
 
-//       const formData = {
-//         name: form.name.value,
-//         email: form.email.value,
-//         phone: form.phone.value,
-//         event: form.event.value,
-//         date: form.date.value,
-//         message: form.message.value,
-//       };
+//   console.log("Form:", form); // debug
 
-//       emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
-//         .then((response) => {
-//           alert('Message sent successfully!');
+//   if (!form) return; // stop if form not found
+
+//   // Show/hide "Others"
+//   eventSelect.addEventListener("change", function () {
+//     if (this.value === "other") {
+//       otherEventGroup.style.display = "block";
+//       otherEventInput.required = true;
+//     } else {
+//       otherEventGroup.style.display = "none";
+//       otherEventInput.required = false;
+//       otherEventInput.value = "";
+//     }
+//   });
+
+//   form.addEventListener('submit', function (e) {
+//     e.preventDefault();
+
+//     if (eventSelect.value === "other" && otherEventInput.value.trim() === "") {
+//       alert("Please specify your event type.");
+//       return;
+//     }
+
+//     const btn = form.querySelector('.form-submit');
+
+//     const formData = {
+//       name: form.name.value,
+//       email: form.email.value,
+//       phone: form.phone.value,
+//       event:
+//         eventSelect.value === "other"
+//           ? otherEventInput.value
+//           : eventSelect.options[eventSelect.selectedIndex].text
+//     };
+
+//     console.log("Sending:", formData); // debug
+
+//     emailjs.send("service_6vspc2j", "template_87ahk4b", formData)
+//       .then(function (response) {
+//         console.log("SUCCESS:", response);
+
+//         btn.textContent = '✓ Booking Confirmed!';
+//         btn.style.background = '#4a8a54';
+//         btn.style.color = '#fff';
+
+//         setTimeout(() => {
+//           btn.textContent = 'Book an Event';
+//           btn.style.background = '';
+//           btn.style.color = '';
 //           form.reset();
-//         })
-//         .catch((error) => {
-//           alert('Failed to send message. Please try again.');
-//           console.error('Error:', error);
-//         });
-//     });
-//   })();
 
+//           otherEventGroup.style.display = "none";
+//           otherEventInput.required = false;
+//         }, 3500);
+//       })
+//       .catch(function (error) {
+//         console.error("FAILED:", error);
+//         alert("Failed to send booking. Check console.");
+//       });
+//   });
 
-  // 1️⃣ Initialize EmailJS (REQUIRED)
-  (function () {
-    emailjs.init("djfFVv8ATRg9mo_1u"); // 🔴 Replace with your actual public key
-  })();
+// });
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  emailjs.init("djfFVv8ATRg9mo_1u");
 
   const form = document.getElementById('bookForm');
   const eventSelect = document.getElementById("event");
   const otherEventGroup = document.getElementById("otherEventGroup");
   const otherEventInput = document.getElementById("otherEvent");
 
-  // 2️⃣ Show/hide "Others" field
+  if (!form) return;
+
+  // Show/hide "Others"
   eventSelect.addEventListener("change", function () {
     if (this.value === "other") {
       otherEventGroup.style.display = "block";
@@ -809,52 +650,88 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3️⃣ Handle form submit
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      // Validate "Others"
-      if (eventSelect.value === "other" && otherEventInput.value.trim() === "") {
-        alert("Please specify your event type.");
-        return;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+
+    // ✅ Email validation (simple & effective)
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // ✅ Phone validation (digits only, 10–13 length)
+    const phoneDigits = phone.replace(/\D/g, ""); // remove non-digits
+
+    if (phoneDigits.length < 10 || phoneDigits.length > 13) {
+      alert("The number is incorrect, check your phone number");
+      return;
+    }
+
+    // ✅ Validate "Others"
+    if (eventSelect.value === "other" && otherEventInput.value.trim() === "") {
+      alert("Please specify your event type.");
+      return;
+    }
+
+    const btn = form.querySelector('.form-submit');
+
+    const formData = {
+      name: name,
+      email: email,
+      phone: phone,
+      event:
+        eventSelect.value === "other"
+          ? otherEventInput.value
+          : eventSelect.options[eventSelect.selectedIndex].text
+    };
+
+    emailjs.send("service_6vspc2j", "template_87ahk4b", formData)
+      .then(function () {
+        btn.textContent = '✓ Booking Confirmed!';
+        btn.style.background = '#4a8a54';
+        btn.style.color = '#fff';
+
+        setTimeout(() => {
+          btn.textContent = 'Book an Event';
+          btn.style.background = '';
+          btn.style.color = '';
+          form.reset();
+
+          otherEventGroup.style.display = "none";
+          otherEventInput.required = false;
+        }, 3500);
+      })
+      .catch(function (error) {
+        console.error("FAILED:", error);
+        alert("Failed to send booking. Please try again.");
+      });
+  });
+
+});
+
+// FAQ SECTION
+document.addEventListener("DOMContentLoaded", function () {
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach(item => {
+    const button = item.querySelector(".faq-q");
+
+    button.addEventListener("click", () => {
+      const isActive = item.classList.contains("active");
+
+      // Close all items (optional: remove this block if you want multiple open)
+      faqItems.forEach(i => i.classList.remove("active"));
+
+      // Toggle current
+      if (!isActive) {
+        item.classList.add("active");
       }
-
-      const btn = form.querySelector('.form-submit');
-
-      // 4️⃣ Prepare data
-      const formData = {
-        name: form.name.value,
-        email: form.email.value,
-        phone: form.phone.value,
-        event:
-          eventSelect.value === "other"
-            ? otherEventInput.value
-            : eventSelect.options[eventSelect.selectedIndex].text
-      };
-
-      // 5️⃣ Send email
-      emailjs.send("service_6vspc2j", "template_87ahk4b", formData)
-        .then(function (response) {
-          console.log("SUCCESS:", response);
-
-          btn.textContent = '✓ Booking Confirmed!';
-          btn.style.background = '#4a8a54';
-          btn.style.color = '#fff';
-
-          setTimeout(() => {
-            btn.textContent = 'Book an Event';
-            btn.style.background = '';
-            btn.style.color = '';
-            form.reset();
-
-            otherEventGroup.style.display = "none";
-            otherEventInput.required = false;
-          }, 3500);
-        })
-        .catch(function (error) {
-          console.error("FAILED:", error);
-          alert("Failed to send booking. Please try again.");
-        });
     });
-  }
+  });
+});
