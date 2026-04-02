@@ -1499,7 +1499,8 @@ section {
 .footer-links-group ul {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
+  padding-bottom: 1rem;
 }
 
 .footer-links-group a,
@@ -1510,6 +1511,22 @@ section {
 }
 
 .footer-links-group a:hover {
+  color: var(--text-light);
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+}
+
+.footer-social a {
+  font-size: 16px;
+  color: rgba(232,240,239,0.7);
+  transition: color 0.2s;
+}
+
+.footer-social a:hover {
   color: var(--text-light);
 }
 
