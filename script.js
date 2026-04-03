@@ -735,3 +735,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// DOWNLOAD BROCHURE
+document.addEventListener("DOMContentLoaded", function () {
+  const downloadBtn = document.querySelector(".banner__btn1");
+
+  downloadBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const link = document.createElement("a");
+    link.href = "files/Mara Events Brochure.pdf";
+    link.download = "Mara Events Brochure.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+});
