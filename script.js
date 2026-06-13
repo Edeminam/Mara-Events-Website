@@ -200,6 +200,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // ─── VIDEO DIALOG MODAL ──────────────────────────────────────────────
+  const videoDialog = document.getElementById('videoDialog');
+  const videoIframe = document.getElementById('videoIframe');
+  const playVideoBtn = document.getElementById('playVideoBtn');
+  const closeVideoBtn = document.getElementById('closeVideoBtn');
+
+  function getYouTubeId(url) {
+    if (!url) return null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  }
+
+  if (videoDialog && videoIframe && playVideoBtn) {
+    playVideoBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const videoUrl = playVideoBtn.getAttribute('href');
+      const videoId = getYouTubeId(videoUrl) || "9k1JPbEp_DE";
+      videoIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+      videoDialog.showModal();
+    });
+
+    videoDialog.addEventListener('close', () => {
+      videoIframe.src = "";
+    });
+
+    if (closeVideoBtn) {
+      closeVideoBtn.addEventListener('click', () => {
+        videoDialog.close();
+      });
+    }
+
+    // Fallback for browsers without closedby support
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      videoDialog.addEventListener('click', (event) => {
+        if (event.target !== videoDialog) return;
+
+        const rect = videoDialog.getBoundingClientRect();
+        const isDialogContent = (
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+        );
+
+        if (isDialogContent) return;
+
+        videoDialog.close();
+      });
+    }
+  }
+
 });
 
 // // ─── HERO CAROUSEL ────────────────────────────
@@ -397,6 +449,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Pointer drag (mouse desktop) ───────── */
   section.addEventListener("pointerdown", (e) => {
     if (e.pointerType === "touch") return; // handled by touch events
+    // Skip if clicking an interactive element to allow links/buttons to work properly
+    if (e.target.closest('a, button, select, input, dialog')) return;
     dragStartX  = e.clientX;
     dragStartY  = e.clientY;
     isDragging  = false;

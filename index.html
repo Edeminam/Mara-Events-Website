@@ -107,12 +107,20 @@
     <div class="hero-content">
       <h1 class="hero-title">EXTRAORDINARY EVENTS, <br> EXPERTLY DELIVERED</h1>
       <p class="hero-subtitle">From concept to execution, we deliver seamless and exceptional event experiences.</p>
-      <a href="#book" class="hero-btn">
-        <span class="hero-btn-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.5"/><path d="M2 8h1M21 8h1M2 16h1M21 16h1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </span>
-        <span>Book Your Event Now</span>
-      </a>
+      <div class="hero-actions">
+        <a href="#book" class="hero-btn">
+          <span class="hero-btn-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.5"/><path d="M2 8h1M21 8h1M2 16h1M21 16h1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <span>Book Your Event Now</span>
+        </a>
+        <a href="https://youtu.be/9k1JPbEp_DE?si=oxVFL0jQ3sl_1BKq" class="hero-btn-video" id="playVideoBtn">
+          <span class="hero-btn-video-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          </span>
+          <span>Watch Our Video</span>
+        </a>
+      </div>
     </div>
 
     <!-- Dot Indicators -->
@@ -628,6 +636,16 @@
       "telephone": "+2349011046473, +2348166930436"
   }
   </script>
+
+  <!-- VIDEO DIALOG MODAL -->
+  <dialog id="videoDialog" class="video-dialog" closedby="any" aria-label="Watch Our Video">
+    <div class="video-dialog-content">
+      <button class="video-dialog-close" id="closeVideoBtn" aria-label="Close video">×</button>
+      <div class="video-iframe-container">
+        <iframe id="videoIframe" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </dialog>
 
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script src="script.js"></script>
