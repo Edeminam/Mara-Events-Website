@@ -98,10 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── SCROLL REVEAL ──────────────────────────────────────────────────
   const revealEls = document.querySelectorAll(
-    'section > .container, .hero-content, .mission-inner, .events-card, .partners-scroll, .pricing-grid, .team-grid, .book-inner, .footer-top'
+    '.about-us-inner, .event-card, .testimonial-card, .card, .book-inner, .footer-top'
   );
-
-  revealEls.forEach(el => el.classList.add('reveal'));
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -116,9 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-  revealEls.forEach(el => observer.observe(el));
-
-  document.querySelectorAll('.event-card, .team-card, .pricing-card, .testimonial-card').forEach(el => {
+  revealEls.forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
   });
@@ -282,9 +278,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── PARALLAX HERO ──────────────────────────────────────────────────
   const heroBg = document.querySelector('.hero-bg');
   if (heroBg) {
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      if (window.scrollY < window.innerHeight) {
-        heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY < window.innerHeight) {
+            heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     }, { passive: true });
   }
@@ -669,29 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
     update(); // initial check
   })();
 
-  /* ── 7. INTERSECTION-based fade-in for cards / sections ────── */
-  (function initFadeIn () {
-    const targets = document.querySelectorAll('.event-card, .testimonial-card, .mission-inner, .about-us-inner, .book-inner');
-    if (!('IntersectionObserver' in window)) return;
-
-    targets.forEach((el, i) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
-      el.style.transition = `opacity .6s ${i * 0.07}s ease, transform .6s ${i * 0.07}s ease`;
-    });
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    targets.forEach(el => io.observe(el));
-  })();
+  // Scroll animations are managed cleanly by the class-based SCROLL REVEAL observer above.
 
 // FAQ SECTION
 document.addEventListener("DOMContentLoaded", function () {
