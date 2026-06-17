@@ -124,29 +124,56 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // ─── BOOKING FORM NEW ───────────────────────────────────────────────────
-
+  // ─── BOOKING FORM ───────────────────────────────────────────────────
   const form = document.getElementById('bookForm');
   const eventSelect = document.getElementById("event");
   const otherEventGroup = document.getElementById("otherEventGroup");
   const otherEventInput = document.getElementById("otherEvent");
+  const successDialog = document.getElementById('successDialog');
+  const successMessage = document.getElementById('successMessage');
+  const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+
+  // Initialize EmailJS
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init("djfFVv8ATRg9mo_1u");
+  }
 
   // Handle dropdown change
-  eventSelect.addEventListener("change", function () {
-    if (this.value === "other") {
-      otherEventGroup.style.display = "block";
-      otherEventInput.required = true;
-    } else {
-      otherEventGroup.style.display = "none";
-      otherEventInput.required = false;
-      otherEventInput.value = "";
-    }
-  });
+  if (eventSelect && otherEventGroup && otherEventInput) {
+    eventSelect.addEventListener("change", function () {
+      if (this.value === "other") {
+        otherEventGroup.style.display = "block";
+        otherEventInput.required = true;
+      } else {
+        otherEventGroup.style.display = "none";
+        otherEventInput.required = false;
+        otherEventInput.value = "";
+      }
+    });
+  }
 
   // Handle form submission
   if (form) {
     form.addEventListener('submit', e => {
       e.preventDefault();
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+
+      // ✅ Email validation (simple & effective)
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      // ✅ Phone validation (digits only, 10–13 length)
+      const phoneDigits = phone.replace(/\D/g, ""); // remove non-digits
+      if (phoneDigits.length < 10 || phoneDigits.length > 13) {
+        alert("The number is incorrect, check your phone number");
+        return;
+      }
 
       // ✅ Validate "Others" input
       if (eventSelect.value === "other" && otherEventInput.value.trim() === "") {
@@ -156,23 +183,85 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const btn = form.querySelector('.form-submit');
-      btn.textContent = '✓ Booking Confirmed!';
-      btn.style.background = '#4a8a54';
-      btn.style.color = '#fff';
+      const originalText = btn.textContent;
 
-      setTimeout(() => {
-        btn.textContent = 'Book an Event';
-        btn.style.background = '';
-        btn.style.color = '';
+      // Disable button & show processing
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
 
-        form.reset();
+      const formData = {
+        name: name,
+        email: email,
+        phone: phone,
+        event: eventSelect.value === "other"
+          ? otherEventInput.value
+          : eventSelect.options[eventSelect.selectedIndex].text
+      };
 
-        // ✅ Reset "Others" field UI
-        otherEventGroup.style.display = "none";
-        otherEventInput.required = false;
-        otherEventInput.value = "";
-      }, 3500);
+      if (typeof emailjs !== 'undefined') {
+        emailjs.send("service_6vspc2j", "template_87ahk4b", formData)
+          .then(() => {
+            // Re-enable button
+            btn.disabled = false;
+            btn.textContent = originalText;
+
+            // Personalize and show Success Dialog
+            if (successDialog) {
+              if (successMessage) {
+                successMessage.innerHTML = `Thank you, <strong>${name}</strong>! Your booking has been confirmed. A member of our team will reach you shortly.`;
+              }
+              successDialog.showModal();
+            }
+
+            // Reset form
+            form.reset();
+
+            // Reset "Others" field UI
+            if (otherEventGroup && otherEventInput) {
+              otherEventGroup.style.display = "none";
+              otherEventInput.required = false;
+              otherEventInput.value = "";
+            }
+          })
+          .catch((error) => {
+            console.error("FAILED:", error);
+            btn.disabled = false;
+            btn.textContent = originalText;
+            alert("Failed to send booking. Please try again.");
+          });
+      } else {
+        console.error("EmailJS is not defined.");
+        btn.disabled = false;
+        btn.textContent = originalText;
+        alert("Failed to connect to the booking service. Please try again later.");
+      }
     });
+  }
+
+  // Success Dialog close logic
+  if (successDialog && closeSuccessBtn) {
+    closeSuccessBtn.addEventListener('click', () => {
+      successDialog.close();
+    });
+
+    // Fallback for browsers without closedby support
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      successDialog.addEventListener('click', (event) => {
+        if (event.target !== successDialog) return;
+
+        const rect = successDialog.getBoundingClientRect();
+        const isDialogContent = (
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+        );
+
+        if (isDialogContent) return;
+
+        successDialog.close();
+      });
+    }
   }
 
   // ─── SMOOTH ANCHOR SCROLL ───────────────────────────────────────────
@@ -549,16 +638,16 @@ document.addEventListener('DOMContentLoaded', () => {
       </span>
       <span class="wa-label">Chat with us</span>
     `;
- 
+
     document.body.appendChild(btn);
- 
+
     /* ---- Visibility logic ---- */
     const heroSection  = document.getElementById('hero');
     if (!heroSection) { btn.classList.add('visible'); return; }
- 
+
     let   visible      = false;
     let   rafScheduled = false;
- 
+
     const update = () => {
       rafScheduled = false;
       const heroBottom = heroSection.getBoundingClientRect().bottom;
@@ -568,29 +657,29 @@ document.addEventListener('DOMContentLoaded', () => {
       visible = shouldShow;
       btn.classList.toggle('visible', visible);
     };
- 
+
     const onScroll = () => {
       if (!rafScheduled) {
         rafScheduled = true;
         requestAnimationFrame(update);
       }
     };
- 
+
     window.addEventListener('scroll', onScroll, { passive: true });
     update(); // initial check
   })();
- 
+
   /* ── 7. INTERSECTION-based fade-in for cards / sections ────── */
   (function initFadeIn () {
     const targets = document.querySelectorAll('.event-card, .testimonial-card, .mission-inner, .about-us-inner, .book-inner');
     if (!('IntersectionObserver' in window)) return;
- 
+
     targets.forEach((el, i) => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(24px)';
       el.style.transition = `opacity .6s ${i * 0.07}s ease, transform .6s ${i * 0.07}s ease`;
     });
- 
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -600,174 +689,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { threshold: 0.12 });
- 
+
     targets.forEach(el => io.observe(el));
   })();
-
-
-
-  // ─── EMAILJS ─────────────────────────────────────────────────────────
-//   // 1️⃣ Initialize EmailJS (REQUIRED)
-//   document.addEventListener("DOMContentLoaded", function () {
-
-//   emailjs.init("djfFVv8ATRg9mo_1u");
-
-//   const form = document.getElementById('bookForm');
-//   const eventSelect = document.getElementById("event");
-//   const otherEventGroup = document.getElementById("otherEventGroup");
-//   const otherEventInput = document.getElementById("otherEvent");
-
-//   console.log("Form:", form); // debug
-
-//   if (!form) return; // stop if form not found
-
-//   // Show/hide "Others"
-//   eventSelect.addEventListener("change", function () {
-//     if (this.value === "other") {
-//       otherEventGroup.style.display = "block";
-//       otherEventInput.required = true;
-//     } else {
-//       otherEventGroup.style.display = "none";
-//       otherEventInput.required = false;
-//       otherEventInput.value = "";
-//     }
-//   });
-
-//   form.addEventListener('submit', function (e) {
-//     e.preventDefault();
-
-//     if (eventSelect.value === "other" && otherEventInput.value.trim() === "") {
-//       alert("Please specify your event type.");
-//       return;
-//     }
-
-//     const btn = form.querySelector('.form-submit');
-
-//     const formData = {
-//       name: form.name.value,
-//       email: form.email.value,
-//       phone: form.phone.value,
-//       event:
-//         eventSelect.value === "other"
-//           ? otherEventInput.value
-//           : eventSelect.options[eventSelect.selectedIndex].text
-//     };
-
-//     console.log("Sending:", formData); // debug
-
-//     emailjs.send("service_6vspc2j", "template_87ahk4b", formData)
-//       .then(function (response) {
-//         console.log("SUCCESS:", response);
-
-//         btn.textContent = '✓ Booking Confirmed!';
-//         btn.style.background = '#4a8a54';
-//         btn.style.color = '#fff';
-
-//         setTimeout(() => {
-//           btn.textContent = 'Book an Event';
-//           btn.style.background = '';
-//           btn.style.color = '';
-//           form.reset();
-
-//           otherEventGroup.style.display = "none";
-//           otherEventInput.required = false;
-//         }, 3500);
-//       })
-//       .catch(function (error) {
-//         console.error("FAILED:", error);
-//         alert("Failed to send booking. Check console.");
-//       });
-//   });
-
-// });
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  emailjs.init("djfFVv8ATRg9mo_1u");
-
-  const form = document.getElementById('bookForm');
-  const eventSelect = document.getElementById("event");
-  const otherEventGroup = document.getElementById("otherEventGroup");
-  const otherEventInput = document.getElementById("otherEvent");
-
-  if (!form) return;
-
-  // Show/hide "Others"
-  eventSelect.addEventListener("change", function () {
-    if (this.value === "other") {
-      otherEventGroup.style.display = "block";
-      otherEventInput.required = true;
-    } else {
-      otherEventGroup.style.display = "none";
-      otherEventInput.required = false;
-      otherEventInput.value = "";
-    }
-  });
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const phone = form.phone.value.trim();
-
-    // ✅ Email validation (simple & effective)
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailPattern.test(email)) {
-      alert("Please enter a valid email address.");
-      return;
-    }
-
-    // ✅ Phone validation (digits only, 10–13 length)
-    const phoneDigits = phone.replace(/\D/g, ""); // remove non-digits
-
-    if (phoneDigits.length < 10 || phoneDigits.length > 13) {
-      alert("The number is incorrect, check your phone number");
-      return;
-    }
-
-    // ✅ Validate "Others"
-    if (eventSelect.value === "other" && otherEventInput.value.trim() === "") {
-      alert("Please specify your event type.");
-      return;
-    }
-
-    const btn = form.querySelector('.form-submit');
-
-    const formData = {
-      name: name,
-      email: email,
-      phone: phone,
-      event:
-        eventSelect.value === "other"
-          ? otherEventInput.value
-          : eventSelect.options[eventSelect.selectedIndex].text
-    };
-
-    emailjs.send("service_6vspc2j", "template_87ahk4b", formData)
-      .then(function () {
-        btn.textContent = '✓ Booking Confirmed!';
-        btn.style.background = '#4a8a54';
-        btn.style.color = '#fff';
-
-        setTimeout(() => {
-          btn.textContent = 'Book an Event';
-          btn.style.background = '';
-          btn.style.color = '';
-          form.reset();
-
-          otherEventGroup.style.display = "none";
-          otherEventInput.required = false;
-        }, 3500);
-      })
-      .catch(function (error) {
-        console.error("FAILED:", error);
-        alert("Failed to send booking. Please try again.");
-      });
-  });
-
-});
 
 // FAQ SECTION
 document.addEventListener("DOMContentLoaded", function () {
