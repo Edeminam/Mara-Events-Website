@@ -680,32 +680,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   faqItems.forEach(item => {
     const button = item.querySelector(".faq-q");
+    if (button) {
+      button.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
 
-    button.addEventListener("click", () => {
-      const isActive = item.classList.contains("active");
+        // Close all items (optional: remove this block if you want multiple open)
+        faqItems.forEach(i => i.classList.remove("active"));
 
-      // Close all items (optional: remove this block if you want multiple open)
-      faqItems.forEach(i => i.classList.remove("active"));
-
-      // Toggle current
-      if (!isActive) {
-        item.classList.add("active");
-      }
-    });
+        // Toggle current
+        if (!isActive) {
+          item.classList.add("active");
+        }
+      });
+    }
   });
 });
 
 // DOWNLOAD BROCHURE
 document.addEventListener("DOMContentLoaded", function () {
   const downloadBtn = document.querySelector(".banner__btn1");
-
-  downloadBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    const link = document.createElement("a");
-    link.href = "files/Mara Events Brochure.pdf";
-    link.download = "Mara Events Brochure.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  });
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      const link = document.createElement("a");
+      link.href = "files/Mara Events Brochure.pdf";
+      link.download = "Mara Events Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
 });
