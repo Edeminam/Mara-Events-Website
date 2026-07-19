@@ -3166,5 +3166,65 @@ section {
   }
 }
 
+/* Confirm-payment panel (shown after Flutterwave tab opens) */
+.confirm-payment-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+  animation: fadeSlideUp 0.3s ease both;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.confirm-payment-msg {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: rgba(33, 116, 233, 0.05);
+  border: 1px solid rgba(33, 116, 233, 0.2);
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.confirm-payment-msg i {
+  color: var(--accent);
+  font-size: 15px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.confirm-paid-btn {
+  background: #16a34a !important;
+}
+
+.confirm-paid-btn:hover {
+  background: #15803d !important;
+}
+
+.btn-cancel-payment {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.btn-cancel-payment:hover {
+  color: var(--accent);
+}
+
 
 

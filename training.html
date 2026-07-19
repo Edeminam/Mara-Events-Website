@@ -362,6 +362,20 @@
           <form class="registration-form" id="registrationForm" novalidate>
             
             <div class="form-group">
+              <label for="reg-email">EMAIL ADDRESS</label>
+              <input
+                type="email"
+                id="reg-email"
+                name="email"
+                placeholder="Enter your email address"
+                autocomplete="email"
+                required
+                enterkeyhint="next"
+              />
+              <span class="error-msg" id="email-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
               <label for="reg-phone">PHONE NUMBER</label>
               <input 
                 type="tel" 
@@ -495,6 +509,10 @@
       <div class="receipt-body">
         <h3 class="receipt-title">Transaction Receipt</h3>
         <div class="receipt-row">
+          <span>Email Address</span>
+          <strong id="receipt-email">-</strong>
+        </div>
+        <div class="receipt-row">
           <span>Phone Number</span>
           <strong id="receipt-phone">-</strong>
         </div>
@@ -532,6 +550,6 @@
   <!-- Global scripts -->
   <script defer src="script.js?v=1.2"></script>
   <!-- Training-specific script -->
-  <script defer src="training.js?v=1.2"></script>
+  <script defer src="training.js?v=1.6"></script>
 </body>
 </html>
