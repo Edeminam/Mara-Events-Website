@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── CURRICULUM ACCORDION ───────────────────────────────────────────
   const weeks = document.querySelectorAll('.curriculum-week');
-  
   if (weeks.length > 0) {
     weeks[0].classList.add('expanded');
     weeks.forEach(week => {
@@ -23,43 +22,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ─── FLUTTERWAVE REDIRECT CALLBACK HANDLER ──────────────────────────
-  // After a successful payment, Flutterwave redirects back to:
-  // training.html?status=successful&tx_ref=MARA-xxx&transaction_id=yyy
-  // We detect those URL params here and show the receipt modal.
-  (function handleFlutterwaveReturn() {
+  // ─── PAYMENT RETURN HANDLER (runs in the redirect tab) ──────────────
+  // When Flutterwave redirects the payment tab back to:
+  // training.html?status=successful&transaction_id=xxx
+  // This IIFE detects it, signals the main tab via localStorage, then
+  // closes the redirect tab so the user lands back on the main tab.
+  (function handlePaymentReturn() {
     const params        = new URLSearchParams(window.location.search);
     const status        = params.get('status');
     const transactionId = params.get('transaction_id');
 
+    if (!status) return; // not a payment-return load — do nothing
+
     if (status === 'successful' && transactionId) {
-      // Retrieve data saved before the redirect
-      const storedEmail = sessionStorage.getItem('mara_reg_email') || '';
-      const storedPhone = sessionStorage.getItem('mara_reg_phone') || '';
-
-      // Populate receipt dialog
-      const emailEl = document.getElementById('receipt-email');
-      if (emailEl) emailEl.textContent = storedEmail;
-
-      const phoneEl = document.getElementById('receipt-phone');
-      if (phoneEl) phoneEl.textContent = storedPhone;
-
-      const txEl = document.getElementById('receipt-tx-id');
-      if (txEl) txEl.textContent = transactionId;
-
-      // Show the confirmed-payment receipt modal
-      const receiptDialog = document.getElementById('receiptDialog');
-      if (receiptDialog) receiptDialog.showModal();
-
-      // Clean up sessionStorage
-      sessionStorage.removeItem('mara_reg_email');
-      sessionStorage.removeItem('mara_reg_phone');
-      sessionStorage.removeItem('mara_reg_txref');
-
-      // Clean the URL so a page refresh does not re-trigger the modal
-      window.history.replaceState({}, '', window.location.pathname);
+      // Signal the main tab
+      localStorage.setItem('mara_payment_status', 'successful');
+      localStorage.setItem('mara_payment_txid',   transactionId);
+    } else {
+      // Payment failed/cancelled — signal that too so main tab can reset
+      localStorage.setItem('mara_payment_status', 'failed');
     }
+
+    // Clean the URL immediately
+    window.history.replaceState({}, '', window.location.pathname);
+
+    // Try to close this redirect tab (works because it was opened by window.open)
+    window.close();
+
+    // Fallback: if window.close() is blocked, show a minimal message
+    // (browser replaces the Flutterwave content so blank-looking page is fine)
   })();
+
 
   // ─── FORM ELEMENTS ──────────────────────────────────────────────────
   const form                  = document.getElementById('registrationForm');
@@ -71,7 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const errEmail              = document.getElementById('email-error');
   const errPhone              = document.getElementById('phone-error');
 
-  // Real-time error clearing on input
+  // Waiting state flag — true while the Flutterwave tab is open
+  let isWaitingForPayment = false;
+  let paymentConfirmed    = false;
+
+  // Save original button HTML so we can restore it
+  const btnOriginalHTML = btnSubmitRegistration ? btnSubmitRegistration.innerHTML : '';
+
+  // ─── REAL-TIME ERROR CLEARING ───────────────────────────────────────
   const registerInputReset = (input, errorSpan) => {
     if (input && errorSpan) {
       input.addEventListener('input', () => {
@@ -80,11 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   };
-
   registerInputReset(inpEmail, errEmail);
   registerInputReset(inpPhone, errPhone);
 
-  // Email validation
+  // ─── VALIDATION ─────────────────────────────────────────────────────
   function validateEmail() {
     const val = inpEmail ? inpEmail.value.trim() : '';
     if (!val) {
@@ -99,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
-  // Phone validation
   function validatePhone() {
     const val = inpPhone ? inpPhone.value.trim() : '';
     if (!val) {
@@ -124,11 +122,77 @@ document.addEventListener('DOMContentLoaded', () => {
     return emailOk && phoneOk;
   }
 
-  // ─── FORM SUBMIT: redirect to Flutterwave with redirect_url ─────────
-  // Flutterwave payment links support ?redirect_url= out of the box.
-  // On successful payment Flutterwave appends:
-  //   ?status=successful&tx_ref=...&transaction_id=...
-  // The handleFlutterwaveReturn() IIFE above reads those on page load.
+  // ─── RESET FORM TO DEFAULT ──────────────────────────────────────────
+  function resetFormToDefault() {
+    if (form) form.reset();
+    if (errEmail) errEmail.textContent = '';
+    if (errPhone) errPhone.textContent = '';
+    if (btnSubmitRegistration) {
+      btnSubmitRegistration.disabled  = false;
+      btnSubmitRegistration.innerHTML = btnOriginalHTML;
+    }
+    sessionStorage.removeItem('mara_reg_email');
+    sessionStorage.removeItem('mara_reg_phone');
+    isWaitingForPayment = false;
+    paymentConfirmed    = false;
+  }
+
+  // ─── SHOW RECEIPT MODAL (called after confirmed payment) ─────────────
+  function showReceipt(email, phone, txId) {
+    const emailEl = document.getElementById('receipt-email');
+    if (emailEl) emailEl.textContent = email || '-';
+
+    const phoneEl = document.getElementById('receipt-phone');
+    if (phoneEl) phoneEl.textContent = phone || '-';
+
+    const txEl = document.getElementById('receipt-tx-id');
+    if (txEl) txEl.textContent = txId || '-';
+
+    if (receiptDialog) receiptDialog.showModal();
+
+    // Clean up
+    localStorage.removeItem('mara_payment_status');
+    localStorage.removeItem('mara_payment_txid');
+    sessionStorage.removeItem('mara_reg_email');
+    sessionStorage.removeItem('mara_reg_phone');
+    isWaitingForPayment = false;
+    paymentConfirmed    = true;
+  }
+
+  // ─── CROSS-TAB PAYMENT CONFIRMATION (storage event) ─────────────────
+  // The redirect tab writes to localStorage after Flutterwave confirms.
+  // The storage event fires in ALL OTHER tabs on the same origin.
+  window.addEventListener('storage', (e) => {
+    if (e.key !== 'mara_payment_status' || !isWaitingForPayment) return;
+
+    if (e.newValue === 'successful') {
+      paymentConfirmed = true;
+      const email = sessionStorage.getItem('mara_reg_email') || '';
+      const phone = sessionStorage.getItem('mara_reg_phone') || '';
+      const txId  = localStorage.getItem('mara_payment_txid') || '';
+      showReceipt(email, phone, txId);
+    } else {
+      // Payment failed / was cancelled in the other tab
+      resetFormToDefault();
+    }
+  });
+
+  // ─── VISIBILITY CHANGE — reset if user returns without paying ────────
+  // When the user closes the Flutterwave tab or switches back to this tab
+  // without completing payment, the page becomes visible again.
+  // We wait ~700 ms for any pending storage event to fire first.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden || !isWaitingForPayment) return;
+
+    setTimeout(() => {
+      // If payment was NOT confirmed during the grace period, reset
+      if (!paymentConfirmed && isWaitingForPayment) {
+        resetFormToDefault();
+      }
+    }, 700);
+  });
+
+  // ─── FORM SUBMIT ─────────────────────────────────────────────────────
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -136,26 +200,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const studentEmail = inpEmail ? inpEmail.value.trim() : '';
       const studentPhone = inpPhone ? inpPhone.value.trim() : '';
-      const txRef        = 'MARA-' + Date.now();
 
-      // Persist data across the navigation to Flutterwave and back
+      // Persist data so we can populate the receipt after the redirect
       sessionStorage.setItem('mara_reg_email', studentEmail);
       sessionStorage.setItem('mara_reg_phone', studentPhone);
-      sessionStorage.setItem('mara_reg_txref', txRef);
 
-      // Build Flutterwave URL with this page as the redirect target
+      // Clear any leftover payment signal from a previous attempt
+      localStorage.removeItem('mara_payment_status');
+      localStorage.removeItem('mara_payment_txid');
+
+      // Build Flutterwave URL — redirect_url brings the new tab back here
       const redirectUrl = window.location.origin + window.location.pathname;
       const paymentUrl  = 'https://flutterwave.com/pay/b6egox7yzyeu'
                         + '?redirect_url=' + encodeURIComponent(redirectUrl);
 
-      // Show loading state and navigate
-      btnSubmitRegistration.disabled    = true;
-      btnSubmitRegistration.textContent = 'Redirecting to payment…';
-      window.location.href = paymentUrl;
+      // Open Flutterwave in a new tab
+      window.open(paymentUrl, '_blank', 'noopener');
+
+      // Enter "waiting" state
+      isWaitingForPayment = true;
+      paymentConfirmed    = false;
+      btnSubmitRegistration.disabled  = true;
+      btnSubmitRegistration.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> Awaiting payment…';
     });
   }
 
-  // ─── RECEIPT DIALOG CLOSE ───────────────────────────────────────────
+  // ─── RECEIPT DIALOG CLOSE ────────────────────────────────────────────
   if (receiptDialog && closeReceiptBtn) {
     closeReceiptBtn.addEventListener('click', () => {
       receiptDialog.close();
@@ -163,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ─── FAQ ACCORDION TOGGLERS ──────────────────────────────────────────
+  // ─── FAQ ACCORDION ───────────────────────────────────────────────────
   const faqItems = document.querySelectorAll('.faq-item');
   if (faqItems.length > 0) {
     faqItems.forEach(item => {
