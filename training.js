@@ -192,6 +192,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 700);
   });
 
+  // ─── GOOGLE SHEET LOGGING ─────────────────────────────────────────────
+  // Paste your deployed Apps Script Web App URL below.
+  // Leave blank ("") to disable sheet logging without breaking anything.
+  const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxJG5nb2_qayB9yWV0qiT1_rTLgBnKAhkNSc0M3sMKMxxxfJrUeLrnR8DZNk-n0FnKu/exec';
+
+  /**
+   * Fire-and-forget POST to the Google Apps Script endpoint.
+   * Uses no-cors so the request always succeeds even without CORS headers.
+   * Errors are caught and logged silently — sheet logging never blocks payment.
+   */
+  async function sendToSheet(email, phone) {
+    if (!SHEET_ENDPOINT) return; // not configured yet
+    try {
+      await fetch(SHEET_ENDPOINT, {
+        method : 'POST',
+        mode   : 'no-cors',   // avoids CORS pre-flight; response will be opaque
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ email, phone }),
+      });
+    } catch (err) {
+      console.warn('[Mara] Sheet logging failed (non-blocking):', err);
+    }
+  }
+
   // ─── FORM SUBMIT ─────────────────────────────────────────────────────
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -200,6 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const studentEmail = inpEmail ? inpEmail.value.trim() : '';
       const studentPhone = inpPhone ? inpPhone.value.trim() : '';
+
+      // Log to Google Sheet (fire-and-forget — does NOT block payment)
+      sendToSheet(studentEmail, studentPhone);
 
       // Persist data so we can populate the receipt after the redirect
       sessionStorage.setItem('mara_reg_email', studentEmail);
