@@ -142,17 +142,30 @@
       }, 300);
     }
 
-    /* ── Intercept all CTA links pointing to #book ── */
+    /* ── Intercept all CTA links and buttons pointing to #book or booking ── */
     function isBookLink(el) {
+      if (!el) return false;
       const href = el.getAttribute('href') || '';
+      const cls  = String(el.className || '');
+      const txt  = (el.textContent || '').trim().toLowerCase();
+
       return href === '#book'
         || href.endsWith('#book')
-        || href.includes('index.html#book');
+        || href.includes('index.html#book')
+        || cls.includes('nav-cta')
+        || cls.includes('mobile-cta')
+        || cls.includes('footer-cta')
+        || cls.includes('sidebar-cta-btn')
+        || cls.includes('blog-cta-btn')
+        || txt.includes('book your event')
+        || txt.includes('book a consultation')
+        || txt.includes('book free consultation')
+        || txt.includes('book now');
     }
 
     document.addEventListener('click', function (e) {
-      const link = e.target.closest('a');
-      if (link && isBookLink(link)) {
+      const target = e.target.closest('a, button, .nav-cta, .mobile-cta, .footer-cta, .sidebar-cta-btn, .blog-cta-btn');
+      if (target && isBookLink(target)) {
         e.preventDefault();
         openModal();
       }
