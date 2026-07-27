@@ -1,0 +1,217 @@
+/* =============================================
+   Mara Events — Consultation Modal
+   styles added to styles.css
+   ============================================= */
+
+/* ── Overlay ── */
+.consult-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.consult-overlay.open {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ── Modal box ── */
+.consult-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  padding: 44px 40px 36px;
+  position: relative;
+  transform: translateY(28px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.22);
+  max-height: 92vh;
+  overflow-y: auto;
+}
+.consult-overlay.open .consult-modal {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Close button ── */
+.consult-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: #888;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+.consult-close:hover { color: #111; background: #f0f0f0; }
+
+/* ── Header ── */
+.consult-modal-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent, #2174E9);
+  margin-bottom: 6px;
+}
+.consult-modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0d1b2e;
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+.consult-modal-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 28px;
+}
+
+/* ── Form fields ── */
+.consult-form-group {
+  margin-bottom: 18px;
+}
+.consult-form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #374151;
+  margin-bottom: 6px;
+}
+.consult-form-group input,
+.consult-form-group textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #111;
+  background: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  box-sizing: border-box;
+  outline: none;
+  resize: none;
+}
+.consult-form-group input:focus,
+.consult-form-group textarea:focus {
+  border-color: var(--accent, #2174E9);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(33, 116, 233, 0.12);
+}
+.consult-form-group textarea {
+  min-height: 100px;
+}
+
+/* ── Submit button ── */
+.consult-submit {
+  width: 100%;
+  padding: 15px;
+  background: var(--accent, #2174E9);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, opacity 0.2s;
+  margin-top: 6px;
+}
+.consult-submit:hover:not(:disabled) {
+  background: #1560cc;
+  transform: translateY(-1px);
+}
+.consult-submit:active:not(:disabled) { transform: translateY(0); }
+.consult-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Privacy note ── */
+.consult-privacy {
+  text-align: center;
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 14px;
+}
+
+/* ── Success modal ── */
+.consult-success-modal {
+  text-align: center;
+  padding: 52px 40px 44px;
+}
+.consult-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 36px;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.35);
+}
+.consult-success-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0d1b2e;
+  margin: 0 0 10px;
+}
+.consult-success-body {
+  font-size: 15px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+.consult-success-close {
+  display: inline-block;
+  padding: 13px 36px;
+  background: var(--accent, #2174E9);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.consult-success-close:hover { background: #1560cc; transform: translateY(-1px); }
+
+/* ── Validation error ── */
+.consult-field-error {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 5px;
+  display: none;
+}
+.consult-form-group.has-error input,
+.consult-form-group.has-error textarea {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+.consult-form-group.has-error .consult-field-error { display: block; }
+
+/* ── Mobile ── */
+@media (max-width: 540px) {
+  .consult-modal,
+  .consult-success-modal { padding: 36px 24px 28px; }
+  .consult-modal-title { font-size: 19px; }
+}
