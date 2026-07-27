@@ -142,30 +142,35 @@
       }, 300);
     }
 
-    /* ── Intercept CTA links and buttons pointing to #book or booking ── */
+    /* ── Intercept consultation modal triggers (do NOT intercept #book links) ── */
     function isBookLink(el) {
       if (!el) return false;
-      const cls = String(el.className || '');
-      // Explicitly allow footer-cta to scroll/navigate directly to index.html#book
-      if (cls.includes('footer-cta')) return false;
 
       const href = el.getAttribute('href') || '';
-      const txt  = (el.textContent || '').trim().toLowerCase();
+      const cls  = String(el.className || '');
+      const data = el.getAttribute('data-modal') || '';
 
-      return href === '#book'
-        || href.endsWith('#book')
-        || href.includes('index.html#book')
-        || cls.includes('nav-cta')
-        || cls.includes('mobile-cta')
-        || cls.includes('sidebar-cta-btn')
-        || cls.includes('blog-cta-btn')
-        || txt.includes('book your event')
-        || txt.includes('book a consultation')
-        || txt.includes('book free consultation');
+      // NEVER intercept links pointing to index.html#book, #book, or standard nav/footer CTAs
+      if (
+        href === '#book' ||
+        href.endsWith('#book') ||
+        href.includes('index.html#book') ||
+        cls.includes('footer-cta') ||
+        cls.includes('nav-cta') ||
+        cls.includes('mobile-cta') ||
+        cls.includes('hero-btn')
+      ) {
+        return false;
+      }
+
+      // Only open consultation modal for explicit consultation triggers
+      return data === 'consultation'
+        || href === '#consultation'
+        || cls.includes('open-consult-modal');
     }
 
     document.addEventListener('click', function (e) {
-      const target = e.target.closest('a, button, .nav-cta, .mobile-cta, .sidebar-cta-btn, .blog-cta-btn');
+      const target = e.target.closest('a, button, .open-consult-modal');
       if (target && isBookLink(target)) {
         e.preventDefault();
         openModal();
