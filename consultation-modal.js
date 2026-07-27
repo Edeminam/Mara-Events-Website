@@ -142,11 +142,14 @@
       }, 300);
     }
 
-    /* ── Intercept all CTA links and buttons pointing to #book or booking ── */
+    /* ── Intercept CTA links and buttons pointing to #book or booking ── */
     function isBookLink(el) {
       if (!el) return false;
+      const cls = String(el.className || '');
+      // Explicitly allow footer-cta to scroll/navigate directly to index.html#book
+      if (cls.includes('footer-cta')) return false;
+
       const href = el.getAttribute('href') || '';
-      const cls  = String(el.className || '');
       const txt  = (el.textContent || '').trim().toLowerCase();
 
       return href === '#book'
@@ -154,17 +157,15 @@
         || href.includes('index.html#book')
         || cls.includes('nav-cta')
         || cls.includes('mobile-cta')
-        || cls.includes('footer-cta')
         || cls.includes('sidebar-cta-btn')
         || cls.includes('blog-cta-btn')
         || txt.includes('book your event')
         || txt.includes('book a consultation')
-        || txt.includes('book free consultation')
-        || txt.includes('book now');
+        || txt.includes('book free consultation');
     }
 
     document.addEventListener('click', function (e) {
-      const target = e.target.closest('a, button, .nav-cta, .mobile-cta, .footer-cta, .sidebar-cta-btn, .blog-cta-btn');
+      const target = e.target.closest('a, button, .nav-cta, .mobile-cta, .sidebar-cta-btn, .blog-cta-btn');
       if (target && isBookLink(target)) {
         e.preventDefault();
         openModal();
