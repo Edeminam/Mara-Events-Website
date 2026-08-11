@@ -2,96 +2,101 @@
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mara-events.com/</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://mara-events.com/gallery.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://mara-events.com/training.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.9</priority>
   </url>
   <!-- Blog Posts: Planning Tips -->
   <url>
     <loc>https://mara-events.com/blog/how-to-plan-corporate-event-abuja-budget.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/questions-before-hiring-event-planner-nigeria.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/wedding-planning-timeline-12-months.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/lagos-vs-abuja-event-venue-city.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/cost-corporate-event-nigeria.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <!-- Blog Posts: Industry Insights -->
   <url>
     <loc>https://mara-events.com/blog/event-trends-mice-nigeria-2026.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/rise-of-hybrid-events-nigerian-businesses.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/event-risk-management-plan.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/sustainable-event-planning-nigeria.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <!-- Blog Posts: Training & Career -->
   <url>
     <loc>https://mara-events.com/blog/event-planning-certification-program.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/career-paths-events-industry-nigeria.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/hobbyist-to-professional-event-planning-training.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <!-- Blog Posts: Local Guides -->
   <url>
     <loc>https://mara-events.com/blog/best-event-venues-abuja-corporate.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/top-wedding-venues-lagos-2026.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mara-events.com/blog/how-to-register-event-business-nigeria.html</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-11</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
