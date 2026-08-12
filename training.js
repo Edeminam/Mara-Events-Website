@@ -216,6 +216,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ─── EMAILJS LOGGING ──────────────────────────────────────────────────
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init("djfFVv8ATRg9mo_1u");
+  }
+
+  function sendToEmailJS(email, phone) {
+    if (typeof emailjs === 'undefined') return;
+
+    const emailParams = {
+      name: email,
+      email: email,
+      phone: phone,
+      event: 'Mara Academy Training Registration'
+    };
+
+    emailjs.send('service_6vspc2j', 'template_87ahk4b', emailParams)
+      .then(() => {
+        console.log('[Mara] Training registration notification sent via EmailJS.');
+      })
+      .catch((err) => {
+        console.warn('[Mara] EmailJS notification failed:', err);
+      });
+  }
+
   // ─── FORM SUBMIT ─────────────────────────────────────────────────────
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -225,8 +249,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const studentEmail = inpEmail ? inpEmail.value.trim() : '';
       const studentPhone = inpPhone ? inpPhone.value.trim() : '';
 
-      // Log to Google Sheet (fire-and-forget — does NOT block payment)
+      // Log to Google Sheet & send EmailJS notification (non-blocking)
       sendToSheet(studentEmail, studentPhone);
+      sendToEmailJS(studentEmail, studentPhone);
+
 
       // Persist data so we can populate the receipt after the redirect
       sessionStorage.setItem('mara_reg_email', studentEmail);
