@@ -782,18 +782,24 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(13,34,87,0.9) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(13,34,87,0.92) 0%, transparent 100%);
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 22px 18px 14px;
+  padding: 24px 20px 16px;
   border-radius: 0 0 16px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
+  min-height: 52px;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.15s ease;
+  will-change: opacity;
 }
+
 
 .lightbox-close {
   position: fixed;
