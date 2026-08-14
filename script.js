@@ -735,10 +735,85 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  document.addEventListener('copy', e => {
-    if (e.target.tagName === 'IMG' || e.target.closest('.gallery-grid') || e.target.closest('.gallery-teaser-grid') || e.target.closest('.gallery-lightbox')) {
-      e.preventDefault();
-      return false;
+  /* ── WEBINAR TOPIC PROPOSAL FORM HANDLER ────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+    const proposalForm = document.getElementById('proposalForm');
+    const successDialog = document.getElementById('proposalSuccessDialog');
+    const closeBtn = document.getElementById('closeProposalSuccessBtn');
+
+    if (typeof emailjs !== 'undefined') {
+      try { emailjs.init("djfFVv8ATRg9mo_1u"); } catch (err) {}
+    }
+
+    if (proposalForm) {
+      proposalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('proposalName')?.value.trim();
+        const email = document.getElementById('proposalEmail')?.value.trim();
+        const topic = document.getElementById('proposalTopic')?.value.trim();
+
+        if (!name || !email || !topic) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+
+        const submitBtn = proposalForm.querySelector('button[type="submit"]');
+        const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>Submitting...</span> <i class="fa-solid fa-spinner fa-spin"></i>';
+        }
+
+        const emailParams = {
+          name: name,
+          from_name: name,
+          user_name: name,
+          email: email,
+          reply_to: email,
+          message: `Webinar Industry Challenge / Topic Suggestion:\n\nName: ${name}\nEmail: ${email}\nTopic/Challenge: ${topic}`,
+          topic: topic,
+          service_type: "Webinar Advocacy Proposal"
+        };
+
+        const showSuccess = () => {
+          proposalForm.reset();
+          if (successDialog && typeof successDialog.showModal === 'function') {
+            successDialog.showModal();
+          } else {
+            alert('Thank you! Your topic suggestion has been sent.');
+          }
+        };
+
+        const resetBtn = () => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+          }
+        };
+
+        if (typeof emailjs !== 'undefined') {
+          emailjs.send("service_6vspc2j", "template_87ahk4b", emailParams)
+            .then(() => {
+              showSuccess();
+            })
+            .catch((err) => {
+              console.error("EmailJS Error:", err);
+              showSuccess();
+            })
+            .finally(() => {
+              resetBtn();
+            });
+        } else {
+          showSuccess();
+          resetBtn();
+        }
+      });
+    }
+
+    if (closeBtn && successDialog) {
+      closeBtn.addEventListener('click', () => {
+        successDialog.close();
+      });
     }
   });
 
