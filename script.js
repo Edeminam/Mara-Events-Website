@@ -7,36 +7,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ─── NAVBAR ─────────────────────────────────────────────────────────
-  // ⚠️ ERROR 1 FIXED: Removed the duplicate IIFE navbar block that used
-  // an undefined $() helper — it threw a ReferenceError and crashed the
-  // entire DOMContentLoaded callback, killing the slider and everything else.
-
-  const navbar     = document.getElementById('navbar');
-  const navToggle  = document.getElementById('navToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  if (navbar) {
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
-  }
-
-  if (navToggle && mobileMenu) {
-    navToggle.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      navToggle.classList.toggle('open', isOpen);
-      navToggle.setAttribute('aria-expanded', isOpen);
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        navToggle.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
+  // Navbar handling is managed centrally by nav.js across all pages
 
   // ─── TESTIMONIAL SLIDER ─────────────────────────────────────────────
   const track   = document.getElementById('testimonialTrack');

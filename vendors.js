@@ -5,28 +5,8 @@
 
 'use strict';
 
-/* ─── Nav Toggle (shared pattern) ─────────────── */
-(function () {
-  const navbar = document.getElementById('navbar');
-  const toggle = document.getElementById('navToggle');
-  const menu   = document.getElementById('mobileMenu');
+// Navigation is managed centrally by nav.js
 
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('open');
-      toggle.classList.toggle('open');
-    });
-  }
-
-  // Close menu on outside click
-  document.addEventListener('click', (e) => {
-    if (menu && menu.classList.contains('open') &&
-        !menu.contains(e.target) && !toggle.contains(e.target)) {
-      menu.classList.remove('open');
-      toggle.classList.remove('open');
-    }
-  });
-})();
 
 /* ─── Floating Particles ───────────────────────── */
 (function () {
