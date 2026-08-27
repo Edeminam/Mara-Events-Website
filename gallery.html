@@ -122,26 +122,20 @@
         <h2 class="section-heading">SEE US IN <span>ACTION</span></h2>
         <p class="section-sub">Watch how we transform visions into extraordinary experiences.</p>
       </div>
-      <div class="gallery-video-wrap" id="galleryVideoWrap">
-        <video
-          id="galleryVideoPlayer"
-          class="gallery-video-player"
-          poster="images/Pictures/dre.jpeg"
-          preload="none"
-          playsinline
-          controls
-        >
-          <source src="images/Pictures/WhatsApp Video 2026-08-11 at 20.26.40.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div class="gallery-video-wrap" id="galleryVideoWrap" role="button" tabindex="0" aria-label="Play Behind the Scenes Highlights Video">
+        <img 
+          src="images/Pictures/highlights-video-poster.png" 
+          alt="Mara Events Behind the Scenes &amp; Live Production Highlights" 
+          class="gallery-featured-video-thumb"
+        />
         <div class="gallery-video-overlay" id="galleryVideoOverlay">
-          <button class="gallery-video-play-btn" id="galleryPlayBtn" aria-label="Play event highlight video">
+          <button class="gallery-video-play-btn" id="galleryPlayBtn" aria-label="Play event highlight video" tabindex="-1">
             <div class="gallery-play-ring"></div>
             <i class="fa-solid fa-play"></i>
           </button>
           <div class="gallery-video-overlay-text">
-            <span>Event Highlights</span>
-            <p>See the magic we create</p>
+            <span>Event Highlights Reel</span>
+            <p>Click to Watch Video &bull; Full Screen Player <i class="fa-solid fa-expand" style="margin-left: 4px; font-size: 0.75rem;"></i></p>
           </div>
         </div>
       </div>
@@ -171,6 +165,9 @@
         <button class="gallery-filter-btn" data-filter="social" role="tab" aria-selected="false">
           <i class="fa-solid fa-star"></i> Social
         </button>
+        <button class="gallery-filter-btn" data-filter="video" role="tab" aria-selected="false">
+          <i class="fa-solid fa-play"></i> Videos
+        </button>
       </div>
 
       <!-- Count Badge -->
@@ -180,6 +177,42 @@
 
       <!-- Masonry Grid -->
       <div class="gallery-grid" id="galleryGrid">
+
+        <!-- Behind The Scenes & Event Highlights Video -->
+        <div class="gallery-item gallery-item--video-card" 
+             data-category="wedding video" 
+             data-video="images/Pictures/WhatsApp Video 2026-08-11 at 20.26.40.mp4"
+             data-orientation="landscape"
+             data-tag="Event Highlights &bull; Behind The Scenes"
+             data-title="Behind the Scenes &amp; Live Event Production"
+             data-desc="Watch our team in action creating breathtaking ambiance, decor, and seamless event flow."
+             data-label="Behind the Scenes &amp; Event Production Highlights — Mara Events">
+          <div class="gallery-video-card-inner">
+            <div class="gallery-video-card-header">
+              <span class="gallery-video-card-tag"><i class="fa-solid fa-film"></i> Event Highlights</span>
+              <span class="gallery-video-card-badge"><i class="fa-solid fa-sparkles"></i> Behind The Scenes</span>
+            </div>
+            <div class="gallery-video-frame">
+              <img src="images/Pictures/highlights-video-poster.png" alt="Behind the Scenes &amp; Event Production Highlights — Mara Events" class="gallery-video-thumb" loading="lazy" />
+              <div class="gallery-video-play-overlay">
+                <button class="gallery-card-play-btn" type="button" aria-label="Play Event Highlights Video">
+                  <div class="gallery-card-play-ring"></div>
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <div class="gallery-card-video-info">
+                  <h4>Behind the Scenes &amp; Live Production</h4>
+                  <p>Click to Watch Video <i class="fa-solid fa-expand" style="margin-left: 4px; font-size: 0.72rem;"></i></p>
+                </div>
+              </div>
+            </div>
+            <div class="gallery-video-card-footer">
+              <div class="gallery-video-desc">
+                <strong>Event Production &amp; Execution Highlights</strong>
+                <span>Watch our team in action creating breathtaking ambiance, decor, and seamless event flow.</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="gallery-item" data-category="wedding" data-label="Wedding Celebration">
           <div class="gallery-item-inner">
@@ -386,6 +419,42 @@
         </div>
 
         <!-- CORPORATE EVENTS (Recently Added) -->
+
+        <!-- AICCEES Corporate Event Video (Mara Events - Official Event Planner) -->
+        <div class="gallery-item gallery-item--video-card" 
+             data-category="corporate video" 
+             data-video="images/AICCEES Mara.mp4"
+             data-orientation="portrait"
+             data-tag="Corporate Conference &bull; Official Event Planner"
+             data-title="Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES)"
+             data-desc="Mara Events proudly serves as the Official Event Planner for this prestigious Africa international conference."
+             data-label="Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES) — Official Event Planner: Mara Events">
+          <div class="gallery-video-card-inner">
+            <div class="gallery-video-card-header">
+              <span class="gallery-video-card-tag"><i class="fa-solid fa-briefcase"></i> Corporate Conference</span>
+              <span class="gallery-video-card-badge"><i class="fa-solid fa-certificate"></i> Official Event Planner</span>
+            </div>
+            <div class="gallery-video-frame gallery-video-frame--portrait">
+              <img src="images/aiccees-poster.png" alt="Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES) - Official Event Planner Mara Events" class="gallery-video-thumb" loading="lazy" />
+              <div class="gallery-video-play-overlay">
+                <button class="gallery-card-play-btn" type="button" aria-label="Watch AICCEES Conference Video">
+                  <div class="gallery-card-play-ring"></div>
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <div class="gallery-card-video-info">
+                  <h4>AICCEES Clean Energy &amp; Storage Conference</h4>
+                  <p>Click to Watch Video <i class="fa-solid fa-expand" style="margin-left: 4px; font-size: 0.72rem;"></i></p>
+                </div>
+              </div>
+            </div>
+            <div class="gallery-video-card-footer">
+              <div class="gallery-video-desc">
+                <strong>Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES)</strong>
+                <span>Mara Events proudly serves as the Official Event Planner for this prestigious Africa international conference.</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="gallery-item" data-category="corporate" data-label="Corporate Conference">
           <div class="gallery-item-inner">
@@ -748,10 +817,31 @@
       <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
       <div class="lightbox-img-wrap">
         <img src="" alt="" id="lightboxImg" class="lightbox-img" />
+        <video id="lightboxVideo" class="lightbox-video" controls playsinline preload="auto" style="display:none;"></video>
         <div class="lightbox-caption" id="lightboxCaption"></div>
       </div>
       <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+  </div>
+
+  <!-- VIDEO POPUP MODAL -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Video player">
+    <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+    <div class="video-modal-container" id="videoModalContainer">
+      <button class="video-modal-close" id="videoModalClose" aria-label="Close video player"><i class="fa-solid fa-xmark"></i></button>
+      <div class="video-modal-box" id="videoModalBox">
+        <div class="video-modal-media-wrap" id="videoModalMediaWrap">
+          <video id="modalVideoPlayer" class="modal-video-player" controls playsinline preload="auto">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        <div class="video-modal-caption" id="videoModalCaption">
+          <span class="video-modal-tag" id="videoModalTag"></span>
+          <h3 id="videoModalTitle"></h3>
+          <p id="videoModalDesc"></p>
+        </div>
+      </div>
     </div>
   </div>
 
