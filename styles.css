@@ -4361,4 +4361,512 @@ img,
   pointer-events: none;
 }
 
+/* ==========================================================================
+   MARA ACADEMY TRAINING SCROLL NOTIFICATION BANNER
+   ========================================================================== */
+.mara-training-banner {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 9990;
+  max-width: 490px;
+  width: calc(100% - 56px);
+  background: linear-gradient(135deg, rgba(8, 20, 50, 0.95) 0%, rgba(13, 34, 87, 0.92) 100%);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.55), 0 0 24px rgba(33, 116, 233, 0.22);
+  padding: 12px 14px;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(32px) scale(0.95);
+  pointer-events: none;
+  transition:
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.mara-training-banner.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.mara-training-banner:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 20px 48px -6px rgba(0, 0, 0, 0.65), 0 0 32px rgba(33, 116, 233, 0.35);
+}
+
+.mara-training-banner .mtb-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.mara-training-banner .mtb-icon-wrap {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2174E9 0%, #0e3a85 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(33, 116, 233, 0.4);
+}
+
+.mara-training-banner .mtb-pulse-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background-color: #10B981;
+  border: 2px solid #081432;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10B981;
+  animation: mtbLivePulse 2s ease-in-out infinite;
+}
+
+@keyframes mtbLivePulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.mara-training-banner .mtb-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mara-training-banner .mtb-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.mara-training-banner .mtb-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #93c5fd;
+  background: rgba(33, 116, 233, 0.25);
+  padding: 1px 6px;
+  border-radius: 4px;
+  line-height: 1.3;
+}
+
+.mara-training-banner .mtb-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.18);
+  padding: 1px 6px;
+  border-radius: 4px;
+  line-height: 1.3;
+}
+
+.mara-training-banner .mtb-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font, 'Hanken Grotesk', sans-serif);
+}
+
+.mara-training-banner .mtb-sub {
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.2;
+  margin: 2px 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font, 'Hanken Grotesk', sans-serif);
+}
+
+.mara-training-banner .mtb-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.mara-training-banner .mtb-btn-register {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #2174E9 0%, #1555bd 100%);
+  color: #ffffff !important;
+  font-family: var(--font, 'Hanken Grotesk', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(33, 116, 233, 0.45);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
+}
+
+.mara-training-banner .mtb-btn-register:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3587fa 0%, #1c64df 100%);
+  box-shadow: 0 6px 20px rgba(33, 116, 233, 0.65);
+  color: #ffffff !important;
+}
+
+.mara-training-banner .mtb-btn-register:active {
+  transform: translateY(0);
+}
+
+.mara-training-banner .mtb-btn-register i {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.mara-training-banner .mtb-btn-register:hover i {
+  transform: translate(2px, -2px);
+}
+
+.mara-training-banner .mtb-btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  padding: 0;
+}
+
+.mara-training-banner .mtb-btn-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+@media (max-width: 768px) {
+  .mara-training-banner {
+    bottom: 16px;
+    left: 12px;
+    right: 12px;
+    width: calc(100% - 24px);
+    max-width: 100%;
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .mara-training-banner .mtb-icon-wrap {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  .mara-training-banner .mtb-title {
+    font-size: 0.80rem;
+  }
+
+  .mara-training-banner .mtb-sub {
+    font-size: 0.68rem;
+  }
+
+  .mara-training-banner .mtb-btn-register {
+    padding: 7px 11px;
+    font-size: 0.78rem;
+    gap: 5px;
+  }
+
+  .mara-training-banner .mtb-btn-close {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mara-training-banner .mtb-tag {
+    display: none;
+  }
+  
+  .mara-training-banner .mtb-sub {
+    max-width: 150px;
+  }
+}
+
+/* ==========================================================================
+   UNIVERSAL TOP ANNOUNCEMENT BAR & SCROLL PROGRESS BAR (ABOVE NAVBAR)
+   ========================================================================== */
+.top-announcement-bar {
+  width: 100%;
+  height: 38px;
+  background: linear-gradient(90deg, #051332 0%, #0d286d 35%, #184db5 65%, #051332 100%);
+  background-size: 200% 100%;
+  animation: tabGradientShift 14s ease infinite;
+  color: #ffffff;
+  position: relative;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.35s ease;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.top-announcement-bar.dismissed {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+}
+
+.top-announcement-bar .tab-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.top-announcement-bar .tab-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.top-announcement-bar .tab-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(33, 116, 233, 0.3);
+  border: 1px solid rgba(96, 165, 250, 0.45);
+  color: #93c5fd;
+  font-family: var(--font, 'Hanken Grotesk', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.top-announcement-bar .tab-badge i {
+  color: #60a5fa;
+  font-size: 0.72rem;
+}
+
+.top-announcement-bar .tab-pulse {
+  width: 6px;
+  height: 6px;
+  background-color: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #10B981;
+  animation: tabPulseDot 1.8s ease-in-out infinite;
+}
+
+@keyframes tabPulseDot {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 10px #10B981; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.top-announcement-bar .tab-marquee-container {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+}
+
+.top-announcement-bar .tab-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: tabMarquee 26s linear infinite;
+  will-change: transform;
+}
+
+.top-announcement-bar .tab-marquee-container:hover .tab-marquee-track {
+  animation-play-state: paused;
+}
+
+.top-announcement-bar .tab-msg {
+  font-family: var(--font, 'Hanken Grotesk', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  padding-right: 54px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-announcement-bar .tab-msg strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.top-announcement-bar .tab-msg .tab-highlight {
+  color: #fbbf24;
+  font-weight: 700;
+  background: rgba(245, 158, 11, 0.18);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+@keyframes tabMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.top-announcement-bar .tab-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.top-announcement-bar .tab-btn-register {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #2174E9 0%, #1555bd 100%);
+  color: #ffffff !important;
+  font-family: var(--font, 'Hanken Grotesk', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(33, 116, 233, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+
+.top-announcement-bar .tab-btn-register:hover {
+  background: linear-gradient(135deg, #378afc 0%, #1e67e3 100%);
+  box-shadow: 0 4px 14px rgba(33, 116, 233, 0.65);
+  transform: translateY(-1px);
+}
+
+.top-announcement-bar .tab-btn-register i {
+  font-size: 0.70rem;
+  transition: transform 0.2s ease;
+}
+
+.top-announcement-bar .tab-btn-register:hover i {
+  transform: translate(1px, -1px);
+}
+
+.top-announcement-bar .tab-btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  font-size: 0.72rem;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  padding: 0;
+}
+
+.top-announcement-bar .tab-btn-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Scroll Progress Bar along bottom of top announcement bar */
+.top-announcement-bar .tab-scroll-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2.5px;
+  width: 0%;
+  background: linear-gradient(90deg, #2174E9 0%, #60a5fa 50%, #fbbf24 100%);
+  box-shadow: 0 0 8px rgba(33, 116, 233, 0.8);
+  transition: width 0.08s linear;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@keyframes tabGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 768px) {
+  .top-announcement-bar {
+    height: 34px;
+  }
+  .top-announcement-bar .tab-inner {
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .top-announcement-bar .tab-badge-wrap {
+    display: none;
+  }
+  .top-announcement-bar .tab-msg {
+    font-size: 0.72rem;
+    padding-right: 28px;
+  }
+  .top-announcement-bar .tab-btn-register {
+    padding: 3px 9px;
+    font-size: 0.70rem;
+  }
+}
+
+
+
 
