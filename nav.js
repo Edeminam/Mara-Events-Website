@@ -308,10 +308,10 @@
           <div class="tab-marquee-container">
             <div class="tab-marquee-track">
               <span class="tab-msg">
-                <strong>📢 Training Announcement:</strong> Master Event Planning &amp; Management — 6-Week Physical Masterclass in Abuja <span class="tab-highlight">Tuition: ₦80,000</span> • Live Hands-on Venue Practice &amp; Certification • Register Now!
+                <strong>📢 Training Announcement:</strong> Master Event Planning &amp; Management — 6-Week Physical &amp; Virtual Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • In-Person (Abuja) &amp; Live Online Classes • Certification Included • Register Now!
               </span>
               <span class="tab-msg" aria-hidden="true">
-                <strong>📢 Training Announcement:</strong> Master Event Planning &amp; Management — 6-Week Physical Masterclass in Abuja <span class="tab-highlight">Tuition: ₦80,000</span> • Live Hands-on Venue Practice &amp; Certification • Register Now!
+                <strong>📢 Training Announcement:</strong> Master Event Planning &amp; Management — 6-Week Physical &amp; Virtual Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • In-Person (Abuja) &amp; Live Online Classes • Certification Included • Register Now!
               </span>
             </div>
           </div>

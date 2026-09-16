@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeReceiptBtn       = document.getElementById('closeReceiptBtn');
   const inpEmail              = document.getElementById('reg-email');
   const inpPhone              = document.getElementById('reg-phone');
+  const inpMode               = document.getElementById('reg-mode');
   const errEmail              = document.getElementById('email-error');
   const errPhone              = document.getElementById('phone-error');
 
@@ -138,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ─── SHOW RECEIPT MODAL (called after confirmed payment) ─────────────
-  function showReceipt(email, phone, txId) {
+  function showReceipt(email, phone, txId, mode) {
     const emailEl = document.getElementById('receipt-email');
     if (emailEl) emailEl.textContent = email || '-';
 
@@ -148,6 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const txEl = document.getElementById('receipt-tx-id');
     if (txEl) txEl.textContent = txId || '-';
 
+    const modeEl = document.getElementById('receipt-mode');
+    if (modeEl) modeEl.textContent = mode || 'Physical & Virtual';
+
     if (receiptDialog) receiptDialog.showModal();
 
     // Clean up
@@ -155,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('mara_payment_txid');
     sessionStorage.removeItem('mara_reg_email');
     sessionStorage.removeItem('mara_reg_phone');
+    sessionStorage.removeItem('mara_reg_mode');
     isWaitingForPayment = false;
     paymentConfirmed    = true;
   }
@@ -169,8 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
       paymentConfirmed = true;
       const email = sessionStorage.getItem('mara_reg_email') || '';
       const phone = sessionStorage.getItem('mara_reg_phone') || '';
+      const mode  = sessionStorage.getItem('mara_reg_mode')  || 'Physical & Virtual';
       const txId  = localStorage.getItem('mara_payment_txid') || '';
-      showReceipt(email, phone, txId);
+      showReceipt(email, phone, txId, mode);
     } else {
       // Payment failed / was cancelled in the other tab
       resetFormToDefault();
@@ -202,14 +208,14 @@ document.addEventListener('DOMContentLoaded', () => {
    * Uses no-cors so the request always succeeds even without CORS headers.
    * Errors are caught and logged silently — sheet logging never blocks payment.
    */
-  async function sendToSheet(email, phone) {
+  async function sendToSheet(email, phone, mode) {
     if (!SHEET_ENDPOINT) return; // not configured yet
     try {
       await fetch(SHEET_ENDPOINT, {
         method : 'POST',
         mode   : 'no-cors',   // avoids CORS pre-flight; response will be opaque
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ email, phone }),
+        body   : JSON.stringify({ email, phone, mode }),
       });
     } catch (err) {
       console.warn('[Mara] Sheet logging failed (non-blocking):', err);
@@ -221,14 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
     emailjs.init("djfFVv8ATRg9mo_1u");
   }
 
-  function sendToEmailJS(email, phone) {
+  function sendToEmailJS(email, phone, mode) {
     if (typeof emailjs === 'undefined') return;
 
     const emailParams = {
       name: email,
       email: email,
       phone: phone,
-      event: 'Mara Academy Training Registration'
+      event: `Mara Academy Training Registration (${mode || 'Physical & Virtual'})`
     };
 
     emailjs.send('service_6vspc2j', 'template_87ahk4b', emailParams)
@@ -248,15 +254,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const studentEmail = inpEmail ? inpEmail.value.trim() : '';
       const studentPhone = inpPhone ? inpPhone.value.trim() : '';
+      const studentMode  = inpMode ? inpMode.value : 'Physical & Virtual';
 
       // Log to Google Sheet & send EmailJS notification (non-blocking)
-      sendToSheet(studentEmail, studentPhone);
-      sendToEmailJS(studentEmail, studentPhone);
+      sendToSheet(studentEmail, studentPhone, studentMode);
+      sendToEmailJS(studentEmail, studentPhone, studentMode);
 
 
       // Persist data so we can populate the receipt after the redirect
       sessionStorage.setItem('mara_reg_email', studentEmail);
       sessionStorage.setItem('mara_reg_phone', studentPhone);
+      sessionStorage.setItem('mara_reg_mode',  studentMode);
 
       // Clear any leftover payment signal from a previous attempt
       localStorage.removeItem('mara_payment_status');
