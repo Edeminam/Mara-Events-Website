@@ -104,12 +104,12 @@
       }
     });
 
-    // Close on window resize to desktop breakpoint (>768px)
+    // Close on window resize to desktop breakpoint (>960px)
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        if (window.innerWidth > 768 && isMenuOpen) {
+        if (window.innerWidth > 960 && isMenuOpen) {
           closeMenu();
         }
       }, 100);
@@ -122,26 +122,65 @@
       }
     });
 
-    // --- Active Link Indicator ---
+    // --- Active Link Indicator & Scrollspy ---
     try {
       const currentPath = window.location.pathname.toLowerCase();
       const currentFile = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+      const isHomePage = currentFile === 'index.html' || currentFile === '';
+      const isBlogArticle = currentPath.includes('/blog/');
       
       const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
-      allNavLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (!href) return;
-        
-        const cleanHref = href.split('#')[0].split('?')[0].toLowerCase();
-        const hrefFile = cleanHref.substring(cleanHref.lastIndexOf('/') + 1);
 
-        if (hrefFile && (hrefFile === currentFile || (currentFile === '' && hrefFile === 'index.html'))) {
-          // If it's not a CTA button or in-page hash
-          if (!link.classList.contains('nav-cta') && !link.classList.contains('mobile-cta') && !href.startsWith('#')) {
+      function setActivePageLinks() {
+        allNavLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (!href) return;
+          
+          const cleanHref = href.split('#')[0].split('?')[0].toLowerCase();
+          const hrefFile = cleanHref.substring(cleanHref.lastIndexOf('/') + 1);
+
+          if (isBlogArticle && href.includes('blog.html')) {
             link.classList.add('active');
+          } else if (!isHomePage && hrefFile && hrefFile === currentFile) {
+            if (!link.classList.contains('nav-cta') && !link.classList.contains('mobile-cta') && !href.startsWith('#')) {
+              link.classList.add('active');
+            }
           }
+        });
+      }
+
+      setActivePageLinks();
+
+      // Scrollspy on Homepage for in-page section links
+      if (isHomePage) {
+        const homeSections = [
+          { id: 'events', links: document.querySelectorAll('.nav-links a[href="#events"], .mobile-menu a[href="#events"]') }
+        ];
+
+        function updateHomepageScrollspy() {
+          const scrollY = window.scrollY || window.pageYOffset;
+          const navbarHeight = navbar ? navbar.offsetHeight : 70;
+
+          homeSections.forEach(sec => {
+            const el = document.getElementById(sec.id);
+            if (el) {
+              const top = el.offsetTop - navbarHeight - 60;
+              const bottom = top + el.offsetHeight;
+              const isActive = scrollY >= top && scrollY < bottom;
+              sec.links.forEach(l => {
+                if (isActive) {
+                  l.classList.add('active');
+                } else {
+                  l.classList.remove('active');
+                }
+              });
+            }
+          });
         }
-      });
+
+        window.addEventListener('scroll', updateHomepageScrollspy, { passive: true });
+        updateHomepageScrollspy();
+      }
     } catch (err) {
       // Non-critical active link detection
     }

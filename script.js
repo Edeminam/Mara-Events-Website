@@ -236,10 +236,17 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', e => {
       const targetId = link.getAttribute('href');
       if (targetId === '#') return;
+      if (targetId === '#hero') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       const target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
-        const offset = (navbar ? navbar.offsetHeight : 0) + 16;
+        const topBar = document.getElementById('topAnnouncementBar');
+        const topBarHeight = (topBar && !topBar.classList.contains('dismissed')) ? topBar.offsetHeight : 0;
+        const offset = (navbar ? navbar.offsetHeight : 68) + topBarHeight + 12;
         const top = target.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top, behavior: 'smooth' });
       }
