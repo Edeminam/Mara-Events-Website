@@ -232,7 +232,16 @@
       submitBtn.textContent = 'Sending…';
 
       function showSuccess() {
-        successMsg.innerHTML = `Thank you, <strong>${name}</strong>! Your booking has been received. A member of the Mara Events team will reach out to you at <strong>${email}</strong> shortly.`;
+        // Build with DOM nodes so user-typed text is never parsed as HTML
+        const nameEl  = document.createElement('strong');
+        const emailEl = document.createElement('strong');
+        nameEl.textContent  = name;
+        emailEl.textContent = email;
+        successMsg.replaceChildren(
+          'Thank you, ', nameEl,
+          '! Your booking has been received. A member of the Mara Events team will reach out to you at ', emailEl,
+          ' shortly.'
+        );
         formModal.style.display   = 'none';
         successModal.style.display = '';
         form.reset();
@@ -269,7 +278,9 @@
             handleError();
           });
         } else {
-          showSuccess();
+          // The email service failed to load: report it instead of pretending the request was sent
+          console.error('EmailJS SDK unavailable');
+          handleError();
         }
       });
     });

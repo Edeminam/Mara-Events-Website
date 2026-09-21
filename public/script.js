@@ -177,7 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Personalize and show Success Dialog
             if (successDialog) {
               if (successMessage) {
-                successMessage.innerHTML = `Thank you, <strong>${name}</strong>! Your booking has been confirmed. A member of our team will reach you shortly.`;
+                // Build with DOM nodes so user-typed text is never parsed as HTML
+                const nameEl = document.createElement('strong');
+                nameEl.textContent = name;
+                successMessage.replaceChildren(
+                  'Thank you, ', nameEl,
+                  '! Your booking has been confirmed. A member of our team will reach you shortly.'
+                );
               }
               successDialog.showModal();
             }
@@ -778,14 +784,16 @@ document.addEventListener("DOMContentLoaded", function () {
             showSuccess();
           })
           .catch((err) => {
+            // Do not report success when the message was not sent (the visitor's text stays in the form)
             console.error("EmailJS Error:", err);
-            showSuccess();
+            alert('Sorry, we could not send your topic suggestion. Please try again in a moment.');
           })
           .finally(() => {
             resetBtn();
           });
       } else {
-        showSuccess();
+        console.error("EmailJS is not defined.");
+        alert('Sorry, we could not send your topic suggestion. Please try again in a moment.');
         resetBtn();
       }
     });

@@ -336,7 +336,6 @@ function openContactModal(vendorName) {
       }
 
       const result = await response.json();
-      console.info('[Mara Vendors] SheetDB response:', result);
       return result && (result.created === 1 || result.created > 0);
 
     } catch (err) {
