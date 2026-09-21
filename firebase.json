@@ -5,7 +5,15 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**",
-      "dist/**"
+      "dist/**",
+      "**/.DS_Store",
+      ".git/**",
+      ".github/**",
+      ".npm-cache/**",
+      ".firebase/**",
+      ".idea/**",
+      ".vscode/**",
+      ".claude/**"
     ],
     "rewrites": [
       {
