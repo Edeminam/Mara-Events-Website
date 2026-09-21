@@ -63,6 +63,7 @@
   <meta name="twitter:image" content="https://mara-events.com/images/photorealistic-wedding-venue-with-intricate-decor-ornaments.jpg" />
 </head>
 <body class="webinar-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <!-- NAV -->
   <nav class="navbar scrolled" id="navbar">
@@ -156,7 +157,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <!-- THE ADVOCACY MANIFESTO (INTENT) -->
     <section class="advocacy-section" id="advocacy-intent">
       <div class="container">
@@ -334,12 +335,15 @@
 
           <form class="proposal-form" id="proposalForm" novalidate>
             <div class="form-group">
+              <label class="visually-hidden" for="proposalName">Your name or business name</label>
               <input type="text" id="proposalName" name="proposalName" placeholder="Your Name or Business Name" required>
             </div>
             <div class="form-group">
+              <label class="visually-hidden" for="proposalEmail">Your email address</label>
               <input type="email" id="proposalEmail" name="proposalEmail" placeholder="Your Email Address" required>
             </div>
             <div class="form-group">
+              <label class="visually-hidden" for="proposalTopic">Industry challenge or webinar topic</label>
               <textarea id="proposalTopic" name="proposalTopic" rows="3" placeholder="What industry challenge or webinar topic should we cover?" required></textarea>
             </div>
             <button type="submit" class="btn-submit-proposal" id="btnProposalSubmit">

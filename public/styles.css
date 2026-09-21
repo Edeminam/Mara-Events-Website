@@ -4902,6 +4902,75 @@ img,
   }
 }
 
+/* =============================================
+   Accessibility
+   ============================================= */
+
+/* Visually hidden but available to screen readers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link: first focusable element on every page */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100000;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0d2257;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid #2174e9;
+  outline-offset: 2px;
+}
+#main-content:focus { outline: none; }
+
+/* Visible keyboard focus. Some component rules set outline: none;
+   this restores a clear indicator for keyboard users only. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #2174e9 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Pause the partner-logo marquee while it is hovered or focused */
+.partners-scroll:hover .partners-track,
+.partners-scroll:focus-within .partners-track {
+  animation-play-state: paused;
+}
+
+/* Respect the operating-system "reduce motion" preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .partners-track { animation: none !important; }
+}
+
 
 
 

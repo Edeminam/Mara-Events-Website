@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ⚠️ ERROR 3 FIXED: Moved startAuto and resetAuto ABOVE the if-block
   // so they are fully defined before resetAuto references startAuto.
   function startAuto() {
+    // Honour the "reduce motion" preference: no automatic advance (arrows and dots still work)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     autoSlide = setInterval(() => goTo(current + 1), 2000);
   }
 
