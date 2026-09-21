@@ -68,3 +68,13 @@ node_modules/
 # dataconnect generated files
 .dataconnect
 .npm-cache/
+
+# macOS / editor / local tooling
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+.claude/
+__pycache__/
+.env.*
+!.env.example
