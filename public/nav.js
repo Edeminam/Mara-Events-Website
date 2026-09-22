@@ -139,7 +139,7 @@
           const cleanHref = href.split('#')[0].split('?')[0].toLowerCase();
           const hrefFile = cleanHref.substring(cleanHref.lastIndexOf('/') + 1);
 
-          if (isBlogArticle && href.includes('blog.html')) {
+          if (isBlogArticle && hrefFile === 'blog') {
             link.classList.add('active');
           } else if (!isHomePage && hrefFile && hrefFile === currentFile) {
             if (!link.classList.contains('nav-cta') && !link.classList.contains('mobile-cta') && !href.startsWith('#')) {

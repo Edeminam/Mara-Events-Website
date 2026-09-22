@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (receiptDialog && closeReceiptBtn) {
     closeReceiptBtn.addEventListener('click', () => {
       receiptDialog.close();
-      window.location.href = 'index.html';
+      window.location.href = '/';
     });
   }
 
