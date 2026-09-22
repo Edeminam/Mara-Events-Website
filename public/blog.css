@@ -334,6 +334,11 @@
   transform: scale(1.06);
 }
 
+.featured-card-body .blog-card-category {
+  position: static;
+  margin-bottom: 12px;
+}
+
 .blog-card-category {
   position: absolute;
   top: 14px;
@@ -715,6 +720,13 @@
 }
 
 .article-tip-box p { margin: 0; font-size: 15px; }
+
+.article-number-list p {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 15px;
+  color: var(--text-muted);
+}
 
 .article-number-list {
   counter-reset: article-counter;

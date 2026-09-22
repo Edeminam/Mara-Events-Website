@@ -762,3 +762,21 @@
     padding: 36px 24px;
   }
 }
+
+/* Community-feedback highlight in the proposal section */
+.proposal-highlight {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.proposal-highlight-icon {
+  font-size: 2rem;
+  color: #64b5ff;
+}
+
+.proposal-highlight-text {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+}
