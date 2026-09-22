@@ -7,12 +7,19 @@
       "**/node_modules/**",
       "**/.DS_Store"
     ],
+    "cleanUrls": true,
+    "trailingSlash": false,
     "redirects": [
-      { "source": "/training", "destination": "/training.html", "type": 301 },
-      { "source": "/vendors", "destination": "/vendors.html", "type": 301 },
-      { "source": "/webinar", "destination": "/webinar.html", "type": 301 },
-      { "source": "/gallery", "destination": "/gallery.html", "type": 301 },
-      { "source": "/blog", "destination": "/blog.html", "type": 301 }
+      {
+        "source": "/404",
+        "destination": "/error-not-found",
+        "type": 301
+      },
+      {
+        "source": "/404.html",
+        "destination": "/error-not-found",
+        "type": 301
+      }
     ],
     "headers": [
       {
