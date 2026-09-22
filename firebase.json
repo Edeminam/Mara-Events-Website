@@ -9,6 +9,18 @@
     ],
     "cleanUrls": true,
     "trailingSlash": false,
+    "redirects": [
+      {
+        "source": "/404",
+        "destination": "/error-not-found",
+        "type": 301
+      },
+      {
+        "source": "/404.html",
+        "destination": "/error-not-found",
+        "type": 301
+      }
+    ],
     "headers": [
       {
         "source": "**",
