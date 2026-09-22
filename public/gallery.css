@@ -1336,3 +1336,9 @@ video {
   .lightbox-nav { display: none; }
   .lightbox-img { max-width: 94vw; }
 }
+
+/* Small "expand" affordance icon shown on gallery/lightbox thumbnails */
+.icon-expand {
+  margin-left: 4px;
+  font-size: 0.72rem;
+}

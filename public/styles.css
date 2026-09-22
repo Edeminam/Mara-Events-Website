@@ -4903,6 +4903,26 @@ img,
 }
 
 /* =============================================
+   Layout utilities
+   ============================================= */
+
+/* Truly hidden (not just visually hidden) — distinct from .visually-hidden below */
+.hidden {
+  display: none;
+}
+
+/* Header/footer brand logo images (fixed intrinsic size, prevents layout shift) */
+.nav-logo-img {
+  height: 36px;
+  width: 140px;
+}
+
+.footer-logo-img {
+  height: 88px;
+  width: 268px;
+}
+
+/* =============================================
    Accessibility
    ============================================= */
 
