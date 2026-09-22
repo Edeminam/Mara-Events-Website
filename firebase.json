@@ -1,16 +1,26 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**",
-      "dist/**"
+      "**/.DS_Store"
     ],
-    "rewrites": [
+    "redirects": [
+      { "source": "/training", "destination": "/training.html", "type": 301 },
+      { "source": "/vendors", "destination": "/vendors.html", "type": 301 },
+      { "source": "/webinar", "destination": "/webinar.html", "type": 301 },
+      { "source": "/gallery", "destination": "/gallery.html", "type": 301 },
+      { "source": "/blog", "destination": "/blog.html", "type": 301 }
+    ],
+    "headers": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "headers": [
+          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        ]
       }
     ]
   }
