@@ -1323,6 +1323,15 @@ body.nav-open {
   color: var(--text-muted);
 }
 
+/* Show unselected dropdowns in placeholder colour */
+.book-form select:invalid {
+  color: var(--text-muted);
+}
+
+.book-form .form-row {
+  gap: 24px;
+}
+
 .select-wrap {
   position: relative;
 }
@@ -2238,6 +2247,26 @@ body.nav-open {
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 28px;
+}
+
+/* WhatsApp confirmation button */
+.success-dialog-wa-btn {
+  display: block;
+  background: #25d366;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 36px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+  text-align: center;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.success-dialog-wa-btn:hover {
+  background: #1ebe5b;
+  transform: translateY(-2px);
 }
 
 /* Button */

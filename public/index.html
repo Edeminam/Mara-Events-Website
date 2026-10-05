@@ -660,14 +660,14 @@
       <div class="book-inner">
         <div class="book-left">
           <h2 class="section-heading">BOOK AN <span class="heading-regular">EVENT</span></h2>
-          <p class="book-sub">Reserve your spot in your favourite event</p>
+          <p class="book-sub">Tell us about your event and we'll get back to you with a tailored plan</p>
           <div class="book-trust">
             <div class="trust-stars">★★★★★</div>
-            <span>Managing Top Events Since 2022</span>
+            <span>Managing Top Events Since 2021</span>
           </div>
         </div>
 
-        <form class="book-form" id="bookForm" >
+        <form class="book-form" id="bookForm">
           <div class="form-group">
             <label for="name">NAME:</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" required />
@@ -681,9 +681,10 @@
             <input type="tel" id="phone" name="phone" placeholder="Phone number" required/>
           </div>
           <div class="form-group">
-            <label for="event">EVENT:</label>
+            <label for="event">EVENT TYPE:</label>
             <div class="select-wrap">
               <select id="event" name="event" required>
+                <option value="" disabled selected>Select event type</option>
                 <option value="weddings">Weddings</option>
                 <option value="conferences-seminars">Conferences & Seminars</option>
                 <option value="vendor-management">Vendor Management</option>
@@ -703,12 +704,58 @@
             </div>
           </div>
 
-          <div class="form-group" id="otherEventGroup" class="hidden">
+          <div class="form-group hidden" id="otherEventGroup">
             <label for="otherEvent">PLEASE SPECIFY:</label>
             <input type="text" id="otherEvent" name="otherEvent" placeholder="Enter event type" />
           </div>
-        
-          <button type="submit" class="form-submit">Book an Event</button>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="eventDate">EVENT DATE:</label>
+              <input type="date" id="eventDate" name="eventDate" required />
+            </div>
+            <div class="form-group">
+              <label for="guestCount">GUEST COUNT:</label>
+              <input type="number" id="guestCount" name="guestCount" min="1" step="1" inputmode="numeric" placeholder="Estimated guests" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">BUDGET RANGE:</label>
+            <div class="select-wrap">
+              <select id="budget" name="budget" required>
+                <option value="" disabled selected>Select budget range</option>
+                <option>Under ₦1,000,000</option>
+                <option>₦1,000,000 – ₦3,000,000</option>
+                <option>₦3,000,000 – ₦5,000,000</option>
+                <option>₦5,000,000 – ₦10,000,000</option>
+                <option>₦10,000,000 – ₦20,000,000</option>
+                <option>Above ₦20,000,000</option>
+                <option>Not sure yet</option>
+              </select>
+              <span class="select-arrow">›</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="location">LOCATION:</label>
+            <input type="text" id="location" name="location" placeholder="City / venue (e.g. Abuja, Lagos)" required />
+          </div>
+
+          <div class="form-group">
+            <label for="contactChannel">PREFERRED CONTACT CHANNEL:</label>
+            <div class="select-wrap">
+              <select id="contactChannel" name="contactChannel" required>
+                <option value="" disabled selected>How should we reach you?</option>
+                <option>WhatsApp</option>
+                <option>Phone call</option>
+                <option>Email</option>
+              </select>
+              <span class="select-arrow">›</span>
+            </div>
+          </div>
+
+          <button type="submit" class="form-submit">Send Inquiry</button>
           <p class="form-terms">By submitting, you agree to our <a href="#">terms of service</a>.</p>
         </form>
       </div>
@@ -800,8 +847,9 @@
           </svg>
         </div>
       </div>
-      <h2 id="successTitle">Booking Confirmed!</h2>
-      <p id="successMessage">Thank you! Your event booking has been confirmed. A member of our team will reach you shortly.</p>
+      <h2 id="successTitle">Inquiry Received!</h2>
+      <p id="successMessage">Thank you! We've received your event inquiry. A member of our team will reach you shortly.</p>
+      <a class="success-dialog-wa-btn" id="successWhatsAppBtn" href="https://wa.me/2349011046473" target="_blank" rel="noopener noreferrer">Confirm on WhatsApp</a>
       <button class="success-dialog-close-btn" id="closeSuccessBtn">Got It</button>
     </div>
   </dialog>

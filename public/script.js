@@ -98,26 +98,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const eventSelect = document.getElementById("event");
   const otherEventGroup = document.getElementById("otherEventGroup");
   const otherEventInput = document.getElementById("otherEvent");
+  const eventDateInput = document.getElementById("eventDate");
   const successDialog = document.getElementById('successDialog');
   const successMessage = document.getElementById('successMessage');
   const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+  const successWhatsAppBtn = document.getElementById('successWhatsAppBtn');
+
+  // EmailJS template that emails the client a confirmation of their inquiry
+  const CONFIRMATION_TEMPLATE_ID = "template_38vu3hg";
+  const BUSINESS_WHATSAPP = "2349011046473"; // international format, no +
 
   // Initialize EmailJS
   if (typeof emailjs !== 'undefined') {
     emailjs.init("djfFVv8ATRg9mo_1u");
   }
 
+  // Don't allow inquiries for dates that have already passed
+  if (eventDateInput) {
+    const today = new Date();
+    today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+    eventDateInput.min = today.toISOString().split("T")[0];
+  }
+
+  function toggleOtherEvent(show) {
+    otherEventGroup.classList.toggle("hidden", !show);
+    otherEventInput.required = show;
+    if (!show) otherEventInput.value = "";
+  }
+
   // Handle dropdown change
   if (eventSelect && otherEventGroup && otherEventInput) {
     eventSelect.addEventListener("change", function () {
-      if (this.value === "other") {
-        otherEventGroup.style.display = "block";
-        otherEventInput.required = true;
-      } else {
-        otherEventGroup.style.display = "none";
-        otherEventInput.required = false;
-        otherEventInput.value = "";
-      }
+      toggleOtherEvent(this.value === "other");
     });
   }
 
@@ -129,6 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const phone = form.phone.value.trim();
+      const eventDate = form.eventDate.value;
+      const guestCount = form.guestCount.value.trim();
+      const budget = form.budget.value;
+      const location = form.location.value.trim();
+      const contactChannel = form.contactChannel.value;
 
       // ✅ Email validation (simple & effective)
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -151,6 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      if (!Number.isInteger(Number(guestCount)) || Number(guestCount) < 1) {
+        alert("Please enter a valid guest count.");
+        form.guestCount.focus();
+        return;
+      }
+
       const btn = form.querySelector('.form-submit');
       const originalText = btn.textContent;
 
@@ -158,13 +181,29 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
       btn.textContent = 'Processing...';
 
+      const eventType = eventSelect.value === "other"
+        ? otherEventInput.value.trim()
+        : eventSelect.options[eventSelect.selectedIndex].text;
+
+      // Human-readable date, e.g. "Saturday, 14 November 2026"
+      const formattedDate = new Date(eventDate + "T00:00:00").toLocaleDateString("en-GB", {
+        weekday: "long", day: "numeric", month: "long", year: "numeric"
+      });
+
       const formData = {
         name: name,
         email: email,
+        reply_to: email,
         phone: phone,
-        event: eventSelect.value === "other"
-          ? otherEventInput.value
-          : eventSelect.options[eventSelect.selectedIndex].text
+        event: eventType,
+        event_type: eventType,
+        event_date: formattedDate,
+        guest_count: guestCount,
+        budget: budget,
+        location: location,
+        contact_channel: contactChannel,
+        // Full summary so the details arrive even if the EmailJS template only renders {{message}}
+        message: `New Event Inquiry:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nEvent Type: ${eventType}\nEvent Date: ${formattedDate}\nGuest Count: ${guestCount}\nBudget Range: ${budget}\nLocation: ${location}\nPreferred Contact Channel: ${contactChannel}`
       };
 
       if (typeof emailjs !== 'undefined') {
@@ -174,6 +213,17 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = false;
             btn.textContent = originalText;
 
+            // Email the client a confirmation. The inquiry itself already reached us,
+            // so a failure here is logged rather than shown as a failed submission.
+            emailjs.send("service_6vspc2j", CONFIRMATION_TEMPLATE_ID, formData)
+              .catch((error) => console.error("Confirmation email failed:", error));
+
+            // Click-to-chat link with the inquiry details pre-filled
+            if (successWhatsAppBtn) {
+              const waText = `Hi Mara Events, I just sent an event inquiry on your website.\n\nName: ${name}\nEvent Type: ${eventType}\nEvent Date: ${formattedDate}\nGuest Count: ${guestCount}\nBudget Range: ${budget}\nLocation: ${location}`;
+              successWhatsAppBtn.href = `https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(waText)}`;
+            }
+
             // Personalize and show Success Dialog
             if (successDialog) {
               if (successMessage) {
@@ -182,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 nameEl.textContent = name;
                 successMessage.replaceChildren(
                   'Thank you, ', nameEl,
-                  '! Your booking has been confirmed. A member of our team will reach you shortly.'
+                  `! We've received your event inquiry and sent a confirmation to ${email}. We'll reach out via ${contactChannel} shortly.`
                 );
               }
               successDialog.showModal();
@@ -193,22 +243,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Reset "Others" field UI
             if (otherEventGroup && otherEventInput) {
-              otherEventGroup.style.display = "none";
-              otherEventInput.required = false;
-              otherEventInput.value = "";
+              toggleOtherEvent(false);
             }
           })
           .catch((error) => {
             console.error("FAILED:", error);
             btn.disabled = false;
             btn.textContent = originalText;
-            alert("Failed to send booking. Please try again.");
+            alert("Failed to send your inquiry. Please try again.");
           });
       } else {
         console.error("EmailJS is not defined.");
         btn.disabled = false;
         btn.textContent = originalText;
-        alert("Failed to connect to the booking service. Please try again later.");
+        alert("Failed to connect to the inquiry service. Please try again later.");
       }
     });
   }
