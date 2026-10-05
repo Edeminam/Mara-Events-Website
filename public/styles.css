@@ -1405,7 +1405,7 @@ body.nav-open {
   color: var(--text-dark);
 }
 
-.inq-steps span {
+.inq-steps div span {
   font-size: 14px;
   color: var(--text-muted);
 }
