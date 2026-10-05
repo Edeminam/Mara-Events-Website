@@ -1795,6 +1795,13 @@ body.nav-open {
   text-decoration: underline;
 }
 
+/* The subtitle loses its bottom margin at this width, so space the steps from it */
+@media (max-width: 768px) {
+  .inq-steps {
+    margin-top: 28px;
+  }
+}
+
 @media (max-width: 576px) {
   .inq-card {
     padding: 24px 18px;
@@ -1815,7 +1822,7 @@ body.nav-open {
   }
 
   .inq-steps {
-    margin: 28px 0 0;
+    margin-bottom: 0;
   }
 }
 
