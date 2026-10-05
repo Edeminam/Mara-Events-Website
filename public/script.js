@@ -133,6 +133,95 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Completion bar: share of required answers filled in
+  const progressBar = document.getElementById("inqProgressBar");
+  const progressText = document.getElementById("inqProgressText");
+  const progressFields = ["name", "email", "phone", "event", "eventDate", "guestCount", "location", "budget", "contactChannel"];
+
+  function updateProgress() {
+    if (!form || !progressBar) return;
+    const done = progressFields.filter(field => {
+      const el = form.elements[field];
+      // Radio groups come back as a RadioNodeList whose value is the checked option
+      return el instanceof RadioNodeList ? el.value !== "" : el.value.trim() !== "" && el.checkValidity();
+    }).length;
+    const pct = Math.round((done / progressFields.length) * 100);
+    progressBar.style.width = pct + "%";
+    if (progressText) progressText.textContent = pct === 100 ? "Ready to send ✓" : pct + "% complete";
+  }
+
+  if (form) {
+    form.addEventListener("input", updateProgress);
+    form.addEventListener("change", updateProgress);
+  }
+
+  // Shared checks, used both to unlock the next step and on submit
+  const isValidEmail = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const isValidPhone = value => {
+    const digits = value.replace(/\D/g, "");
+    return digits.length >= 10 && digits.length <= 13;
+  };
+  const isValidGuestCount = value => Number.isInteger(Number(value)) && Number(value) >= 1;
+
+  // ─── STEP-BY-STEP REVEAL ─────────────────────────────────────────────
+  // Locked steps are hidden and disabled, so the browser skips their required fields
+  const eventStage = document.getElementById("inqEventStage");
+  const contactStage = document.getElementById("inqContactStage");
+  const actionsStage = document.getElementById("inqActions");
+  const submitBtn = form ? form.querySelector(".inq-submit") : null;
+
+  function detailsComplete() {
+    return form.name.value.trim() !== "" &&
+      isValidEmail(form.email.value.trim()) &&
+      isValidPhone(form.phone.value);
+  }
+
+  function eventComplete() {
+    if (!eventSelect.value) return false;
+    if (eventSelect.value === "other" && otherEventInput.value.trim() === "") return false;
+    return form.eventDate.value !== "" && form.eventDate.checkValidity() &&
+      isValidGuestCount(form.guestCount.value.trim()) &&
+      form.location.value.trim() !== "";
+  }
+
+  function setStageLocked(stage, locked) {
+    if (!stage) return;
+    stage.classList.toggle("inq-locked", locked);
+    stage.classList.toggle("inq-reveal", !locked);
+    if (stage.tagName === "FIELDSET") stage.disabled = locked;
+  }
+
+  function updateStages() {
+    if (!eventStage || !contactStage) return;
+    // Once a step is open it stays open, even if an earlier answer is edited
+    if (eventStage.classList.contains("inq-locked") && detailsComplete()) {
+      setStageLocked(eventStage, false);
+    }
+    if (!eventStage.classList.contains("inq-locked") &&
+        contactStage.classList.contains("inq-locked") && eventComplete()) {
+      setStageLocked(contactStage, false);
+      setStageLocked(actionsStage, false);
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  }
+
+  function resetStages() {
+    setStageLocked(eventStage, true);
+    setStageLocked(contactStage, true);
+    setStageLocked(actionsStage, true);
+    if (submitBtn) submitBtn.disabled = true;
+  }
+
+  if (form && eventStage) {
+    // Wait for a pause in typing so a step doesn't pop in mid-word
+    let stageTimer;
+    form.addEventListener("input", () => {
+      clearTimeout(stageTimer);
+      stageTimer = setTimeout(updateStages, 500);
+    });
+    form.addEventListener("change", updateStages);
+  }
+
   // Handle form submission
   if (form) {
     form.addEventListener('submit', e => {
@@ -148,15 +237,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const contactChannel = form.contactChannel.value;
 
       // ✅ Email validation (simple & effective)
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
+      if (!isValidEmail(email)) {
         alert("Please enter a valid email address.");
         return;
       }
 
       // ✅ Phone validation (digits only, 10–13 length)
-      const phoneDigits = phone.replace(/\D/g, ""); // remove non-digits
-      if (phoneDigits.length < 10 || phoneDigits.length > 13) {
+      if (!isValidPhone(phone)) {
         alert("The number is incorrect, check your phone number");
         return;
       }
@@ -168,18 +255,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      if (!Number.isInteger(Number(guestCount)) || Number(guestCount) < 1) {
+      if (!isValidGuestCount(guestCount)) {
         alert("Please enter a valid guest count.");
         form.guestCount.focus();
         return;
       }
 
-      const btn = form.querySelector('.form-submit');
-      const originalText = btn.textContent;
+      const btn = form.querySelector('.inq-submit');
+      const btnLabel = btn.querySelector('.inq-submit-label');
+      const originalText = btnLabel.textContent;
 
       // Disable button & show processing
       btn.disabled = true;
-      btn.textContent = 'Processing...';
+      btnLabel.textContent = 'Sending...';
 
       const eventType = eventSelect.value === "other"
         ? otherEventInput.value.trim()
@@ -211,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
           .then(() => {
             // Re-enable button
             btn.disabled = false;
-            btn.textContent = originalText;
+            btnLabel.textContent = originalText;
 
             // Email the client a confirmation. The inquiry itself already reached us,
             // so a failure here is logged rather than shown as a failed submission.
@@ -245,17 +333,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (otherEventGroup && otherEventInput) {
               toggleOtherEvent(false);
             }
+            updateProgress();
+            resetStages();
           })
           .catch((error) => {
             console.error("FAILED:", error);
             btn.disabled = false;
-            btn.textContent = originalText;
+            btnLabel.textContent = originalText;
             alert("Failed to send your inquiry. Please try again.");
           });
       } else {
         console.error("EmailJS is not defined.");
         btn.disabled = false;
-        btn.textContent = originalText;
+        btnLabel.textContent = originalText;
         alert("Failed to connect to the inquiry service. Please try again later.");
       }
     });
