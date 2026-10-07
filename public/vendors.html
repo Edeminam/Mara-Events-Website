@@ -182,69 +182,58 @@
   <!-- REFERRAL COMMISSION SECTION -->
   <section class="vm-referral" id="referral">
     <div class="vm-referral-bg"></div>
-    <div class="container">
-      <div class="vm-referral-inner">
-        <div class="vm-referral-text">
-          <span class="vm-section-tag light">Referral Programme</span>
-          <h2 class="vm-referral-title">Earn While You Refer</h2>
-          <p class="vm-referral-desc">
-            Mara Events operates a structured referral commission system. When you bring a client who books an event through Mara Events, you earn a percentage commission on the booking value — paid directly to you.
-          </p>
-          <div class="vm-commission-tiers">
-            <div class="vm-tier">
-              <div class="vm-tier-badge silver">Silver</div>
-              <div class="vm-tier-info">
-                <h4>Client Referral</h4>
-                <p>Refer a client who books a mid-range event</p>
-                <span class="vm-tier-rate">5% of Booking Value</span>
-              </div>
-            </div>
-            <div class="vm-tier">
-              <div class="vm-tier-badge gold">Gold</div>
-              <div class="vm-tier-info">
-                <h4>Premium Event Referral</h4>
-                <p>Refer a client who books a luxury / corporate event</p>
-                <span class="vm-tier-rate">8% of Booking Value</span>
-              </div>
-            </div>
-          </div>
-          <a href="#register" class="vm-btn-primary">
-            <i class="fa-solid fa-arrow-right"></i>
-            Join & Start Earning
-          </a>
-        </div>
-        <div class="vm-referral-visual">
-          <div class="vm-referral-card">
-            <div class="vm-ref-card-header">
-              <i class="fa-solid fa-link"></i>
-              <span>Your Referral Link</span>
-            </div>
-            <div class="vm-ref-link-box">
-              <span id="refLinkDisplay">mara-events.com/ref/your-code</span>
-              <button class="vm-ref-copy" id="refCopyBtn" aria-label="Copy referral link">
-                <i class="fa-regular fa-copy"></i>
-              </button>
-            </div>
-            <div class="vm-ref-earnings">
-              <div class="vm-ref-earn-item">
-                <span class="vm-ref-earn-label">This Month</span>
-                <span class="vm-ref-earn-value">₦0.00</span>
-              </div>
-              <div class="vm-ref-earn-item">
-                <span class="vm-ref-earn-label">Total Referrals</span>
-                <span class="vm-ref-earn-value">0</span>
-              </div>
-              <div class="vm-ref-earn-item">
-                <span class="vm-ref-earn-label">Pending Payout</span>
-                <span class="vm-ref-earn-value">₦0.00</span>
-              </div>
-            </div>
-            <p class="vm-ref-note">
-              <i class="fa-solid fa-circle-info"></i>
-              Register to get your unique referral link
-            </p>
-          </div>
-        </div>
+    <div class="container vm-referral-inner">
+      <header class="vm-referral-header">
+        <span class="vm-section-tag light">Referral Programme</span>
+        <h2 class="vm-referral-title">Earn While You Refer</h2>
+        <p class="vm-referral-desc">
+          When a client you introduce books an event through Mara Events, you earn a commission on the booking value, paid directly to you.
+        </p>
+      </header>
+
+      <div class="vm-commission-tiers">
+        <article class="vm-tier">
+          <span class="vm-tier-badge silver">Silver</span>
+          <div class="vm-tier-rate">5<span>%</span></div>
+          <span class="vm-tier-rate-label">of booking value</span>
+          <h3>Client Referral</h3>
+          <p>A client you refer books a mid-range event.</p>
+        </article>
+        <article class="vm-tier vm-tier--gold">
+          <span class="vm-tier-badge gold">Gold</span>
+          <div class="vm-tier-rate">8<span>%</span></div>
+          <span class="vm-tier-rate-label">of booking value</span>
+          <h3>Premium Event Referral</h3>
+          <p>A client you refer books a luxury or corporate event.</p>
+        </article>
+      </div>
+
+      <div class="vm-referral-steps">
+        <h3 class="vm-referral-steps-title">How it works</h3>
+        <ol class="vm-steps">
+          <li class="vm-step-item">
+            <span class="vm-step-icon"><i class="fa-solid fa-user-check" aria-hidden="true"></i></span>
+            <h4>Get approved</h4>
+            <p>Register below. Once our team approves your application, you can start referring clients.</p>
+          </li>
+          <li class="vm-step-item">
+            <span class="vm-step-icon"><i class="fa-solid fa-handshake" aria-hidden="true"></i></span>
+            <h4>Introduce a client</h4>
+            <p>Connect a client who needs an event planned with the Mara Events team.</p>
+          </li>
+          <li class="vm-step-item">
+            <span class="vm-step-icon"><i class="fa-solid fa-wallet" aria-hidden="true"></i></span>
+            <h4>Get paid</h4>
+            <p>When they book, your commission is paid within 14 days of the event.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="vm-referral-cta">
+        <a href="#register" class="vm-btn-primary">
+          Join &amp; Start Earning
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
       </div>
     </div>
   </section>
@@ -261,7 +250,7 @@
           </p>
           <ul class="vm-register-perks">
             <li><i class="fa-solid fa-check-circle"></i> Free listing on the Mara Vendor Marketplace</li>
-            <li><i class="fa-solid fa-check-circle"></i> Unique referral link & commission tracking</li>
+            <li><i class="fa-solid fa-check-circle"></i> 5 to 8% commission on clients you refer</li>
             <li><i class="fa-solid fa-check-circle"></i> Priority access to Mara Events projects</li>
             <li><i class="fa-solid fa-check-circle"></i> Mara-Verified badge after vetting</li>
             <li><i class="fa-solid fa-check-circle"></i> Monthly vendor newsletter & market insights</li>
@@ -284,119 +273,141 @@
           <form class="vm-register-form" id="vendorRegForm" novalidate>
             <h3 class="vm-form-title">Vendor Application Form</h3>
 
-            <div class="vm-form-row">
-              <div class="vm-form-group">
-                <label for="vBizName">Business Name <span class="req">*</span></label>
-                <input type="text" id="vBizName" name="bizName" placeholder="e.g. Royal Feast Catering" required />
+            <div class="inq-progress vm-progress" aria-hidden="true">
+              <div class="inq-progress-meta">
+                <span>Your application</span>
+                <span id="vmProgressText">0% complete</span>
               </div>
-              <div class="vm-form-group">
-                <label for="vOwnerName">Owner / Contact Name <span class="req">*</span></label>
-                <input type="text" id="vOwnerName" name="ownerName" placeholder="Your full name" required />
-              </div>
+              <div class="inq-progress-track"><div class="inq-progress-bar" id="vmProgressBar"></div></div>
             </div>
 
-            <div class="vm-form-row">
-              <div class="vm-form-group">
-                <label for="vEmail">Email Address <span class="req">*</span></label>
-                <input type="email" id="vEmail" name="email" placeholder="business@email.com" required />
-              </div>
-              <div class="vm-form-group">
-                <label for="vPhone">Phone Number <span class="req">*</span></label>
-                <input type="tel" id="vPhone" name="phone" placeholder="+234 800 000 0000" required />
-              </div>
-            </div>
+            <fieldset class="inq-section vm-step" id="vmStepContact">
+              <legend class="inq-legend"><span class="inq-legend-num">1</span> Your contact details</legend>
 
-            <div class="vm-form-row">
-              <div class="vm-form-group">
-                <label for="vCategory">Vendor Category <span class="req">*</span></label>
-                <div class="vm-select-wrap">
-                  <select id="vCategory" name="category" required>
-                    <option value="" disabled selected>Select category</option>
-                    <option value="catering">Catering & Food</option>
-                    <option value="decor">Décor & Florals</option>
-                    <option value="photography">Photography</option>
-                    <option value="videography">Videography</option>
-                    <option value="entertainment">Entertainment & DJ</option>
-                    <option value="fashion">Fashion & Styling</option>
-                    <option value="rentals">Furniture & Rentals</option>
-                    <option value="venue">Venue</option>
-                    <option value="makeup">Makeup & Beauty</option>
-                    <option value="transport">Transport & Logistics</option>
-                    <option value="security">Security</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <span class="vm-select-arrow">›</span>
+              <div class="vm-form-row">
+                <div class="vm-form-group">
+                  <label for="vBizName">Business Name <span class="req">*</span></label>
+                  <input type="text" id="vBizName" name="bizName" placeholder="e.g. Royal Feast Catering" required />
+                </div>
+                <div class="vm-form-group">
+                  <label for="vOwnerName">Owner / Contact Name <span class="req">*</span></label>
+                  <input type="text" id="vOwnerName" name="ownerName" placeholder="Your full name" required />
                 </div>
               </div>
-              <div class="vm-form-group">
-                <label for="vLocation">Primary Location <span class="req">*</span></label>
-                <div class="vm-select-wrap">
-                  <select id="vLocation" name="location" required>
-                    <option value="" disabled selected>Select city</option>
-                    <option value="abuja">Abuja</option>
-                    <option value="lagos">Lagos</option>
-                    <option value="port-harcourt">Port Harcourt</option>
-                    <option value="kano">Kano</option>
-                    <option value="ibadan">Ibadan</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <span class="vm-select-arrow">›</span>
+
+              <div class="vm-form-row">
+                <div class="vm-form-group">
+                  <label for="vEmail">Email Address <span class="req">*</span></label>
+                  <input type="email" id="vEmail" name="email" placeholder="business@email.com" required />
+                </div>
+                <div class="vm-form-group">
+                  <label for="vPhone">Phone Number <span class="req">*</span></label>
+                  <input type="tel" id="vPhone" name="phone" placeholder="+234 800 000 0000" required />
                 </div>
               </div>
-            </div>
+            </fieldset>
 
-            <div class="vm-form-group vm-form-full">
-              <label for="vWebsite">Website / Social Media Link</label>
-              <input type="url" id="vWebsite" name="website" placeholder="https://instagram.com/yourbusiness" />
-            </div>
+            <fieldset class="inq-section vm-step inq-locked" id="vmStepBusiness" disabled>
+              <legend class="inq-legend"><span class="inq-legend-num">2</span> Your business</legend>
 
-            <div class="vm-form-group vm-form-full">
-              <label for="vDescription">Describe Your Services <span class="req">*</span></label>
-              <textarea id="vDescription" name="description" rows="4" placeholder="Tell us about your business, experience, and what makes you stand out..." required></textarea>
-            </div>
-
-            <div class="vm-form-group vm-form-full">
-              <label for="vYearsExp">Years of Experience</label>
-              <div class="vm-select-wrap">
-                <select id="vYearsExp" name="yearsExp">
-                  <option value="" disabled selected>Select experience level</option>
-                  <option value="0-1">Less than 1 year</option>
-                  <option value="1-3">1–3 years</option>
-                  <option value="3-5">3–5 years</option>
-                  <option value="5-10">5–10 years</option>
-                  <option value="10+">10+ years</option>
-                </select>
-                <span class="vm-select-arrow">›</span>
-              </div>
-            </div>
-
-            <div class="vm-form-group vm-form-full">
-              <label for="vReferralCode">Referral Code (Optional)</label>
-              <input type="text" id="vReferralCode" name="referralCode" placeholder="Enter a referral code if you were referred" />
-            </div>
-
-            <div class="vm-form-group vm-form-full vm-checkbox-group">
-              <div class="vm-terms-card">
-                <label class="vm-checkbox-label" for="vTerms">
-                  <input type="checkbox" id="vTerms" name="terms" required />
-                  <span class="vm-checkbox-custom"></span>
-                  <div class="vm-terms-text">
-                    <span class="vm-terms-main">I agree to the <a href="#" target="_blank">Vendor Terms &amp; Conditions</a></span>
-                    <span class="vm-terms-sub">I also understand and accept Mara Events' referral commission structure for client referrals.</span>
+              <div class="vm-form-row">
+                <div class="vm-form-group">
+                  <label for="vCategory">Vendor Category <span class="req">*</span></label>
+                  <div class="vm-select-wrap">
+                    <select id="vCategory" name="category" required>
+                      <option value="" disabled selected>Select category</option>
+                      <option value="catering">Catering & Food</option>
+                      <option value="decor">Décor & Florals</option>
+                      <option value="photography">Photography</option>
+                      <option value="videography">Videography</option>
+                      <option value="entertainment">Entertainment & DJ</option>
+                      <option value="fashion">Fashion & Styling</option>
+                      <option value="rentals">Furniture & Rentals</option>
+                      <option value="venue">Venue</option>
+                      <option value="makeup">Makeup & Beauty</option>
+                      <option value="transport">Transport & Logistics</option>
+                      <option value="security">Security</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <span class="vm-select-arrow">›</span>
                   </div>
-                </label>
+                </div>
+                <div class="vm-form-group">
+                  <label for="vLocation">Primary Location <span class="req">*</span></label>
+                  <div class="vm-select-wrap">
+                    <select id="vLocation" name="location" required>
+                      <option value="" disabled selected>Select city</option>
+                      <option value="abuja">Abuja</option>
+                      <option value="lagos">Lagos</option>
+                      <option value="port-harcourt">Port Harcourt</option>
+                      <option value="kano">Kano</option>
+                      <option value="ibadan">Ibadan</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <span class="vm-select-arrow">›</span>
+                  </div>
+                </div>
               </div>
+
+                <div class="vm-form-group vm-form-full">
+                <label for="vWebsite">Website / Social Media Link</label>
+                <input type="url" id="vWebsite" name="website" placeholder="https://instagram.com/yourbusiness" />
+              </div>
+
+                <div class="vm-form-group vm-form-full">
+                <label for="vYearsExp">Years of Experience</label>
+                <div class="vm-select-wrap">
+                  <select id="vYearsExp" name="yearsExp">
+                    <option value="" disabled selected>Select experience level</option>
+                    <option value="0-1">Less than 1 year</option>
+                    <option value="1-3">1–3 years</option>
+                    <option value="3-5">3–5 years</option>
+                    <option value="5-10">5–10 years</option>
+                    <option value="10+">10+ years</option>
+                  </select>
+                  <span class="vm-select-arrow">›</span>
+                </div>
+              </div>
+
+                <div class="vm-form-group vm-form-full">
+                <label for="vDescription">Describe Your Services <span class="req">*</span></label>
+                <textarea id="vDescription" name="description" rows="4" placeholder="Tell us about your business, experience, and what makes you stand out..." required></textarea>
+              </div>
+            </fieldset>
+
+            <fieldset class="inq-section vm-step inq-locked" id="vmStepConfirm" disabled>
+              <legend class="inq-legend"><span class="inq-legend-num">3</span> Confirm &amp; submit</legend>
+
+                <div class="vm-form-group vm-form-full">
+                <label for="vReferralCode">Referral Code (Optional)</label>
+                <input type="text" id="vReferralCode" name="referralCode" placeholder="Enter a referral code if you were referred" />
+              </div>
+
+              <div class="vm-form-group vm-form-full vm-checkbox-group">
+                <div class="vm-terms-card">
+                  <label class="vm-checkbox-label" for="vTerms">
+                    <input type="checkbox" id="vTerms" name="terms" required />
+                    <span class="vm-checkbox-custom"></span>
+                    <div class="vm-terms-text">
+                      <span class="vm-terms-main">I agree to the <a href="#" target="_blank">Vendor Terms &amp; Conditions</a></span>
+                      <span class="vm-terms-sub">I also understand and accept Mara Events' referral commission structure for client referrals.</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="vm-actions inq-locked" id="vmActions">
+              <button type="submit" class="vm-submit-btn" id="vendorSubmitBtn">
+                <span class="btn-text">Submit Application</span>
+                <span class="btn-loader" aria-hidden="true" style="display: none;"><i class="fa-solid fa-spinner fa-spin"></i></span>
+              </button>
+
+              <p class="vm-form-note">
+                <i class="fa-solid fa-lock"></i>
+                Your information is secure. We never share vendor data with third parties.
+              </p>
             </div>
-
-            <button type="submit" class="vm-submit-btn" id="vendorSubmitBtn">
-              <span class="btn-text">Submit Application</span>
-              <span class="btn-loader" class="hidden"><i class="fa-solid fa-spinner fa-spin"></i></span>
-            </button>
-
-            <p class="vm-form-note">
-              <i class="fa-solid fa-lock"></i>
-              Your information is secure. We never share vendor data with third parties.
-            </p>
           </form>
         </div>
       </div>
@@ -438,7 +449,7 @@
             <i class="fa-solid fa-chevron-down vm-faq-icon"></i>
           </button>
           <div class="vm-faq-a">
-            <p>Once approved, you receive a unique referral link. When a client you refer books an event through Mara Events, you earn 5–8% of the booking value, paid within 14 days of event completion.</p>
+            <p>Once approved, you can refer clients to Mara Events. When a client you introduce books an event with us, you earn 5 to 8% of the booking value, paid within 14 days of event completion.</p>
           </div>
         </div>
 
@@ -495,22 +506,22 @@
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/#events">Events</a></li>
-            <li><a href="/vendors">Vendors</a></li>
+            <li><a href="/#team">Team</a></li>
           </ul>
         </div>
         <div class="footer-links-group">
           <h5>Company</h5>
           <ul>
-            <li><a href="/#team">About</a></li>
+            <li><a href="/#about">About</a></li>
             <li><a href="/blog">Blog</a></li>
+            <li><a href="/#book">Contact</a></li>
             <li><a href="/training">Training</a></li>
-            <li><a href="/vendors#register">Vendor Sign Up</a></li>
           </ul>
         </div>
         <div class="footer-links-group">
           <h5>Contact</h5>
           <ul>
-            <li><a href="tel:+2349011046473">+2349011046473 | +2348166930436</a></li>
+            <li><a href="tel:+2349011046473">+2349011046473 | +2348166930436  </a></li>
             <li>Abuja, Nigeria</li>
           </ul>
           <div class="footer-social">
@@ -533,8 +544,8 @@
       <div class="footer-bottom">
         <span>©2026 Mara Events. All rights reserved.</span>
         <div class="footer-legal">
-          <a href="#">Terms & Conditions</a>
-          <a href="#">Privacy Policy</a>
+          <a href="/">Terms &amp; Conditions</a>
+          <a href="/">Privacy Policy</a>
         </div>
       </div>
     </div>

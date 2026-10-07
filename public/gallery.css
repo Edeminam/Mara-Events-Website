@@ -36,12 +36,13 @@ video {
 /* ─── HERO ─────────────────────────────────── */
 .gallery-hero {
   position: relative;
-  min-height: 88vh;
+  min-height: 100vh;
+  min-height: 100svh; /* fill the visible screen, ignoring mobile browser bars */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding-top: 80px; /* ticker + nav offset */
+  padding: 140px 0 96px; /* top clears ticker + nav, bottom leaves room for the scroll cue */
 }
 
 .gallery-hero-bg {
@@ -109,7 +110,7 @@ video {
 }
 
 .gallery-hero-title {
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-size: clamp(2.4rem, min(7vw, 9vh), 5.5rem); /* also scales with screen height so it fits short laptops */
   font-weight: 900;
   color: #ffffff;
   line-height: 1.05;
@@ -200,6 +201,12 @@ video {
 @keyframes scrollBounce {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(6px); }
+}
+
+/* Hide the scroll cue on short screens where it would crowd the stats */
+@media (max-height: 700px) {
+  .gallery-hero-scroll { display: none; }
+  .gallery-hero { padding-bottom: 56px; }
 }
 
 /* ─── HERO ENTRANCE ANIMATIONS ──────────────── */
@@ -1315,7 +1322,8 @@ video {
 }
 
 @media (max-width: 768px) {
-  .gallery-hero { min-height: 72vh; }
+  .gallery-hero { padding: 128px 0 80px; }
+  .gallery-hero-content { gap: 16px; }
   .gallery-hero-stats { gap: 20px; }
   .gallery-stat-num { font-size: 1.5rem; }
   .gallery-grid { columns: 2; column-gap: 10px; }
@@ -1329,8 +1337,10 @@ video {
 }
 
 @media (max-width: 480px) {
-  .gallery-hero-stats { flex-direction: column; gap: 12px; }
-  .gallery-stat-divider { width: 60px; height: 1px; }
+  .gallery-hero-stats { gap: 14px; }
+  .gallery-stat-num { font-size: 1.35rem; }
+  .gallery-stat-label { font-size: 0.6rem; letter-spacing: 0.08em; text-align: center; }
+  .gallery-stat-divider { height: 32px; }
   .gallery-grid { columns: 2; column-gap: 8px; }
   .gallery-item { margin-bottom: 8px; }
   .lightbox-nav { display: none; }

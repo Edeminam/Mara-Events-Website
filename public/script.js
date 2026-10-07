@@ -10,26 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // Navbar handling is managed centrally by nav.js across all pages
 
   // ─── TESTIMONIAL SLIDER ─────────────────────────────────────────────
-  const track   = document.getElementById('testimonialTrack');
-  const dots    = document.querySelectorAll('.t-dot');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const cards   = track ? track.querySelectorAll('.testimonial-card') : [];
-  let current   = 0;
+  const slider    = document.getElementById('testimonialSlider');
+  const track     = document.getElementById('testimonialTrack');
+  const prevBtn   = document.getElementById('prevBtn');
+  const nextBtn   = document.getElementById('nextBtn');
+  const currentEl = document.getElementById('testimonialCurrent');
+  const totalEl   = document.getElementById('testimonialTotal');
+  const progress  = document.getElementById('testimonialProgress');
+  const cards     = track ? track.querySelectorAll('.testimonial-card') : [];
+  const pad       = n => String(n).padStart(2, '0');
+  let current     = 0;
   let autoSlide;
 
   function goTo(index) {
     current = (index + cards.length) % cards.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    cards.forEach((c, i) => {
+      c.classList.toggle('is-active', i === current);
+      c.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+    });
+    if (currentEl) currentEl.textContent = pad(current + 1);
+    if (progress) progress.style.width = `${((current + 1) / cards.length) * 100}%`;
   }
 
-  // ⚠️ ERROR 3 FIXED: Moved startAuto and resetAuto ABOVE the if-block
-  // so they are fully defined before resetAuto references startAuto.
   function startAuto() {
-    // Honour the "reduce motion" preference: no automatic advance (arrows and dots still work)
+    // Honour the "reduce motion" preference: no automatic advance (arrows still work)
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    autoSlide = setInterval(() => goTo(current + 1), 2000);
+    clearInterval(autoSlide);
+    autoSlide = setInterval(() => goTo(current + 1), 7000);
   }
 
   function resetAuto() {
@@ -38,23 +45,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (track && cards.length) {
+    if (totalEl) totalEl.textContent = pad(cards.length);
+    goTo(0);
+
     if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
     if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
 
-    dots.forEach(d => {
-      d.addEventListener('click', () => { goTo(parseInt(d.dataset.index, 10)); resetAuto(); });
-    });
+    startAuto();
 
-    startAuto(); // ✅ Now safely called after both functions are defined
-
-    // Pause on hover
-    track.addEventListener('mouseenter', () => clearInterval(autoSlide));
-    track.addEventListener('mouseleave', () => startAuto());
+    // Pause while the reader is hovering or focused on the testimonials
+    const section = document.getElementById('testimonials');
+    section.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    section.addEventListener('mouseleave', () => startAuto());
+    section.addEventListener('focusin', () => clearInterval(autoSlide));
+    section.addEventListener('focusout', () => startAuto());
 
     // Touch / swipe support
     let startX = 0;
-    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', e => {
+    slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
       const diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 40) {
         diff > 0 ? goTo(current + 1) : goTo(current - 1);
@@ -62,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Keyboard support
-    document.addEventListener('keydown', e => {
+    // Arrow keys, only while focus is inside the testimonials (not site-wide)
+    section.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft')  { goTo(current - 1); resetAuto(); }
       if (e.key === 'ArrowRight') { goTo(current + 1); resetAuto(); }
     });
@@ -71,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── SCROLL REVEAL ──────────────────────────────────────────────────
   const revealEls = document.querySelectorAll(
-    '.about-us-inner, .event-card, .testimonial-card, .card, .book-inner, .footer-top'
+    '.about-us-inner, .event-card, .testimonial-slider, .card, .book-inner, .footer-top'
   );
 
   const observer = new IntersectionObserver((entries) => {

@@ -153,7 +153,101 @@ function openContactModal(vendorName) {
 
   if (!form) return;
 
+  // ─── STEP-BY-STEP REVEAL (same behaviour as the landing page inquiry form) ───
+  // Locked steps are hidden and disabled; each opens once the previous one is complete
+  const stepBusiness = document.getElementById('vmStepBusiness');
+  const stepConfirm  = document.getElementById('vmStepConfirm');
+  const stepActions  = document.getElementById('vmActions');
+  const progressBar  = document.getElementById('vmProgressBar');
+  const progressText = document.getElementById('vmProgressText');
+
+  const isValidEmail = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const isValidPhone = value => {
+    const digits = value.replace(/\D/g, '');
+    return digits.length >= 10 && digits.length <= 13;
+  };
+
+  function contactComplete() {
+    return form.bizName.value.trim() !== '' &&
+      form.ownerName.value.trim() !== '' &&
+      isValidEmail(form.email.value.trim()) &&
+      isValidPhone(form.phone.value);
+  }
+
+  function businessComplete() {
+    return form.category.value !== '' &&
+      form.location.value !== '' &&
+      form.description.value.trim() !== '';
+  }
+
+  function setStepLocked(step, locked) {
+    if (!step) return;
+    step.classList.toggle('inq-locked', locked);
+    step.classList.toggle('inq-reveal', !locked);
+    if (step.tagName === 'FIELDSET') step.disabled = locked;
+  }
+
+  function updateSteps() {
+    // Once a step is open it stays open, even if an earlier answer is edited
+    if (stepBusiness.classList.contains('inq-locked') && contactComplete()) {
+      setStepLocked(stepBusiness, false);
+    }
+    if (!stepBusiness.classList.contains('inq-locked') &&
+        stepConfirm.classList.contains('inq-locked') && businessComplete()) {
+      setStepLocked(stepConfirm, false);
+      setStepLocked(stepActions, false);
+    }
+  }
+
+  function resetSteps() {
+    setStepLocked(stepBusiness, true);
+    setStepLocked(stepConfirm, true);
+    setStepLocked(stepActions, true);
+    [stepBusiness, stepConfirm, stepActions].forEach(st => st?.classList.remove('inq-reveal'));
+  }
+
+  // Completion bar: share of required answers filled in
+  const progressChecks = [
+    () => form.bizName.value.trim() !== '',
+    () => form.ownerName.value.trim() !== '',
+    () => isValidEmail(form.email.value.trim()),
+    () => isValidPhone(form.phone.value),
+    () => form.category.value !== '',
+    () => form.location.value !== '',
+    () => form.description.value.trim() !== '',
+    () => form.terms.checked,
+  ];
+
+  function updateProgress() {
+    if (!progressBar) return;
+    const pct = Math.round((progressChecks.filter(check => check()).length / progressChecks.length) * 100);
+    progressBar.style.width = pct + '%';
+    if (progressText) progressText.textContent = pct === 100 ? 'Ready to submit ✓' : pct + '% complete';
+  }
+
+  if (stepBusiness && stepConfirm) {
+    // Wait for a pause in typing so a step doesn't pop in mid-word
+    let stepTimer;
+    form.addEventListener('input', () => {
+      updateProgress();
+      clearTimeout(stepTimer);
+      stepTimer = setTimeout(updateSteps, 500);
+    });
+    form.addEventListener('change', () => {
+      updateProgress();
+      updateSteps();
+    });
+  }
+
   const SHEETDB_URL = 'https://sheetdb.io/api/v1/mdenhquvimfpq';
+
+  // fetch() has no built-in timeout; abort after `ms` so the button never hangs
+  function fetchWithTimeout(url, options = {}, ms = 15000) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), ms);
+    return fetch(url, { ...options, signal: controller.signal })
+      .finally(() => clearTimeout(timer));
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -193,12 +287,15 @@ function openContactModal(vendorName) {
     };
 
     // Submit strictly to Google Sheets via SheetDB ONLY
-    const success = await submitToSheetDB(data);
-
-    // Reset loading UI
-    submitBtn.disabled = false;
-    if (btnText)   btnText.style.display = 'inline';
-    if (btnLoader) btnLoader.style.display = 'none';
+    let success = false;
+    try {
+      success = await submitToSheetDB(data);
+    } finally {
+      // Reset loading UI (runs whether the request succeeded, failed or timed out)
+      submitBtn.disabled = false;
+      if (btnText)   btnText.style.display = 'inline';
+      if (btnLoader) btnLoader.style.display = 'none';
+    }
 
     if (!success) {
       alert('Unable to save application. Please check your network connection and try again.');
@@ -206,6 +303,8 @@ function openContactModal(vendorName) {
     }
 
     form.reset();
+    resetSteps();
+    updateProgress();
 
     // Show success dialog
     if (successDlg) successDlg.showModal();
@@ -267,7 +366,7 @@ function openContactModal(vendorName) {
       // Step 1: Fetch exact column keys from the Google Sheet
       let keys = [];
       try {
-        const keyRes = await fetch(`${SHEETDB_URL}/keys`);
+        const keyRes = await fetchWithTimeout(`${SHEETDB_URL}/keys`, {}, 8000);
         if (keyRes.ok) {
           keys = await keyRes.json();
         }
@@ -320,14 +419,14 @@ function openContactModal(vendorName) {
       }
 
       // Step 3: POST data to SheetDB (Google Sheets)
-      const response = await fetch(SHEETDB_URL, {
+      const response = await fetchWithTimeout(SHEETDB_URL, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ data: [row] }),
-      });
+      }, 20000);
 
       if (!response.ok) {
         const errText = await response.text();
@@ -345,36 +444,6 @@ function openContactModal(vendorName) {
   }
 
 })();
-
-/* ─── Referral Copy Button ─────────────────────── */
-(function () {
-  const copyBtn     = document.getElementById('refCopyBtn');
-  const linkDisplay = document.getElementById('refLinkDisplay');
-
-  if (!copyBtn || !linkDisplay) return;
-
-  copyBtn.addEventListener('click', async () => {
-    const text = linkDisplay.textContent.trim();
-    try {
-      await navigator.clipboard.writeText(text);
-      copyBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
-      copyBtn.style.color = '#27ae60';
-      setTimeout(() => {
-        copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i>';
-        copyBtn.style.color = '';
-      }, 2000);
-    } catch {
-      // Fallback for non-HTTPS
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-    }
-  });
-})();
-
 /* ─── FAQ Accordion ─────────────────────────────── */
 (function () {
   const faqItems = document.querySelectorAll('.vm-faq-item');
