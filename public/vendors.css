@@ -129,11 +129,12 @@
 .vm-hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh; /* fill the visible screen, ignoring mobile browser bars */
   display: flex;
   align-items: center;
   background: linear-gradient(135deg, #0d1b3e 0%, #001a6b 40%, #0d2257 70%, #000c2d 100%);
   overflow: hidden;
-  padding: 120px 0 80px;
+  padding: 196px 0 96px; /* ~108px ticker + nav, plus breathing room */
 }
 
 .vm-hero-overlay {
@@ -1454,7 +1455,7 @@
 
 @media (max-width: 768px) {
   .vm-hero {
-    padding: 100px 0 60px;
+    padding: 168px 0 72px;
   }
 
   .vm-hero-stats {
@@ -1518,6 +1519,10 @@
 }
 
 @media (max-width: 480px) {
+  .vm-hero {
+    padding: 156px 0 64px;
+  }
+
   .vm-tier-rate {
     margin-top: 20px;
   }
