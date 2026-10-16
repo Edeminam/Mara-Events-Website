@@ -57,7 +57,7 @@
       backdrop.classList.add('active');
       document.body.classList.add('nav-open');
       // Move keyboard focus into the menu once it starts opening
-      const firstLink = mobileMenu.querySelector('a');
+      const firstLink = mobileMenu.querySelector('.mobile-group-toggle, a');
       if (firstLink) setTimeout(() => firstLink.focus({ preventScroll: true }), 50);
     }
 
@@ -156,10 +156,23 @@
 
       setActivePageLinks();
 
+      // A page inside the Events menu also marks the Events button and opens its mobile group
+      document.querySelectorAll('.nav-dropdown').forEach(dd => {
+        if (dd.querySelector('.nav-dropdown-item.active')) {
+          dd.querySelector('.nav-dropdown-toggle').classList.add('active');
+        }
+      });
+      document.querySelectorAll('.mobile-group').forEach(group => {
+        if (group.querySelector('.mobile-group-panel a.active')) {
+          group.querySelector('.mobile-group-toggle').setAttribute('aria-expanded', 'true');
+          group.querySelector('.mobile-group-panel').hidden = false;
+        }
+      });
+
       // Scrollspy on Homepage for in-page section links
       if (isHomePage) {
         const homeSections = [
-          { id: 'events', links: document.querySelectorAll('.nav-links a[href="#events"], .mobile-menu a[href="#events"]') }
+          { id: 'events', links: document.querySelectorAll('.nav-dropdown-toggle') }
         ];
 
         function updateHomepageScrollspy() {
@@ -189,6 +202,58 @@
     } catch (err) {
       // Non-critical active link detection
     }
+  }
+
+  // ─── EVENTS DROPDOWN (DESKTOP) & EVENTS GROUP (MOBILE MENU) ─────────
+  function initDropdowns() {
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    document.querySelectorAll('.nav-dropdown').forEach(dd => {
+      const btn = dd.querySelector('.nav-dropdown-toggle');
+      let closeTimer;
+
+      const open = () => {
+        clearTimeout(closeTimer);
+        dd.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      };
+      const close = () => {
+        clearTimeout(closeTimer);
+        dd.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      };
+
+      // Mouse users open it by hovering; a click while open (from hover) keeps it open
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (dd.classList.contains('open') && !(canHover.matches && dd.matches(':hover'))) close();
+        else open();
+      });
+      dd.addEventListener('mouseenter', () => { if (canHover.matches) open(); });
+      dd.addEventListener('mouseleave', () => { if (canHover.matches) closeTimer = setTimeout(close, 180); });
+
+      // Close when focus leaves, on Escape, or on a click elsewhere
+      dd.addEventListener('focusout', (e) => { if (!dd.contains(e.relatedTarget)) close(); });
+      dd.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dd.classList.contains('open')) {
+          close();
+          btn.focus();
+        }
+      });
+      document.addEventListener('click', (e) => { if (!dd.contains(e.target)) close(); });
+      dd.querySelectorAll('.nav-dropdown-panel a').forEach(a => a.addEventListener('click', close));
+    });
+
+    document.querySelectorAll('.mobile-group').forEach(group => {
+      const btn = group.querySelector('.mobile-group-toggle');
+      const panel = group.querySelector('.mobile-group-panel');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const expand = btn.getAttribute('aria-expanded') !== 'true';
+        btn.setAttribute('aria-expanded', String(expand));
+        panel.hidden = !expand;
+      });
+    });
   }
 
   // ─── MARA ACADEMY TRAINING SCROLL BANNER (ALL PAGES) ───────────────
@@ -367,6 +432,7 @@
   function onReady() {
     initTopAnnouncementBar();
     initNavigation();
+    initDropdowns();
     initTrainingScrollBanner();
   }
 
