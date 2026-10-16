@@ -522,7 +522,7 @@
 
 .svc-case-media {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 4px;
   min-height: 360px;
 }
@@ -602,7 +602,7 @@
 /* Two-column checklist */
 .svc-checklist {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 4px 40px;
 }
 
@@ -908,7 +908,7 @@
   .svc-enquire-grid,
   .svc-case,
   .svc-case:nth-child(even) {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .svc-intro {
@@ -928,7 +928,7 @@
   }
 
   .svc-packages {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .svc-enquire-aside {
@@ -946,7 +946,7 @@
   }
 
   .svc-checklist {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .svc-case-body {
@@ -962,7 +962,7 @@
   .svc-grid,
   .svc-venues,
   .svc-related {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .svc-btn {
@@ -976,5 +976,22 @@
 
   .svc-success {
     padding: 40px 22px;
+  }
+
+  .svc-table {
+    font-size: 14px;
+  }
+
+  .svc-table caption {
+    padding: 16px 14px 4px;
+  }
+
+  .svc-table th,
+  .svc-table td {
+    padding: 12px 14px;
+  }
+
+  .svc-table td:last-child {
+    white-space: normal;
   }
 }

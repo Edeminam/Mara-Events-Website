@@ -494,7 +494,7 @@
 
 @media (max-width: 960px) {
   .contact-enquiry-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 40px;
   }
 
@@ -510,7 +510,7 @@
 
   /* Compact rows: icon on the left, text on the right */
   .contact-topic-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
   }
 
@@ -518,7 +518,7 @@
   .contact-topic:nth-child(n + 4) {
     grid-column: auto;
     display: grid;
-    grid-template-columns: 44px 1fr;
+    grid-template-columns: 44px minmax(0, 1fr);
     column-gap: 16px;
     padding: 20px;
     border-radius: 16px;

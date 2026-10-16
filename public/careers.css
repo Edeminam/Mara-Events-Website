@@ -123,7 +123,7 @@
 
 .careers-why-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 40px;
 }
 
@@ -261,7 +261,7 @@
 
 .careers-job-cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 40px;
 }
 
@@ -338,7 +338,7 @@
 
   .careers-why-grid,
   .careers-job-cols {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 28px;
   }
 
