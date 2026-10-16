@@ -307,12 +307,12 @@
       },
       {
         "source": "/images/Mara Events Logo.png",
-        "destination": "/images/mara-events-logo.webp",
+        "destination": "/images/mara-events-logo.png",
         "type": 301
       },
       {
         "source": "/images/Mara Event logo white.png",
-        "destination": "/images/mara-events-logo-white.webp",
+        "destination": "/images/mara-events-logo-white.png",
         "type": 301
       },
       {
