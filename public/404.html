@@ -7,37 +7,42 @@
   <title>Page not found | Mara Events</title>
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
+  <link rel="stylesheet" href="/styles.css" />
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
+    /* Page-not-found panel; the navbar comes from styles.css */
+    .nf {
       min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-      font-family: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      color: #ffffff;
+      padding: 176px 24px 96px; /* clears ticker + nav */
       background: #0d2257;
+      color: #ffffff;
       text-align: center;
     }
-    main { max-width: 520px; }
-    img { max-width: 220px; height: auto; margin-bottom: 32px; }
-    .code { font-size: 14px; font-weight: 700; letter-spacing: 0.2em; color: #9fc0f5; margin-bottom: 12px; }
-    h1 { font-size: clamp(28px, 6vw, 40px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
-    p { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, 0.82); margin-bottom: 32px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-    a.btn {
+    .nf-inner { max-width: 560px; }
+    .nf-code { font-size: 14px; font-weight: 700; letter-spacing: 0.2em; color: #9fc0f5; margin-bottom: 12px; }
+    .nf h1 { font-size: clamp(28px, 6vw, 44px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+    .nf p { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, 0.82); margin-bottom: 32px; }
+    .nf-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .nf-btn {
       display: inline-block;
       padding: 14px 28px;
       border-radius: 100px;
       font-weight: 700;
       font-size: 15px;
-      text-decoration: none;
       color: #ffffff;
       background: #2174e9;
     }
-    a.btn.secondary { background: transparent; border: 2px solid rgba(255, 255, 255, 0.5); }
-    a.btn:focus-visible { outline: 3px solid #ffffff; outline-offset: 3px; }
+    .nf-btn--ghost { background: transparent; border: 2px solid rgba(255, 255, 255, 0.5); }
+    .nf-btn:hover { background: #ffffff; color: #0d2257; }
+    .nf-btn:focus-visible { outline: 3px solid #ffffff; outline-offset: 3px; }
   </style>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
@@ -49,15 +54,130 @@
   </script>
 </head>
 <body>
-  <main>
-    <img src="/images/mara-events-logo-white.webp" alt="Mara Events" width="268" height="88" />
-    <p class="code">ERROR 404</p>
-    <h1>We couldn&rsquo;t find that page</h1>
-    <p>The link may be out of date or the page may have moved. Head back to the homepage or plan your event with us.</p>
-    <div class="actions">
-      <a class="btn" href="/">Back to homepage</a>
-      <a class="btn secondary" href="/#book">Book your event</a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav class="navbar scrolled" id="navbar" aria-label="Main">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Mara Events home">
+        <img src="/images/mara-events-logo.webp" alt="Mara Events Logo" width="140" height="36" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-dropdown">
+          <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="eventsMenu">Events <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+          <div class="nav-dropdown-panel" id="eventsMenu">
+            <a href="/gallery" class="nav-feature">
+              <img src="/images/nav-feature-military-wedding.webp" alt="" width="260" height="320" loading="lazy" decoding="async">
+              <span class="nav-feature-body">
+                <span class="nav-feature-eyebrow">Our work</span>
+                <strong>200+ events since 2020</strong>
+                <span>Weddings, conferences and celebrations across Nigeria.</span>
+                <span class="nav-feature-link">View the gallery <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+              </span>
+            </a>
+            <div class="nav-dropdown-main">
+              <p class="nav-dropdown-label">Event services</p>
+              <div class="nav-dropdown-list">
+                <a href="/wedding-planner-abuja" class="nav-dropdown-item">
+                  <span class="nav-dropdown-icon"><i class="fa-solid fa-ring" aria-hidden="true"></i></span>
+                  <span class="nav-dropdown-text"><strong>Wedding planning</strong><span>White, traditional and military weddings</span></span>
+                  <i class="fa-solid fa-arrow-right nav-dropdown-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="/corporate-event-management-abuja" class="nav-dropdown-item">
+                  <span class="nav-dropdown-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+                  <span class="nav-dropdown-text"><strong>Corporate events</strong><span>Launches, AGMs, award nights and staff events</span></span>
+                  <i class="fa-solid fa-arrow-right nav-dropdown-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="/conference-planning-nigeria" class="nav-dropdown-item">
+                  <span class="nav-dropdown-icon"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i></span>
+                  <span class="nav-dropdown-text"><strong>Conferences</strong><span>Delegates, speakers, stage and exhibitors</span></span>
+                  <i class="fa-solid fa-arrow-right nav-dropdown-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="/social-events-abuja" class="nav-dropdown-item">
+                  <span class="nav-dropdown-icon"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i></span>
+                  <span class="nav-dropdown-text"><strong>Social events</strong><span>Birthdays, showers, naming ceremonies, dinners</span></span>
+                  <i class="fa-solid fa-arrow-right nav-dropdown-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="/event-planner-lagos" class="nav-dropdown-item">
+                  <span class="nav-dropdown-icon"><i class="fa-solid fa-city" aria-hidden="true"></i></span>
+                  <span class="nav-dropdown-text"><strong>Events in Lagos</strong><span>Weddings, corporate events and conferences</span></span>
+                  <i class="fa-solid fa-arrow-right nav-dropdown-arrow" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+            <div class="nav-dropdown-side">
+              <p class="nav-dropdown-label">Planning guides</p>
+              <ul class="nav-guides">
+                <li><a href="/blog/cost-corporate-event-nigeria"><span>Cost guide</span>What does an event cost in Nigeria?</a></li>
+                <li><a href="/blog/best-event-venues-abuja-corporate"><span>Venue guide</span>Best event venues in Abuja</a></li>
+                <li><a href="/blog/wedding-planning-timeline-12-months"><span>Wedding guide</span>12-month wedding planning timeline</a></li>
+                <li><a href="/blog/lagos-vs-abuja-event-venue-city"><span>City guide</span>Lagos or Abuja for your event?</a></li>
+              </ul>
+              <div class="nav-proof">
+                <span class="nav-proof-icon"><i class="fa-solid fa-award" aria-hidden="true"></i></span>
+                <span><strong>Official event planner for AICCEES</strong><span>4 consecutive editions</span></span>
+              </div>
+            </div>
+            <div class="nav-dropdown-foot">
+              <a href="/#events" class="nav-dropdown-all">All event services</a>
+              <a href="/contact?type=consultation#enquiry" class="nav-dropdown-cta">Talk to a planner <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/training">Training</a></li>
+        <li><a href="/webinar">Webinar</a></li>
+        <li><a href="/vendors">Vendors</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="/#book" class="nav-cta"><span>Book Your Event</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="mobile-group">
+        <button type="button" class="mobile-group-toggle" aria-expanded="false" aria-controls="mobileEvents">Events <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+        <div class="mobile-group-panel" id="mobileEvents" hidden>
+          <a href="/wedding-planner-abuja"><i class="fa-solid fa-ring" aria-hidden="true"></i>Wedding planning</a>
+          <a href="/corporate-event-management-abuja"><i class="fa-solid fa-briefcase" aria-hidden="true"></i>Corporate events</a>
+          <a href="/conference-planning-nigeria"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i>Conferences</a>
+          <a href="/social-events-abuja"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i>Social events</a>
+          <a href="/event-planner-lagos"><i class="fa-solid fa-city" aria-hidden="true"></i>Events in Lagos</a>
+          <a href="/#events"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i>All event services</a>
+        </div>
+      </div>
+      <a href="/gallery">Gallery</a>
+      <a href="/training">Training</a>
+      <a href="/webinar">Webinar</a>
+      <a href="/vendors">Vendors</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/#book" class="mobile-cta">Book Your Event <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <div class="mobile-menu-contact">
+        <a href="tel:+2349011046473"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call us</a>
+        <a href="https://wa.me/2349011046473" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="nf">
+    <div class="nf-inner">
+      <p class="nf-code">ERROR 404</p>
+      <h1>We couldn&rsquo;t find that page</h1>
+      <p>The link may be out of date or the page may have moved. Head back to the homepage, browse our event services in the menu, or plan your event with us.</p>
+      <div class="nf-actions">
+        <a class="nf-btn" href="/">Back to homepage</a>
+        <a class="nf-btn nf-btn--ghost" href="/#book">Book your event</a>
+      </div>
     </div>
   </main>
+
+  <script defer src="/nav.js"></script>
 </body>
 </html>
