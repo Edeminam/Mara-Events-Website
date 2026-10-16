@@ -51,10 +51,14 @@
       navbar.classList.add('menu-open');
       navToggle.classList.add('open');
       navToggle.setAttribute('aria-expanded', 'true');
+      navToggle.setAttribute('aria-label', 'Close menu');
       mobileMenu.classList.add('open');
       mobileMenu.setAttribute('aria-hidden', 'false');
       backdrop.classList.add('active');
       document.body.classList.add('nav-open');
+      // Move keyboard focus into the menu once it starts opening
+      const firstLink = mobileMenu.querySelector('a');
+      if (firstLink) setTimeout(() => firstLink.focus({ preventScroll: true }), 50);
     }
 
     function closeMenu() {
@@ -63,6 +67,7 @@
       navbar.classList.remove('menu-open');
       navToggle.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
       mobileMenu.classList.remove('open');
       mobileMenu.setAttribute('aria-hidden', 'true');
       backdrop.classList.remove('active');
@@ -104,12 +109,12 @@
       }
     });
 
-    // Close on window resize to desktop breakpoint (>960px)
+    // Close on window resize to desktop breakpoint (>1024px, where the links show again)
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        if (window.innerWidth > 960 && isMenuOpen) {
+        if (window.innerWidth > 1024 && isMenuOpen) {
           closeMenu();
         }
       }, 100);

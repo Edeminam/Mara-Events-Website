@@ -72,37 +72,43 @@
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <!-- NAV -->
-  <nav class="navbar scrolled" id="navbar">
+  <nav class="navbar scrolled" id="navbar" aria-label="Main">
     <div class="nav-inner">
-      <a href="/" class="nav-logo">
+      <a href="/" class="nav-logo" aria-label="Mara Events home">
         <img src="images/mara-events-logo.webp" alt="Mara Events Logo" width="140" height="36" class="nav-logo-img">
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="/#events">Events</a></li>
-        <li><a href="/webinar">Webinar</a></li>
         <li><a href="/gallery">Gallery</a></li>
         <li><a href="/training">Training</a></li>
-        <li><a href="/blog">Blog</a></li>
+        <li><a href="/webinar">Webinar</a></li>
         <li><a href="/vendors">Vendors</a></li>
-        <li><a href="/contact" style="color:var(--accent);font-weight:700;">Contact</a></li>
-        <li><a href="/#book" class="nav-cta">Book Your Event</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
+      <div class="nav-actions">
+        <a href="/#book" class="nav-cta"><span>Book Your Event</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
     <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
       <a href="/#events">Events</a>
-      <a href="/webinar">Webinar</a>
       <a href="/gallery">Gallery</a>
       <a href="/training">Training</a>
-      <a href="/blog">Blog</a>
+      <a href="/webinar">Webinar</a>
       <a href="/vendors">Vendors</a>
-      <a href="/contact" style="color:var(--accent);font-weight:700;">Contact</a>
-      <a href="/#book" class="mobile-cta">Book Your Event</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/#book" class="mobile-cta">Book Your Event <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <div class="mobile-menu-contact">
+        <a href="tel:+2349011046473"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call us</a>
+        <a href="https://wa.me/2349011046473" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+      </div>
     </div>
   </nav>
 
@@ -452,20 +458,24 @@
           <p>Planning weddings, corporate events and celebrations in Nigeria since 2020. Official event planner for AICCEES, 4 consecutive editions.</p>
         </div>
         <div class="footer-links-group">
-          <h5>Quick Links</h5>
+          <h5>Services</h5>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/#events">Events</a></li>
-            <li><a href="/careers">Careers</a></li>
+            <li><a href="/wedding-planner-abuja">Weddings</a></li>
+            <li><a href="/corporate-event-management-abuja">Corporate events</a></li>
+            <li><a href="/conference-planning-nigeria">Conferences</a></li>
+            <li><a href="/social-events-abuja">Social events</a></li>
+            <li><a href="/event-planner-lagos">Events in Lagos</a></li>
           </ul>
         </div>
         <div class="footer-links-group">
           <h5>Company</h5>
           <ul>
+            <li><a href="/">Home</a></li>
             <li><a href="/#about">About</a></li>
             <li><a href="/blog">Blog</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/careers">Careers</a></li>
             <li><a href="/training">Training</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <div class="footer-links-group">
