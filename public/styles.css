@@ -2055,9 +2055,50 @@ body.nav-open {
   line-height: 1.6;
 }
 
+/* LINKS AND COST TABLE INSIDE ANSWERS */
+.faq-a a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.faq-table-wrap {
+  margin-top: 14px;
+  overflow-x: auto;
+}
+
+.faq-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  color: #555;
+}
+
+.faq-table th {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  color: #50565f;
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.faq-table td {
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+
+.faq-table td:last-child {
+  white-space: nowrap;
+  font-weight: 600;
+  color: #222;
+}
+
 /* ACTIVE STATE */
 .faq-item.active .faq-a {
-  max-height: 300px;
+  max-height: 1000px;
   opacity: 1;
 }
 
@@ -2925,7 +2966,7 @@ body.nav-open {
   position: relative;
   min-height: 100vh;
   min-height: 100svh; /* fill the visible screen, ignoring mobile browser bars */
-  background-image: url('images/coprat.jpg');
+  background-image: url('images/conference-hall-theatre-seating.webp');
   background-size: cover;
   background-position: center;
   display: flex;

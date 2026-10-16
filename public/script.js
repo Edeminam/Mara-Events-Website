@@ -836,7 +836,7 @@ document.addEventListener("DOMContentLoaded", function () {
     downloadBtn.addEventListener("click", function (e) {
       e.preventDefault();
       const link = document.createElement("a");
-      link.href = "files/Mara Events Brochure.pdf";
+      link.href = "files/mara-events-brochure.pdf";
       link.download = "Mara Events Brochure.pdf";
       document.body.appendChild(link);
       link.click();

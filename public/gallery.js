@@ -73,7 +73,7 @@
 
   function playFeaturedVideoPopup() {
     openVideoModal(
-      'images/Pictures/WhatsApp Video 2026-08-11 at 20.26.40.mp4',
+      'images/gallery/event-production-highlights-mara-events.mp4',
       'landscape',
       '<i class="fa-solid fa-film"></i> Behind The Scenes &bull; Event Highlights',
       'See Us In Action &mdash; Mara Events Highlights',

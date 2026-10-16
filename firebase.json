@@ -19,14 +19,450 @@
         "source": "/404.html",
         "destination": "/error-not-found",
         "type": 301
+      },
+      {
+        "source": "/images/Pictures/2.jpeg",
+        "destination": "/images/gallery/couple-in-white-cold-smoke-portrait-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/army.jpeg",
+        "destination": "/images/gallery/military-wedding-sword-arch-guard-of-honour-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/3.jpeg",
+        "destination": "/images/gallery/couple-first-dance-cold-smoke-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/dre.jpeg",
+        "destination": "/images/gallery/military-wedding-couple-under-sword-arch-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/4.jpeg",
+        "destination": "/images/gallery/groomsmen-teal-agbada-entrance-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/ds.jpeg",
+        "destination": "/images/gallery/tosin-and-kayode-traditional-wedding-dance-floor-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/fr.jpeg",
+        "destination": "/images/gallery/tosin-and-kayode-traditional-wedding-couple-dancing-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/hg.jpeg",
+        "destination": "/images/gallery/military-wedding-guard-of-honour-green-lighting-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/re.jpeg",
+        "destination": "/images/gallery/traditional-wedding-couple-celebrating-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/uo.jpeg",
+        "destination": "/images/gallery/military-wedding-sword-arch-entrance-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/vc.jpeg",
+        "destination": "/images/gallery/military-wedding-lit-sword-salute-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/Wedding .jpeg",
+        "destination": "/images/gallery/wedding-couple-cold-smoke-sparklers-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/WhatsApp Image 2026-08-11 at 20.26.12.jpeg",
+        "destination": "/images/gallery/couple-in-white-soft-tone-portrait-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/WhatsApp Image 2026-08-11 at 20.26.13.jpeg",
+        "destination": "/images/gallery/couple-in-white-close-portrait-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/WhatsApp Image 2026-08-11 at 20.26.40.jpeg",
+        "destination": "/images/gallery/groomsmen-teal-agbada-celebration-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/WhatsApp Image 2026-08-11 at 20.26.41.jpeg",
+        "destination": "/images/gallery/tosin-and-kayode-wedding-dance-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/WhatsApp Image 2026-08-11 at 20.26.42.jpeg",
+        "destination": "/images/gallery/military-wedding-couple-procession-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/highlights-video-poster.png",
+        "destination": "/images/gallery/arewa-bride-highlights-video-poster-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/WhatsApp Video 2026-08-11 at 20.26.40.mp4",
+        "destination": "/images/gallery/event-production-highlights-mara-events.mp4",
+        "type": 301
+      },
+      {
+        "source": "/images/AICCEES Mara.mp4",
+        "destination": "/images/gallery/aiccees-2025-highlights-mara-events.mp4",
+        "type": 301
+      },
+      {
+        "source": "/images/aiccees-poster.png",
+        "destination": "/images/gallery/aiccees-2025-video-poster-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3274.JPG",
+        "destination": "/images/gallery/aiccees-2025-stage-backdrop-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3283.JPG",
+        "destination": "/images/gallery/aiccees-2025-stage-lighting-lectern-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3287.JPG",
+        "destination": "/images/gallery/aiccees-2025-sponsor-step-and-repeat-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3338.JPG",
+        "destination": "/images/gallery/aiccees-2025-guest-photo-frame-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3374.JPG",
+        "destination": "/images/gallery/aiccees-2025-delegate-registration-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3486.JPG",
+        "destination": "/images/gallery/aiccees-2025-clean-cooking-exhibition-stand-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3491.JPG",
+        "destination": "/images/gallery/aiccees-2025-panel-stage-setup-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3492.JPG",
+        "destination": "/images/gallery/aiccees-2025-lectern-tovero-energy-backdrop-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3493.JPG",
+        "destination": "/images/gallery/aiccees-2025-panel-seating-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3606.JPG",
+        "destination": "/images/gallery/aiccees-2025-delegates-in-audience-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3643.JPG",
+        "destination": "/images/gallery/aiccees-2025-clean-cooking-exhibitor-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3685.JPG",
+        "destination": "/images/gallery/aiccees-2025-panel-discussion-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_3847.JPG",
+        "destination": "/images/gallery/aiccees-2025-delegates-group-photo-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_4331.JPG",
+        "destination": "/images/gallery/aiccees-2025-full-conference-hall-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_4343.JPG",
+        "destination": "/images/gallery/aiccees-2025-conference-hall-audience-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_4388.JPG",
+        "destination": "/images/gallery/aiccees-2025-delegate-listening-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_4482.JPG",
+        "destination": "/images/gallery/aiccees-2025-packed-audience-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_4567.JPG",
+        "destination": "/images/gallery/aiccees-2025-panel-session-on-stage-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_4604.JPG",
+        "destination": "/images/gallery/aiccees-2025-media-interview-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_4639.JPG",
+        "destination": "/images/gallery/aiccees-2025-speaker-on-stage-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_4948.JPG",
+        "destination": "/images/gallery/aiccees-2025-certificate-presentation-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/IMG_4978.JPG",
+        "destination": "/images/gallery/aiccees-2025-closing-group-photo-mara-events.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Weddin.jpg",
+        "destination": "/images/wedding-reception-clear-marquee.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Corp.jpg",
+        "destination": "/images/corporate-meeting-room-u-shape.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Corporate.jpg",
+        "destination": "/images/banquet-hall-red-linen-round-tables.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/event.jpeg",
+        "destination": "/images/gala-ballroom-blue-linen-chandeliers.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Style.jpg",
+        "destination": "/images/reception-hall-white-table-setting.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/photorealistic-wedding-venue-with-intricate-decor-ornaments.jpg",
+        "destination": "/images/wedding-reception-colourful-drapes-lanterns.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Areawa.jpg",
+        "destination": "/images/arewa-traditional-wedding-decor.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/arewaaaa.jpg",
+        "destination": "/images/arewa-style-dining-tent.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/boygirl.jpg",
+        "destination": "/images/gender-reveal-party-balloons.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/coprat.jpg",
+        "destination": "/images/conference-hall-theatre-seating.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/dance.jpg",
+        "destination": "/images/bride-and-bridesmaids-dancing.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/elegant-indian-wedding.jpeg",
+        "destination": "/images/couple-holding-hands-wedding.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog-hero.jpg",
+        "destination": "/images/blog-hero-laptop-notebook.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/careers-hero.jpg",
+        "destination": "/images/careers-team-meeting.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Mara Events Logo.png",
+        "destination": "/images/mara-events-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Mara Event logo white.png",
+        "destination": "/images/mara-events-logo-white.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/AICCEES.png",
+        "destination": "/images/partners/aiccees-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/AK logo.png",
+        "destination": "/images/partners/akanbren-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Dev deis.png",
+        "destination": "/images/partners/dev-and-design-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/IDYL.jpeg",
+        "destination": "/images/partners/idyll-designs-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Logo tover.png",
+        "destination": "/images/partners/tovero-energy-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/NN.png",
+        "destination": "/images/partners/nigerian-navy-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Ria.png",
+        "destination": "/images/partners/ria-kosher-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/TWT.png",
+        "destination": "/images/partners/the-womens-theatre-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Techrise Logo.png",
+        "destination": "/images/partners/techrise-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/VAF.png",
+        "destination": "/images/partners/veronica-anthony-foundation-logo.webp",
+        "type": 301
+      },
+      {
+        "source": "/files/Mara Events Brochure.pdf",
+        "destination": "/files/mara-events-brochure.pdf",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/best-event-venues-abuja-corporate.jpg",
+        "destination": "/images/blog/best-event-venues-abuja-corporate.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/career-paths-events-industry-nigeria.jpg",
+        "destination": "/images/blog/career-paths-events-industry-nigeria.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/cost-corporate-event-nigeria.jpg",
+        "destination": "/images/blog/cost-corporate-event-nigeria.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/event-planning-certification-program.jpg",
+        "destination": "/images/blog/event-planning-certification-program.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/event-risk-management-plan.jpg",
+        "destination": "/images/blog/event-risk-management-plan.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/event-trends-mice-nigeria-2026.jpg",
+        "destination": "/images/blog/event-trends-mice-nigeria-2026.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/hobbyist-to-professional-event-planning-training.jpg",
+        "destination": "/images/blog/hobbyist-to-professional-event-planning-training.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/how-to-plan-corporate-event-abuja-budget.jpg",
+        "destination": "/images/blog/how-to-plan-corporate-event-abuja-budget.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/how-to-register-event-business-nigeria.jpg",
+        "destination": "/images/blog/how-to-register-event-business-nigeria.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/lagos-vs-abuja-event-venue-city.jpg",
+        "destination": "/images/blog/lagos-vs-abuja-event-venue-city.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/questions-before-hiring-event-planner-nigeria.jpg",
+        "destination": "/images/blog/questions-before-hiring-event-planner-nigeria.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/rise-of-hybrid-events-nigerian-businesses.jpg",
+        "destination": "/images/blog/rise-of-hybrid-events-nigerian-businesses.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/sustainable-event-planning-nigeria.jpg",
+        "destination": "/images/blog/sustainable-event-planning-nigeria.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/top-wedding-venues-lagos-2026.jpg",
+        "destination": "/images/blog/top-wedding-venues-lagos-2026.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/blog/wedding-planning-timeline-12-months.jpg",
+        "destination": "/images/blog/wedding-planning-timeline-12-months.webp",
+        "type": 301
+      },
+      {
+        "source": "/images/Pictures/**",
+        "destination": "/gallery",
+        "type": 301
       }
     ],
     "headers": [
       {
         "source": "**",
         "headers": [
-          { "key": "X-Content-Type-Options", "value": "nosniff" },
-          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          }
         ]
       }
     ]
