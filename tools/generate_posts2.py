@@ -172,7 +172,7 @@ articles = [
         "content": """
         <p>The Nigerian events industry is worth billions of naira annually — and it's growing. But it's also an industry where most practitioners are self-taught, learning on the job through costly mistakes and trial-and-error. The gap between the hobbyist and the professional is not talent — it's structured knowledge.</p>
 
-        <p>That's exactly why Mara Events launched Mara Academy — a rigorous, practical event planning certification program designed specifically for Nigeria's event landscape. This is not a generic online course. Every module is grounded in real Nigerian event management experience, real vendor relationships, and real-world execution challenges.</p>
+        <p>That's exactly why Mara Events launched Mara Academy — a rigorous, practical event planning certification program designed specifically for Nigeria's event landscape. It runs 100% online through live, instructor-led virtual classes, but this is not a generic online course. Every module is grounded in real Nigerian event management experience, real vendor relationships, and real-world execution challenges.</p>
 
         <h2>Who the Program is For</h2>
         <ul class="article-check-list">
@@ -259,7 +259,7 @@ articles = [
           <li><strong>Assessment:</strong> Practical assignments at each module + final capstone project</li>
         </ul>
 
-        <p>Ready to transform your passion for events into a certified profession? <a href="../training.html">Learn more about Mara Academy and the next cohort dates.</a></p>
+        <p>Ready to transform your passion for events into a certified profession? Enrolment is open for our next cohort, which starts on 30 October 2026 and runs 100% online. <a href="../training.html">Register on the Mara Academy page.</a></p>
 """
     },
     {
@@ -316,7 +316,7 @@ articles = [
 
         <div class="article-callout">
           <h4><i class="fa-solid fa-rocket"></i> How to Start Your Events Career</h4>
-          <p>The fastest path into Nigeria's events industry is structured training combined with hands-on experience. Mara Academy's certification program equips you with both. <a href="../training.html">See our next training cohort dates.</a></p>
+          <p>The fastest path into Nigeria's events industry is structured training combined with hands-on experience. Mara Academy's certification program equips you with both, through live online classes you can join from anywhere. Enrolment is open for our next cohort, which starts on 30 October 2026 and runs 100% online. <a href="../training.html">Register for the next cohort.</a></p>
         </div>
 
         <h2>The Common Traits of Successful Event Professionals in Nigeria</h2>
@@ -383,7 +383,7 @@ articles = [
           <li>Leads to a recognised certification that adds credibility to your profile</li>
         </ul>
 
-        <p>Mara Academy's certification program was built on exactly these principles. If you're ready to make the leap, <a href="../training.html">find out about our next cohort and how to enrol.</a></p>
+        <p>Mara Academy's certification program was built on exactly these principles. If you're ready to make the leap, our next cohort starts on 30 October 2026 and runs 100% online. <a href="../training.html">Enrolment is open, so register today.</a></p>
 """
     },
     {
@@ -694,7 +694,7 @@ articles = [
 
         <div class="article-callout">
           <h4><i class="fa-solid fa-briefcase"></i> Ready to Build a Professional Event Business?</h4>
-          <p>Mara Academy's certification program includes a dedicated module on building and pricing your event management business — covering registration, contracts, pricing, and business development. <a href="../training.html">Join our next training cohort.</a></p>
+          <p>Mara Academy's certification program includes a dedicated module on building and pricing your event management business — covering registration, contracts, pricing, and business development. Enrolment is open for our next cohort, which starts on 30 October 2026 and runs 100% online. <a href="../training.html">Join our next training cohort.</a></p>
         </div>
 
         <h2>Common Mistakes to Avoid</h2>

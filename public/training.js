@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (txEl) txEl.textContent = txId || '-';
 
     const modeEl = document.getElementById('receipt-mode');
-    if (modeEl) modeEl.textContent = mode || 'Physical & Virtual';
+    if (modeEl) modeEl.textContent = mode || 'Virtual (Live Online)';
 
     if (receiptDialog) receiptDialog.showModal();
 
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       paymentConfirmed = true;
       const email = sessionStorage.getItem('mara_reg_email') || '';
       const phone = sessionStorage.getItem('mara_reg_phone') || '';
-      const mode  = sessionStorage.getItem('mara_reg_mode')  || 'Physical & Virtual';
+      const mode  = sessionStorage.getItem('mara_reg_mode')  || 'Virtual (Live Online)';
       const txId  = localStorage.getItem('mara_payment_txid') || '';
       showReceipt(email, phone, txId, mode);
     } else {
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
       name: email,
       email: email,
       phone: phone,
-      event: `Mara Academy Training Registration (${mode || 'Physical & Virtual'})`
+      event: `Mara Academy Training Registration (${mode || 'Virtual (Live Online)'})`
     };
 
     emailjs.send('service_6vspc2j', 'template_87ahk4b', emailParams)
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const studentEmail = inpEmail ? inpEmail.value.trim() : '';
       const studentPhone = inpPhone ? inpPhone.value.trim() : '';
-      const studentMode  = inpMode ? inpMode.value : 'Physical & Virtual';
+      const studentMode  = inpMode ? inpMode.value : 'Virtual (Live Online)';
 
       // Log to Google Sheet & send EmailJS notification (non-blocking)
       sendToSheet(studentEmail, studentPhone, studentMode);

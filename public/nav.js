@@ -281,8 +281,8 @@
               <span class="mtb-badge"><i class="fa-solid fa-bullhorn"></i> Announcement</span>
               <span class="mtb-tag">Mara Academy</span>
             </div>
-            <p class="mtb-title">Event Planning &amp; Management Training</p>
-            <p class="mtb-sub">6-Week Physical Masterclass in Abuja • ₦80,000</p>
+            <p class="mtb-title">Enrolment Open: Training Starts 30 Oct 2026</p>
+            <p class="mtb-sub">6-Week 100% Online Masterclass • ₦80,000</p>
           </div>
           <div class="mtb-actions">
             <a href="https://flutterwave.com/pay/b6egox7yzyeu" target="_blank" rel="noopener noreferrer" class="mtb-btn-register" id="mtbRegisterBtn" aria-label="Register for Mara Events Training">
@@ -378,10 +378,10 @@
           <div class="tab-marquee-container">
             <div class="tab-marquee-track">
               <span class="tab-msg">
-                <strong>📢 Training Announcement:</strong> Master Event Planning &amp; Management — 6-Week Physical &amp; Virtual Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • In-Person (Abuja) &amp; Live Online Classes • Certification Included • Register Now!
+                <strong>📢 Enrolment Open:</strong> Online Classes &amp; Training Start 30 October 2026 — 6-Week Event Planning &amp; Management Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • 100% Virtual, Live Online Classes • Certification Included • Register Now!
               </span>
               <span class="tab-msg" aria-hidden="true">
-                <strong>📢 Training Announcement:</strong> Master Event Planning &amp; Management — 6-Week Physical &amp; Virtual Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • In-Person (Abuja) &amp; Live Online Classes • Certification Included • Register Now!
+                <strong>📢 Enrolment Open:</strong> Online Classes &amp; Training Start 30 October 2026 — 6-Week Event Planning &amp; Management Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • 100% Virtual, Live Online Classes • Certification Included • Register Now!
               </span>
             </div>
           </div>
