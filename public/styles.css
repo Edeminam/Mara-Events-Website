@@ -5059,6 +5059,7 @@ body.has-ticker .navbar {
 .gallery-teaser-tile--b { grid-column: 3; grid-row: 1; }
 .gallery-teaser-tile--c { grid-column: 4; grid-row: 1 / 3; }
 .gallery-teaser-tile--d { grid-column: 3; grid-row: 2; }
+.gallery-teaser-tile--d img { object-position: 35% center; }
 
 .gallery-teaser-tile {
   position: relative;
