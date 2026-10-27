@@ -54,9 +54,9 @@ def article_template(filename, title, meta_desc, keywords, hero_img, category_cl
       <img src="{back}images/mara-events-logo-white.webp" alt="Mara Events" class="cred-strip-logo" width="268" height="88" loading="lazy" />
       <span class="cred-strip-sep" aria-hidden="true"></span>
       <ul class="cred-strip-list">
-        <li><i class="fa-solid fa-award" aria-hidden="true"></i> <span>Official event planner for <strong>AICCEES</strong>, 4 consecutive editions</span></li>
-        <li><i class="fa-solid fa-star" aria-hidden="true"></i> <span><strong>200+ events</strong> delivered since 2020</span></li>
-        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span>Events across <strong>Abuja &amp; Lagos</strong></span></li>
+        <li><i class="fa-solid fa-award" aria-hidden="true"></i> <span class="cred-strip-text"><strong>AICCEES</strong> <span>Official planner, 4 editions</span></span></li>
+        <li><i class="fa-solid fa-star" aria-hidden="true"></i> <span class="cred-strip-text"><strong>200+ events</strong> <span>Delivered since 2020</span></span></li>
+        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span class="cred-strip-text"><strong>Abuja &amp; Lagos</strong> <span>Events in both cities</span></span></li>
       </ul>
     </div>
   </section>

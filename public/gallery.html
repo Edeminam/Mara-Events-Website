@@ -219,9 +219,9 @@
       <img src="images/mara-events-logo-white.webp" alt="Mara Events" class="cred-strip-logo" width="268" height="88" loading="lazy" />
       <span class="cred-strip-sep" aria-hidden="true"></span>
       <ul class="cred-strip-list">
-        <li><i class="fa-solid fa-award" aria-hidden="true"></i> <span>Official event planner for <strong>AICCEES</strong>, 4 consecutive editions</span></li>
-        <li><i class="fa-solid fa-star" aria-hidden="true"></i> <span><strong>200+ events</strong> delivered since 2020</span></li>
-        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span>Events across <strong>Abuja &amp; Lagos</strong></span></li>
+        <li><i class="fa-solid fa-award" aria-hidden="true"></i> <span class="cred-strip-text"><strong>AICCEES</strong> <span>Official planner, 4 editions</span></span></li>
+        <li><i class="fa-solid fa-star" aria-hidden="true"></i> <span class="cred-strip-text"><strong>200+ events</strong> <span>Delivered since 2020</span></span></li>
+        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span class="cred-strip-text"><strong>Abuja &amp; Lagos</strong> <span>Events in both cities</span></span></li>
       </ul>
     </div>
   </section>
@@ -255,584 +255,460 @@
   </section>
 
   <!-- GALLERY GRID -->
-  <section class="gallery-page-section" id="gallery">
+  <section class="gallery-page-section" id="gallery" aria-labelledby="portfolioHeading">
     <div class="container">
-      <div class="gallery-header">
-        <p class="gallery-tag">THE COLLECTION</p>
-        <h2 class="section-heading">BROWSE OUR <span>PORTFOLIO</span></h2>
-        <p class="section-sub">Filter by event type to explore the moments we've made unforgettable.</p>
+      <div class="portfolio-head">
+        <div>
+          <span class="portfolio-eyebrow">The collection</span>
+          <h2 class="portfolio-title" id="portfolioHeading">Browse our <em>portfolio</em>.</h2>
+        </div>
+        <p class="portfolio-lead">Weddings, conferences and celebrations we've planned and produced. Filter by event type, then open any photo to see it full size.</p>
       </div>
 
-      <!-- Filter Tabs -->
-      <div class="gallery-filters" role="tablist" aria-label="Filter gallery by event category">
-        <button class="gallery-filter-btn active" data-filter="all" role="tab" aria-selected="true">
-          <i class="fa-solid fa-border-all"></i> All Events
-        </button>
-        <button class="gallery-filter-btn" data-filter="wedding" role="tab" aria-selected="false">
-          <i class="fa-solid fa-heart"></i> Weddings
-        </button>
-        <button class="gallery-filter-btn" data-filter="corporate" role="tab" aria-selected="false">
-          <i class="fa-solid fa-briefcase"></i> Corporate
-        </button>
-        <button class="gallery-filter-btn" data-filter="video" role="tab" aria-selected="false">
-          <i class="fa-solid fa-play"></i> Videos
-        </button>
+      <div class="portfolio-toolbar">
+        <div class="gallery-filters" role="group" aria-label="Filter the portfolio by event type">
+          <button class="gallery-filter-btn active" type="button" data-filter="all" aria-pressed="true">All <span class="gallery-filter-count"></span></button>
+          <button class="gallery-filter-btn" type="button" data-filter="wedding" aria-pressed="false">Weddings <span class="gallery-filter-count"></span></button>
+          <button class="gallery-filter-btn" type="button" data-filter="corporate" aria-pressed="false">Corporate <span class="gallery-filter-count"></span></button>
+          <button class="gallery-filter-btn" type="button" data-filter="video" aria-pressed="false">Videos <span class="gallery-filter-count"></span></button>
+        </div>
+        <p class="gallery-count" id="galleryCount" aria-live="polite"></p>
       </div>
 
-      <!-- Count Badge -->
-      <p class="gallery-count" id="galleryCount">Showing <strong>39</strong> moments</p>
-
-
-
-      <!-- Masonry Grid -->
       <div class="gallery-grid" id="galleryGrid">
-
-        <!-- Behind The Scenes & Event Highlights Video -->
-        <div class="gallery-item gallery-item--video-card" 
-             data-category="wedding video" 
-             data-video="images/gallery/event-production-highlights-mara-events.mp4"
-             data-orientation="landscape"
-             data-tag="Event Highlights &bull; Behind The Scenes"
-             data-title="Behind the Scenes &amp; Live Event Production"
-             data-desc="Watch our team in action creating breathtaking ambiance, decor, and seamless event flow."
-             data-label="Behind the Scenes &amp; Event Production Highlights — Mara Events">
-          <div class="gallery-video-card-inner">
-            <div class="gallery-video-card-header">
-              <span class="gallery-video-card-tag"><i class="fa-solid fa-film"></i> Event Highlights</span>
-              <span class="gallery-video-card-badge"><i class="fa-solid fa-sparkles"></i> Behind The Scenes</span>
-            </div>
-            <div class="gallery-video-frame">
-              <img src="images/gallery/arewa-bride-highlights-video-poster-mara-events.webp" alt="Behind the Scenes &amp; Event Production Highlights — Mara Events" class="gallery-video-thumb" loading="lazy" />
-              <div class="gallery-video-play-overlay">
-                <button class="gallery-card-play-btn" type="button" aria-label="Play Event Highlights Video">
-                  <div class="gallery-card-play-ring"></div>
-                  <i class="fa-solid fa-play"></i>
-                </button>
-                <div class="gallery-card-video-info">
-                  <h4>Behind the Scenes &amp; Live Production</h4>
-                  <p>Click to Watch Video <i class="fa-solid fa-expand icon-expand"></i></p>
-                </div>
-              </div>
-            </div>
-            <div class="gallery-video-card-footer">
-              <div class="gallery-video-desc">
-                <strong>Event Production &amp; Execution Highlights</strong>
-                <span>Watch our team in action creating breathtaking ambiance, decor, and seamless event flow.</span>
-              </div>
-            </div>
+        <figure class="gallery-item gallery-item--video-card"
+                data-category="wedding video"
+                data-video="images/gallery/event-production-highlights-mara-events.mp4"
+                data-orientation="landscape"
+                data-tag="Event Highlights &bull; Behind The Scenes"
+                data-title="Behind the Scenes &amp; Live Event Production"
+                data-desc="Watch our team in action creating breathtaking ambiance, decor, and seamless event flow."
+                data-label="Behind the Scenes &amp; Event Production Highlights — Mara Events"
+                aria-label="Play video: Behind the scenes: event production">
+          <div class="gallery-item-media">
+            <img src="images/gallery/arewa-bride-highlights-video-poster-mara-events.webp" alt="Behind the Scenes &amp; Event Production Highlights — Mara Events" loading="lazy" decoding="async" />
+            <span class="gallery-item-badge"><i class="fa-solid fa-play" aria-hidden="true"></i> Video</span>
+            <span class="gallery-item-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Wedding Portrait">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/couple-in-white-cold-smoke-portrait-mara-events.webp" alt="Bride and groom in white and silver outfits posing in cold smoke at their wedding reception" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Behind the scenes: event production</span>
+            <span class="gallery-item-cat">Video &middot; Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Wedding Portrait" aria-label="View photo: Wedding Portrait">
+          <div class="gallery-item-media">
+            <img src="images/gallery/couple-in-white-cold-smoke-portrait-mara-events.webp" alt="Bride and groom in white and silver outfits posing in cold smoke at their wedding reception" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--tall" data-category="wedding" data-label="Military Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/military-wedding-sword-arch-guard-of-honour-mara-events.webp" alt="Officers in ceremonial uniform forming a sword arch down the aisle at a military wedding" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Wedding Portrait</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Stage Design" aria-label="View photo: AICCEES 2025 Stage Design">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-stage-backdrop-mara-events.webp" alt="AICCEES 2025 stage backdrop with the conference logo and Tovero Energy banners" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="First Dance">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/couple-first-dance-cold-smoke-mara-events.webp" alt="Couple sharing their first dance in cold smoke under a gold-framed floral stage" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Stage Design</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Military Wedding" aria-label="View photo: Military Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/military-wedding-sword-arch-guard-of-honour-mara-events.webp" alt="Officers in ceremonial uniform forming a sword arch down the aisle at a military wedding" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Military Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/military-wedding-couple-under-sword-arch-mara-events.webp" alt="Groom in army dress uniform and bride in a sequinned gown walking under a sword arch" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Military Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item gallery-item--video-card"
+                data-category="corporate video"
+                data-video="images/gallery/aiccees-2025-highlights-mara-events.mp4"
+                data-orientation="portrait"
+                data-tag="Corporate Conference &bull; Official Event Planner"
+                data-title="Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES)"
+                data-desc="Mara Events proudly serves as the Official Event Planner for this prestigious Africa international conference."
+                data-label="Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES) — Official Event Planner: Mara Events"
+                aria-label="Play video: AICCEES 2025 highlights">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-video-poster-mara-events.webp" alt="Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES) - Official Event Planner Mara Events" loading="lazy" decoding="async" />
+            <span class="gallery-item-badge"><i class="fa-solid fa-play" aria-hidden="true"></i> Video</span>
+            <span class="gallery-item-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--wide" data-category="wedding" data-label="Traditional Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/groomsmen-teal-agbada-entrance-mara-events.webp" alt="Groomsmen in matching teal agbada and fila dancing into a traditional wedding reception" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 highlights</span>
+            <span class="gallery-item-cat">Video &middot; Conference</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Stage Lighting" aria-label="View photo: AICCEES 2025 Stage Lighting">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-stage-lighting-lectern-mara-events.webp" alt="AICCEES 2025 stage lit for the opening session, with lectern and floor lettering" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Tosin &amp; Kayode's Traditional Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/tosin-and-kayode-traditional-wedding-dance-floor-mara-events.webp" alt="Tosin and Kayode dancing in blue aso-oke on their monogrammed dance floor" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Stage Lighting</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="First Dance" aria-label="View photo: First Dance">
+          <div class="gallery-item-media">
+            <img src="images/gallery/couple-first-dance-cold-smoke-mara-events.webp" alt="Couple sharing their first dance in cold smoke under a gold-framed floral stage" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--tall" data-category="wedding" data-label="Tosin &amp; Kayode's Traditional Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/tosin-and-kayode-traditional-wedding-couple-dancing-mara-events.webp" alt="Bride in a blue gele and groom in a blue agbada dancing at their traditional wedding" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">First Dance</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Sponsor Wall" aria-label="View photo: AICCEES 2025 Sponsor Wall">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-sponsor-step-and-repeat-mara-events.webp" alt="AICCEES 2025 sponsor step-and-repeat wall for guest photos" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Military Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/military-wedding-guard-of-honour-green-lighting-mara-events.webp" alt="Military guard of honour lining a green-lit aisle under hanging candle lights" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Sponsor Wall</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Military Wedding" aria-label="View photo: Military Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/military-wedding-couple-under-sword-arch-mara-events.webp" alt="Groom in army dress uniform and bride in a sequinned gown walking under a sword arch" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Traditional Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/traditional-wedding-couple-celebrating-mara-events.webp" alt="Bride and groom in blue traditional attire celebrating with guests on the dance floor" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Military Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Guest Photo Moment" aria-label="View photo: AICCEES 2025 Guest Photo Moment">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-guest-photo-frame-mara-events.webp" alt="Guest posing with a social media photo frame in front of the AICCEES 2025 backdrop" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Military Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/military-wedding-sword-arch-entrance-mara-events.webp" alt="Newlyweds entering the reception through a raised sword arch at a military wedding" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Guest Photo Moment</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Traditional Wedding" aria-label="View photo: Traditional Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/groomsmen-teal-agbada-entrance-mara-events.webp" alt="Groomsmen in matching teal agbada and fila dancing into a traditional wedding reception" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--wide" data-category="wedding" data-label="Military Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/military-wedding-lit-sword-salute-mara-events.webp" alt="Officers holding illuminated swords along the aisle at a military wedding reception" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Traditional Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Registration" aria-label="View photo: AICCEES 2025 Registration">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-delegate-registration-mara-events.webp" alt="Delegates signing in at the AICCEES 2025 registration desk" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Wedding Portrait">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/couple-in-white-soft-tone-portrait-mara-events.webp" alt="Soft-toned portrait of a bride and groom in white and silver at their reception" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Registration</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Tosin &amp; Kayode's Traditional Wedding" aria-label="View photo: Tosin &amp; Kayode's Traditional Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/tosin-and-kayode-traditional-wedding-dance-floor-mara-events.webp" alt="Tosin and Kayode dancing in blue aso-oke on their monogrammed dance floor" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Wedding Portrait">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/couple-in-white-close-portrait-mara-events.webp" alt="Close portrait of a bride and groom touching foreheads in cold smoke" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Tosin &amp; Kayode's Traditional Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Exhibition Stand" aria-label="View photo: AICCEES 2025 Exhibition Stand">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-clean-cooking-exhibition-stand-mara-events.webp" alt="Clean cooking initiative exhibition stand with cookstoves at AICCEES 2025" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--tall" data-category="wedding" data-label="Traditional Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/groomsmen-teal-agbada-celebration-mara-events.webp" alt="Groomsmen in teal agbada celebrating at a traditional wedding reception" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Exhibition Stand</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Tosin &amp; Kayode's Traditional Wedding" aria-label="View photo: Tosin &amp; Kayode's Traditional Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/tosin-and-kayode-traditional-wedding-couple-dancing-mara-events.webp" alt="Bride in a blue gele and groom in a blue agbada dancing at their traditional wedding" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Tosin &amp; Kayode's Traditional Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/tosin-and-kayode-wedding-dance-mara-events.webp" alt="Tosin and Kayode dancing at their traditional wedding" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Tosin &amp; Kayode's Traditional Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Panel Stage" aria-label="View photo: AICCEES 2025 Panel Stage">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-panel-stage-setup-mara-events.webp" alt="AICCEES 2025 stage set with chairs for a panel session" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="wedding" data-label="Military Wedding">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/military-wedding-couple-procession-mara-events.webp" alt="Military wedding couple walking through a guard of honour under candle chandeliers" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Panel Stage</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Military Wedding" aria-label="View photo: Military Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/military-wedding-guard-of-honour-green-lighting-mara-events.webp" alt="Military guard of honour lining a green-lit aisle under hanging candle lights" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--wide" data-category="wedding" data-label="Wedding Reception">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/wedding-couple-cold-smoke-sparklers-mara-events.webp" alt="Couple kissing in cold smoke with stage sparklers and a floral backdrop behind them" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-heart"></i> Wedding</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Military Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Stage Design" aria-label="View photo: AICCEES 2025 Stage Design">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-lectern-tovero-energy-backdrop-mara-events.webp" alt="Lectern in front of the Tovero Energy and AICCEES 2025 stage backdrop" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <!-- CORPORATE EVENTS (Recently Added) -->
-
-        <!-- AICCEES Corporate Event Video (Mara Events - Official Event Planner) -->
-        <div class="gallery-item gallery-item--video-card" 
-             data-category="corporate video" 
-             data-video="images/gallery/aiccees-2025-highlights-mara-events.mp4"
-             data-orientation="portrait"
-             data-tag="Corporate Conference &bull; Official Event Planner"
-             data-title="Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES)"
-             data-desc="Mara Events proudly serves as the Official Event Planner for this prestigious Africa international conference."
-             data-label="Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES) — Official Event Planner: Mara Events">
-          <div class="gallery-video-card-inner">
-            <div class="gallery-video-card-header">
-              <span class="gallery-video-card-tag"><i class="fa-solid fa-briefcase"></i> Corporate Conference</span>
-              <span class="gallery-video-card-badge"><i class="fa-solid fa-certificate"></i> Official Event Planner</span>
-            </div>
-            <div class="gallery-video-frame gallery-video-frame--portrait">
-              <img src="images/gallery/aiccees-2025-video-poster-mara-events.webp" alt="Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES) - Official Event Planner Mara Events" class="gallery-video-thumb" loading="lazy" />
-              <div class="gallery-video-play-overlay">
-                <button class="gallery-card-play-btn" type="button" aria-label="Watch AICCEES Conference Video">
-                  <div class="gallery-card-play-ring"></div>
-                  <i class="fa-solid fa-play"></i>
-                </button>
-                <div class="gallery-card-video-info">
-                  <h4>AICCEES Clean Energy &amp; Storage Conference</h4>
-                  <p>Click to Watch Video <i class="fa-solid fa-expand icon-expand"></i></p>
-                </div>
-              </div>
-            </div>
-            <div class="gallery-video-card-footer">
-              <div class="gallery-video-desc">
-                <strong>Africa International Conference on Clean Energy &amp; Energy Storage (AICCEES)</strong>
-                <span>Mara Events proudly serves as the Official Event Planner for this prestigious Africa international conference.</span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Stage Design</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Traditional Wedding" aria-label="View photo: Traditional Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/traditional-wedding-couple-celebrating-mara-events.webp" alt="Bride and groom in blue traditional attire celebrating with guests on the dance floor" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Stage Design">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-stage-backdrop-mara-events.webp" alt="AICCEES 2025 stage backdrop with the conference logo and Tovero Energy banners" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Traditional Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Panel Stage" aria-label="View photo: AICCEES 2025 Panel Stage">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-panel-seating-mara-events.webp" alt="Panel seating arranged on the AICCEES 2025 stage" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--tall" data-category="corporate" data-label="AICCEES 2025 Stage Lighting">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-stage-lighting-lectern-mara-events.webp" alt="AICCEES 2025 stage lit for the opening session, with lectern and floor lettering" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Panel Stage</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Military Wedding" aria-label="View photo: Military Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/military-wedding-sword-arch-entrance-mara-events.webp" alt="Newlyweds entering the reception through a raised sword arch at a military wedding" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Sponsor Wall">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-sponsor-step-and-repeat-mara-events.webp" alt="AICCEES 2025 sponsor step-and-repeat wall for guest photos" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Military Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Delegates" aria-label="View photo: AICCEES 2025 Delegates">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-delegates-in-audience-mara-events.webp" alt="Delegates seated in the audience at AICCEES 2025" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Guest Photo Moment">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-guest-photo-frame-mara-events.webp" alt="Guest posing with a social media photo frame in front of the AICCEES 2025 backdrop" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Delegates</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Military Wedding" aria-label="View photo: Military Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/military-wedding-lit-sword-salute-mara-events.webp" alt="Officers holding illuminated swords along the aisle at a military wedding reception" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--wide" data-category="corporate" data-label="AICCEES 2025 Registration">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-delegate-registration-mara-events.webp" alt="Delegates signing in at the AICCEES 2025 registration desk" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Military Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Exhibition" aria-label="View photo: AICCEES 2025 Exhibition">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-clean-cooking-exhibitor-mara-events.webp" alt="Exhibitor at the clean cooking stand displaying products at AICCEES 2025" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Exhibition Stand">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-clean-cooking-exhibition-stand-mara-events.webp" alt="Clean cooking initiative exhibition stand with cookstoves at AICCEES 2025" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Exhibition</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Wedding Portrait" aria-label="View photo: Wedding Portrait">
+          <div class="gallery-item-media">
+            <img src="images/gallery/couple-in-white-soft-tone-portrait-mara-events.webp" alt="Soft-toned portrait of a bride and groom in white and silver at their reception" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--tall" data-category="corporate" data-label="AICCEES 2025 Panel Stage">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-panel-stage-setup-mara-events.webp" alt="AICCEES 2025 stage set with chairs for a panel session" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Wedding Portrait</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Panel Discussion" aria-label="View photo: AICCEES 2025 Panel Discussion">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-panel-discussion-mara-events.webp" alt="Two panellists speaking during a panel discussion at AICCEES 2025" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Stage Design">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-lectern-tovero-energy-backdrop-mara-events.webp" alt="Lectern in front of the Tovero Energy and AICCEES 2025 stage backdrop" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Panel Discussion</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Wedding Portrait" aria-label="View photo: Wedding Portrait">
+          <div class="gallery-item-media">
+            <img src="images/gallery/couple-in-white-close-portrait-mara-events.webp" alt="Close portrait of a bride and groom touching foreheads in cold smoke" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Panel Stage">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-panel-seating-mara-events.webp" alt="Panel seating arranged on the AICCEES 2025 stage" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Wedding Portrait</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Group Photo" aria-label="View photo: AICCEES 2025 Group Photo">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-delegates-group-photo-mara-events.webp" alt="Delegates and speakers gathered on stage for the AICCEES 2025 group photo" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Delegates">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-delegates-in-audience-mara-events.webp" alt="Delegates seated in the audience at AICCEES 2025" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Group Photo</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Traditional Wedding" aria-label="View photo: Traditional Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/groomsmen-teal-agbada-celebration-mara-events.webp" alt="Groomsmen in teal agbada celebrating at a traditional wedding reception" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--wide" data-category="corporate" data-label="AICCEES 2025 Exhibition">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-clean-cooking-exhibitor-mara-events.webp" alt="Exhibitor at the clean cooking stand displaying products at AICCEES 2025" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Traditional Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Conference Hall" aria-label="View photo: AICCEES 2025 Conference Hall">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-full-conference-hall-mara-events.webp" alt="Full conference hall during a session at AICCEES 2025" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Panel Discussion">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-panel-discussion-mara-events.webp" alt="Two panellists speaking during a panel discussion at AICCEES 2025" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Conference Hall</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Tosin &amp; Kayode's Traditional Wedding" aria-label="View photo: Tosin &amp; Kayode's Traditional Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/tosin-and-kayode-wedding-dance-mara-events.webp" alt="Tosin and Kayode dancing at their traditional wedding" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Group Photo">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-delegates-group-photo-mara-events.webp" alt="Delegates and speakers gathered on stage for the AICCEES 2025 group photo" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Tosin &amp; Kayode's Traditional Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Conference Hall" aria-label="View photo: AICCEES 2025 Conference Hall">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-conference-hall-audience-mara-events.webp" alt="Audience following a presentation in the AICCEES 2025 conference hall" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--tall" data-category="corporate" data-label="AICCEES 2025 Conference Hall">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-full-conference-hall-mara-events.webp" alt="Full conference hall during a session at AICCEES 2025" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Conference Hall</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Military Wedding" aria-label="View photo: Military Wedding">
+          <div class="gallery-item-media">
+            <img src="images/gallery/military-wedding-couple-procession-mara-events.webp" alt="Military wedding couple walking through a guard of honour under candle chandeliers" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Conference Hall">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-conference-hall-audience-mara-events.webp" alt="Audience following a presentation in the AICCEES 2025 conference hall" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Military Wedding</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Delegates" aria-label="View photo: AICCEES 2025 Delegates">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-delegate-listening-mara-events.webp" alt="Delegate listening closely during a session at AICCEES 2025" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Delegates">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-delegate-listening-mara-events.webp" alt="Delegate listening closely during a session at AICCEES 2025" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Delegates</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="wedding" data-label="Wedding Reception" aria-label="View photo: Wedding Reception">
+          <div class="gallery-item-media">
+            <img src="images/gallery/wedding-couple-cold-smoke-sparklers-mara-events.webp" alt="Couple kissing in cold smoke with stage sparklers and a floral backdrop behind them" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Audience">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-packed-audience-mara-events.webp" alt="Packed audience of delegates and corps members at AICCEES 2025" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">Wedding Reception</span>
+            <span class="gallery-item-cat">Wedding</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Audience" aria-label="View photo: AICCEES 2025 Audience">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-packed-audience-mara-events.webp" alt="Packed audience of delegates and corps members at AICCEES 2025" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--wide" data-category="corporate" data-label="AICCEES 2025 Panel Session">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-panel-session-on-stage-mara-events.webp" alt="Panel session on the AICCEES 2025 stage seen from the audience" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Audience</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Panel Session" aria-label="View photo: AICCEES 2025 Panel Session">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-panel-session-on-stage-mara-events.webp" alt="Panel session on the AICCEES 2025 stage seen from the audience" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Media Interview">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-media-interview-mara-events.webp" alt="Media interview in front of the AICCEES 2025 sponsor wall" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Panel Session</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Media Interview" aria-label="View photo: AICCEES 2025 Media Interview">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-media-interview-mara-events.webp" alt="Media interview in front of the AICCEES 2025 sponsor wall" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Keynote">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-speaker-on-stage-mara-events.webp" alt="Speaker walking the stage beside the AICCEES lettering" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Media Interview</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Keynote" aria-label="View photo: AICCEES 2025 Keynote">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-speaker-on-stage-mara-events.webp" alt="Speaker walking the stage beside the AICCEES lettering" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item gallery-item--tall" data-category="corporate" data-label="AICCEES 2025 Certificate Presentation">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-certificate-presentation-mara-events.webp" alt="Certificate presentation on stage at AICCEES 2025" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Keynote</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Certificate Presentation" aria-label="View photo: AICCEES 2025 Certificate Presentation">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-certificate-presentation-mara-events.webp" alt="Certificate presentation on stage at AICCEES 2025" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
-
-        <div class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Group Photo">
-          <div class="gallery-item-inner">
-            <img src="images/gallery/aiccees-2025-closing-group-photo-mara-events.webp" alt="Closing group photo of delegates and corps members at AICCEES 2025" loading="lazy" />
-            <div class="gallery-item-overlay">
-              <div class="gallery-item-info">
-                <span class="gallery-item-cat"><i class="fa-solid fa-briefcase"></i> Corporate</span>
-                <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Certificate Presentation</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="corporate" data-label="AICCEES 2025 Group Photo" aria-label="View photo: AICCEES 2025 Group Photo">
+          <div class="gallery-item-media">
+            <img src="images/gallery/aiccees-2025-closing-group-photo-mara-events.webp" alt="Closing group photo of delegates and corps members at AICCEES 2025" loading="lazy" decoding="async" />
+            <span class="gallery-item-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
           </div>
-        </div>
+          <figcaption class="gallery-item-caption">
+            <span class="gallery-item-title">AICCEES 2025 Group Photo</span>
+            <span class="gallery-item-cat">Corporate</span>
+          </figcaption>
+        </figure>
+      </div>
 
-
-      </div><!-- /gallery-grid -->
-
-
+      <div class="portfolio-more">
+        <button class="portfolio-more-btn" id="galleryMore" type="button">Show more <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></button>
+      </div>
     </div>
   </section>
 

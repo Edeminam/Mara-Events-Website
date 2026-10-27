@@ -101,7 +101,7 @@
   const grid       = document.getElementById('galleryGrid');
   const filterBtns = document.querySelectorAll('.gallery-filter-btn');
   const countEl    = document.getElementById('galleryCount');
-  const emptyEl    = document.getElementById('galleryEmpty');
+  const moreBtn    = document.getElementById('galleryMore');
   const lightbox   = document.getElementById('galleryLightbox');
   const lbImg      = document.getElementById('lightboxImg');
   const lbVideo    = document.getElementById('lightboxVideo');
@@ -119,17 +119,57 @@
   let visibleItems = [...allItems];
   let currentIndex = 0;
   let touchStartX  = 0;
+  let lastFocused  = null;
 
-  // Initialize count badge on load
-  if (countEl) {
-    countEl.innerHTML = `Showing <strong>${allItems.length}</strong> moments`;
+  // Show the grid a page at a time so it never feels crowded
+  const pageSize = () => (window.matchMedia('(max-width: 992px)').matches ? 8 : 9);
+  let shownCount = pageSize();
+
+  const matchesFilter = (item, filter) =>
+    filter === 'all' || (item.dataset.category || '').toLowerCase().split(/\s+/).includes(filter);
+
+  // Item totals next to each filter label
+  filterBtns.forEach(btn => {
+    const countSpan = btn.querySelector('.gallery-filter-count');
+    if (countSpan) countSpan.textContent = allItems.filter(item => matchesFilter(item, btn.dataset.filter)).length;
+  });
+
+  function renderPage() {
+    visibleItems.forEach((item, i) => item.classList.toggle('is-collapsed', i >= shownCount));
+    const shown = Math.min(shownCount, visibleItems.length);
+    if (countEl) {
+      countEl.textContent = `Showing ${shown} of ${visibleItems.length}`;
+    }
+    if (moreBtn) {
+      moreBtn.parentElement.hidden = shown >= visibleItems.length;
+    }
   }
+
+  if (moreBtn) {
+    moreBtn.addEventListener('click', () => {
+      const firstNew = shownCount;
+      shownCount += pageSize();
+      renderPage();
+      visibleItems.slice(firstNew, shownCount).forEach((item, i) => {
+        item.style.animationDelay = `${i * 0.04}s`;
+        item.classList.remove('fade-in');
+        void item.offsetWidth;
+        item.classList.add('fade-in');
+      });
+      if (visibleItems[firstNew]) visibleItems[firstNew].focus({ preventScroll: true });
+    });
+  }
+
+  // Every tile is keyboard reachable
+  allItems.forEach(item => {
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+  });
+
+  renderPage();
 
   // Hook all video cards to open dimension-optimized video popup
   videoCards.forEach(card => {
-    card.setAttribute('role', 'button');
-    card.setAttribute('tabindex', '0');
-    
     function triggerCardVideo(e) {
       e.stopPropagation();
       const videoSrc    = card.dataset.video;
@@ -149,11 +189,6 @@
         triggerCardVideo(e);
       }
     });
-
-    const playBtn = card.querySelector('.gallery-card-play-btn');
-    if (playBtn) {
-      playBtn.addEventListener('click', triggerCardVideo);
-    }
   });
 
   // ── Filter Logic ─────────────────────────────
@@ -161,41 +196,23 @@
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => {
         b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
+        b.setAttribute('aria-pressed', 'false');
       });
       btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
+      btn.setAttribute('aria-pressed', 'true');
 
       const filter = btn.dataset.filter;
-
-      let visible = 0;
-      allItems.forEach((item, i) => {
-        const cat = (item.dataset.category || '').toLowerCase().trim();
-        const catList = cat.split(/\s+/);
-        const show = filter === 'all' || catList.includes(filter) || cat === filter;
-
-        if (show) {
-          item.classList.remove('hidden');
-          item.style.animationDelay = `${(i % 8) * 0.05}s`;
-          item.classList.remove('fade-in');
-          void item.offsetWidth; // force reflow for re-animation
-          item.classList.add('fade-in');
-          visible++;
-        } else {
-          item.classList.add('hidden');
-          item.classList.remove('fade-in');
-        }
-      });
-
+      allItems.forEach(item => item.classList.toggle('hidden', !matchesFilter(item, filter)));
       visibleItems = allItems.filter(item => !item.classList.contains('hidden'));
+      shownCount = pageSize();
+      renderPage();
 
-      if (countEl) {
-        countEl.innerHTML = `Showing <strong>${visible}</strong> moment${visible !== 1 ? 's' : ''}`;
-      }
-
-      if (emptyEl) {
-        emptyEl.style.display = visible === 0 ? 'block' : 'none';
-      }
+      visibleItems.slice(0, shownCount).forEach((item, i) => {
+        item.style.animationDelay = `${i * 0.04}s`;
+        item.classList.remove('fade-in');
+        void item.offsetWidth; // force reflow for re-animation
+        item.classList.add('fade-in');
+      });
     });
   });
 
@@ -205,13 +222,21 @@
     if (item.classList.contains('gallery-item--video-card')) {
       return;
     }
-    item.addEventListener('click', () => {
+    const open = () => {
       const idx = visibleItems.indexOf(item);
       openLightbox(idx === -1 ? 0 : idx);
+    };
+    item.addEventListener('click', open);
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open();
+      }
     });
   });
 
   function openLightbox(idx) {
+    lastFocused = document.activeElement;
     currentIndex = idx;
     updateLightboxImage(currentIndex);
     if (lightbox) {
@@ -231,6 +256,7 @@
       lbVideo.style.display = 'none';
     }
     setTimeout(() => { if (lbImg) lbImg.src = ''; }, 360);
+    if (lastFocused) lastFocused.focus({ preventScroll: true });
   }
 
   function updateLightboxImage(idx) {
