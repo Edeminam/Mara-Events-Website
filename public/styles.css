@@ -5868,11 +5868,13 @@ summary:focus-visible,
 /* Phones: logo on top, the three facts side by side in equal columns */
 @media (max-width: 576px) {
   .cred-strip-inner {
-    padding: 22px var(--gutter) 24px;
+    padding: 22px var(--gutter);
   }
 
-  .cred-strip-logo {
-    height: 28px;
+  /* No logo on phones; the "Hosted by" label goes with it */
+  .cred-strip-logo,
+  .cred-strip-label {
+    display: none;
   }
 
   .cred-strip-list {
@@ -5880,8 +5882,6 @@ summary:focus-visible,
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0;
     width: 100%;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .cred-strip-list li {
