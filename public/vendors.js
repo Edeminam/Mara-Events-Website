@@ -444,35 +444,10 @@ function openContactModal(vendorName) {
   }
 
 })();
-/* ─── FAQ Accordion ─────────────────────────────── */
-(function () {
-  const faqItems = document.querySelectorAll('.vm-faq-item');
-
-  faqItems.forEach((item) => {
-    const btn = item.querySelector('.vm-faq-q');
-
-    btn?.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-
-      // Close all
-      faqItems.forEach(fi => {
-        fi.classList.remove('open');
-        fi.querySelector('.vm-faq-q')?.setAttribute('aria-expanded', 'false');
-      });
-
-      // Toggle this one
-      if (!isOpen) {
-        item.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-})();
-
 /* ─── Scroll Reveal ─────────────────────────────── */
 (function () {
   const targets = document.querySelectorAll(
-    '.vm-why-card, .vm-card, .vm-tier, .vm-faq-item, .vm-referral-card'
+    '.vm-why-card, .vm-card, .vm-tier, .vm-referral-card'
   );
 
   if (!('IntersectionObserver' in window)) {

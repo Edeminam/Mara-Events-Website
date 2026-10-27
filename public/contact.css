@@ -7,10 +7,6 @@
   background: #ffffff;
 }
 
-.contact-page main .container {
-  max-width: 1160px;
-}
-
 /* ─── HERO ─────────────────────────────────── */
 .contact-hero {
   position: relative;
@@ -53,6 +49,7 @@
 .contact-hero-inner {
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
 .contact-hero-inner > * {
@@ -132,7 +129,7 @@
 
 /* ─── TOPICS ───────────────────────────────── */
 .contact-topics {
-  padding: 96px 0 88px;
+  padding: var(--section-y) 0;
 }
 
 .contact-section-head {
@@ -226,7 +223,7 @@
 
 /* ─── ENQUIRY ──────────────────────────────── */
 .contact-enquiry {
-  padding: 88px 0 112px;
+  padding: var(--section-y) 0;
   background: #f7f8fa;
   scroll-margin-top: 90px;
 }
@@ -546,11 +543,11 @@
   }
 
   .contact-topics {
-    padding: 64px 0;
+    padding: var(--section-y) 0;
   }
 
   .contact-enquiry {
-    padding: 64px 0 80px;
+    padding: var(--section-y) 0;
   }
 }
 

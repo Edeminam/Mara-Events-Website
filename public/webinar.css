@@ -15,12 +15,6 @@
   color: var(--wb-ink);
 }
 
-/* Keep page content on the same column as the navbar */
-.webinar-page .container {
-  max-width: 1240px;
-  padding: 0 28px;
-}
-
 /* ── BUTTONS ── */
 .wb-btn {
   display: inline-flex;
@@ -81,7 +75,7 @@
 
 /* ── SHARED SECTION TYPE ── */
 .wb-section {
-  padding: 104px 0;
+  padding: var(--section-y) 0;
 }
 
 .wb-section-tint {
@@ -691,7 +685,7 @@
 .wb-replay {
   position: relative;
   overflow: hidden;
-  padding: 104px 0;
+  padding: var(--section-y) 0;
   background:
     radial-gradient(ellipse 45% 60% at 15% 10%, rgba(33, 116, 233, 0.28), transparent 70%),
     linear-gradient(170deg, #071536 0%, var(--wb-navy) 100%);
@@ -995,72 +989,11 @@
   font-size: 0.75rem;
 }
 
-/* ── FAQ ── */
-.wb-faq-wrap .wb-section-head {
-  margin-bottom: 40px;
-}
-
-.wb-faq {
-  max-width: 800px;
-  margin: 0 auto;
-  display: grid;
-  gap: 12px;
-}
-
-.wb-faq details {
-  background: #ffffff;
-  border: 1px solid var(--wb-line);
-  border-radius: 16px;
-  transition: border-color 0.2s ease;
-}
-
-.wb-faq details[open] {
-  border-color: rgba(33, 116, 233, 0.4);
-}
-
-.wb-faq summary {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 22px 26px;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--wb-ink);
-}
-
-.wb-faq summary::-webkit-details-marker {
-  display: none;
-}
-
-.wb-faq summary::after {
-  content: "\2b";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 0.85rem;
-  color: var(--accent);
-  flex-shrink: 0;
-  transition: transform 0.25s ease;
-}
-
-.wb-faq details[open] summary::after {
-  transform: rotate(45deg);
-}
-
-.wb-faq details p {
-  padding: 0 26px 22px;
-  font-size: 1rem;
-  line-height: 1.65;
-  color: var(--wb-body);
-}
-
 /* ── FINAL CTA ── */
 .wb-final {
   position: relative;
   overflow: hidden;
-  padding: 104px 0;
+  padding: var(--section-y) 0;
   background:
     radial-gradient(ellipse 50% 80% at 50% 0%, rgba(33, 116, 233, 0.4), transparent 70%),
     linear-gradient(160deg, #071536 0%, var(--wb-navy-2) 100%);
@@ -1138,7 +1071,7 @@
 
   .wb-section,
   .wb-final {
-    padding: 80px 0;
+    padding: var(--section-y) 0;
   }
 
   .wb-section-head {
@@ -1171,7 +1104,7 @@
   }
 
   .wb-replay {
-    padding: 80px 0;
+    padding: var(--section-y) 0;
   }
 
   .wb-replay-head,
@@ -1234,10 +1167,6 @@
 }
 
 @media (max-width: 576px) {
-  .webinar-page .container {
-    padding: 0 20px;
-  }
-
   .wb-hero {
     padding: 136px 0 64px;
   }
@@ -1272,7 +1201,7 @@
 
   .wb-section,
   .wb-final {
-    padding: 64px 0;
+    padding: var(--section-y) 0;
   }
 
   .wb-section-head {
@@ -1315,7 +1244,7 @@
   }
 
   .wb-replay {
-    padding: 64px 0;
+    padding: var(--section-y) 0;
   }
 
   .wb-replay-head {
@@ -1359,15 +1288,6 @@
     align-items: stretch;
     padding: 22px 20px;
     margin-top: 20px;
-  }
-
-  .wb-faq summary {
-    padding: 18px 20px;
-    font-size: 1rem;
-  }
-
-  .wb-faq details p {
-    padding: 0 20px 18px;
   }
 
   .wb-final-meta {

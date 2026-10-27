@@ -294,20 +294,4 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = '/';
     });
   }
-
-  // ─── FAQ ACCORDION ───────────────────────────────────────────────────
-  const faqItems = document.querySelectorAll('.faq-item');
-  if (faqItems.length > 0) {
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      if (question) {
-        question.addEventListener('click', () => {
-          const isExpanded = item.classList.contains('expanded');
-          faqItems.forEach(i => i.classList.remove('expanded'));
-          if (!isExpanded) item.classList.add('expanded');
-        });
-      }
-    });
-  }
-
 });

@@ -51,7 +51,7 @@ def article_template(filename, title, meta_desc, keywords, hero_img, category_cl
   <!-- CREDIBILITY STRIP -->
   <section class="cred-strip" aria-label="About Mara Events">
     <div class="cred-strip-inner">
-      <img src="/images/mara-events-logo-white.webp" alt="Mara Events" class="cred-strip-logo" width="268" height="88" loading="lazy" />
+      <img src="{back}images/mara-events-logo-white.webp" alt="Mara Events" class="cred-strip-logo" width="268" height="88" loading="lazy" />
       <span class="cred-strip-sep" aria-hidden="true"></span>
       <ul class="cred-strip-list">
         <li><i class="fa-solid fa-award" aria-hidden="true"></i> <span>Official event planner for <strong>AICCEES</strong>, 4 consecutive editions</span></li>

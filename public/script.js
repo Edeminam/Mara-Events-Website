@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── SCROLL REVEAL ──────────────────────────────────────────────────
   const revealEls = document.querySelectorAll(
-    '.about-us-inner, .event-card, .testimonial-slider, .card, .book-inner, .footer-top'
+    '.about-us-inner, .event-card, .testimonial-slider, .book-inner, .footer-top'
   );
 
   const observer = new IntersectionObserver((entries) => {
@@ -408,23 +408,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ─── PARALLAX HERO ──────────────────────────────────────────────────
-  const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (window.scrollY < window.innerHeight) {
-            heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
   // ─── VIDEO DIALOG MODAL ──────────────────────────────────────────────
   const videoDialog = document.getElementById('videoDialog');
   const videoIframe = document.getElementById('videoIframe');
@@ -479,268 +462,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// // ─── HERO CAROUSEL ────────────────────────────
-
+// ─── HERO SLIDESHOW ──────────────────────────────────────────────────
+// Cross-fades the homepage hero photos. Each progress bar fills over one
+// slide's duration (in CSS); when it finishes, the next photo shows.
 (function () {
- 
-  /* ── Config ─────────────────────────────── */
-  const AUTO_DELAY      = 2000;  // ms between auto-advances
-  const SWIPE_THRESHOLD = 48;    // px minimum swipe distance
-  const DRAG_THRESHOLD  = 40;    // px minimum pointer drag
- 
-  /* ── Elements ───────────────────────────── */
-  const section  = document.getElementById("hero");
-  const track    = document.getElementById("heroSlides");
-  const slides   = section ? section.querySelectorAll(".hero-slide") : [];
-  const dots     = section ? section.querySelectorAll(".hero-dot")   : [];
-  const prevBtn  = document.getElementById("heroPrev");
-  const nextBtn  = document.getElementById("heroNext");
- 
-  if (!track || slides.length === 0) return;
- 
-  const total = slides.length;
-  let current       = 0;
-  let autoTimer     = null;
-  let isPaused      = false;
-  let isBusy        = false;   // blocks rapid successive calls mid-transition
-  let dragStartX    = null;
-  let dragStartY    = null;
-  let isDragging    = false;
- 
-  /* ── Reduced motion (live) ───────────────── */
-  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let reducedMotion = motionQuery.matches;
-  motionQuery.addEventListener("change", (e) => {
-    reducedMotion = e.matches;
-  });
- 
-  /* ── Touch-primary detection ─────────────── */
-  const touchQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
-  let isTouchPrimary = touchQuery.matches;
-  touchQuery.addEventListener("change", (e) => {
-    isTouchPrimary = e.matches;
-  });
- 
-  /* ── ARIA live region ────────────────────── */
-  const liveRegion = document.createElement("div");
-  liveRegion.setAttribute("aria-live", "polite");
-  liveRegion.setAttribute("aria-atomic", "true");
-  liveRegion.style.cssText =
-    "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;";
-  section.appendChild(liveRegion);
- 
-  /* ── Core: go to slide ───────────────────── */
-  function goTo(index, { immediate = false } = {}) {
-    if (isBusy && !immediate) return;
- 
-    // Infinite wrap
-    index = ((index % total) + total) % total;
-    if (index === current && !immediate) return;
- 
-    // Deactivate old
-    slides[current].classList.remove("is-active");
-    dots[current]?.classList.remove("active");
-    dots[current]?.removeAttribute("aria-current");
- 
+  const section  = document.getElementById('hero');
+  const slides   = section ? [...section.querySelectorAll('.home-hero-slide')] : [];
+  const bars     = section ? [...section.querySelectorAll('.home-hero-bar')] : [];
+  if (slides.length < 2) return;
+
+  const caption  = document.getElementById('heroCaption');
+  const counter  = document.getElementById('heroCurrent');
+  const prevBtn  = document.getElementById('heroPrev');
+  const nextBtn  = document.getElementById('heroNext');
+  const total    = slides.length;
+  let current    = 0;
+
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function goTo(index) {
+    index = (index + total) % total;
+    slides[current].classList.remove('is-active');
+    bars[current].classList.remove('is-active');
+    bars[current].removeAttribute('aria-current');
+
     current = index;
- 
-    // Translate track
-    const duration = immediate || reducedMotion ? 0 : 850;
-    track.style.transition =
-      duration === 0
-        ? "none"
-        : `transform ${duration}ms cubic-bezier(0.77, 0, 0.175, 1)`;
-    track.style.transform = `translateX(-${current * 100}%)`;
- 
-    // Activate new
-    slides[current].classList.add("is-active");
-    dots[current]?.classList.add("active");
-    dots[current]?.setAttribute("aria-current", "true");
- 
-    // Announce to screen readers
-    const img = slides[current].querySelector(".hero-bg");
-    const label = img?.getAttribute("alt") || `Slide ${current + 1}`;
-    liveRegion.textContent = `${label} — slide ${current + 1} of ${total}`;
- 
-    // Busy guard
-    if (!reducedMotion && !immediate) {
-      isBusy = true;
-      const done = () => {
-        isBusy = false;
-        track.removeEventListener("transitionend", done);
-      };
-      track.addEventListener("transitionend", done, { once: true });
-      // Fallback in case transitionend doesn't fire
-      setTimeout(() => { isBusy = false; }, duration + 100);
-    }
+    slides[current].classList.add('is-active');
+    // Restart the fill animation even when the same bar becomes active again
+    const fill = bars[current].firstElementChild;
+    fill.style.animation = 'none';
+    void fill.offsetWidth;
+    fill.style.animation = '';
+    bars[current].classList.add('is-active');
+    bars[current].setAttribute('aria-current', 'true');
+
+    caption.textContent = slides[current].dataset.caption;
+    counter.textContent = String(current + 1).padStart(2, '0');
   }
- 
-  /* ── Auto-advance ────────────────────────── */
-  function startAuto() {
-    if (reducedMotion) return;
-    stopAuto();
-    autoTimer = setInterval(() => {
-      if (!isPaused) goTo(current + 1);
-    }, AUTO_DELAY);
-  }
- 
-  function stopAuto() {
-    clearInterval(autoTimer);
-    autoTimer = null;
-  }
- 
-  function pauseAuto()  { isPaused = true; }
-  function resumeAuto() { isPaused = false; }
- 
-  function resetAuto() {
-    stopAuto();
-    startAuto();
-  }
- 
-  /* ── Arrow controls ──────────────────────── */
-  prevBtn?.addEventListener("click", () => { goTo(current - 1); resetAuto(); });
-  nextBtn?.addEventListener("click", () => { goTo(current + 1); resetAuto(); });
- 
-  /* ── Dot controls ────────────────────────── */
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => { goTo(i); resetAuto(); });
+
+  // Advance when the active bar finishes filling
+  bars.forEach((bar, i) => {
+    bar.addEventListener('click', () => goTo(i));
+    bar.firstElementChild.addEventListener('animationend', () => {
+      if (i === current) goTo(current + 1);
+    });
   });
- 
-  /* ── Keyboard (section-scoped) ───────────── */
-  section.setAttribute("tabindex", "0");
-  section.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft")  { goTo(current - 1); resetAuto(); e.preventDefault(); }
-    if (e.key === "ArrowRight") { goTo(current + 1); resetAuto(); e.preventDefault(); }
+  prevBtn?.addEventListener('click', () => goTo(current - 1));
+  nextBtn?.addEventListener('click', () => goTo(current + 1));
+
+  // Pause while the visitor is reading, hovering or the tab is hidden
+  const setPaused = (on) => section.classList.toggle('is-paused', on);
+  section.addEventListener('mouseenter', () => setPaused(true));
+  section.addEventListener('mouseleave', () => setPaused(false));
+  section.addEventListener('focusin', () => setPaused(true));
+  section.addEventListener('focusout', (e) => {
+    if (!section.contains(e.relatedTarget)) setPaused(false);
   });
- 
-  /* ── Hover pause (mouse only) ────────────── */
-  // section.addEventListener("mouseenter", () => {
-  //   if (!isTouchPrimary) pauseAuto();
-  // });
-  // section.addEventListener("mouseleave", () => {
-  //   if (!isTouchPrimary) resumeAuto();
-  // });
- 
-  /* ── Focus pause ─────────────────────────── */
-  section.addEventListener("focusin",  pauseAuto);
-  section.addEventListener("focusout", (e) => {
-    if (!section.contains(e.relatedTarget)) resumeAuto();
+  document.addEventListener('visibilitychange', () => setPaused(document.hidden));
+
+  // Arrow keys while focus is inside the hero
+  section.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
   });
- 
-  /* ── Visibility API (tab switch) ─────────── */
-  document.addEventListener("visibilitychange", () => {
-    document.hidden ? pauseAuto() : resumeAuto();
-  });
- 
-  /* ── Touch / Swipe ───────────────────────── */
-  let touchStartX = null;
-  let touchStartY = null;
- 
-  section.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    pauseAuto();
+
+  // Swipe on touch screens
+  let touchX = null;
+  section.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  section.addEventListener('touchend', (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 48) goTo(current + (dx < 0 ? 1 : -1));
+    touchX = null;
   }, { passive: true });
- 
-  section.addEventListener("touchmove", (e) => {
-    if (touchStartX === null) return;
-    const dx = e.touches[0].clientX - touchStartX;
-    const dy = e.touches[0].clientY - touchStartY;
-    // If clearly horizontal, prevent page scroll
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 12) {
-      e.preventDefault();
-    }
-  }, { passive: false });
- 
-  section.addEventListener("touchend", (e) => {
-    if (touchStartX === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
- 
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_THRESHOLD) {
-      goTo(dx < 0 ? current + 1 : current - 1);
-      resetAuto();
-    } else {
-      resumeAuto();
-    }
-    touchStartX = touchStartY = null;
-  }, { passive: true });
- 
-  section.addEventListener("touchcancel", () => {
-    touchStartX = touchStartY = null;
-    resumeAuto();
-  }, { passive: true });
- 
-  /* ── Pointer drag (mouse desktop) ───────── */
-  section.addEventListener("pointerdown", (e) => {
-    if (e.pointerType === "touch") return; // handled by touch events
-    // Skip if clicking an interactive element to allow links/buttons to work properly
-    if (e.target.closest('a, button, select, input, dialog')) return;
-    dragStartX  = e.clientX;
-    dragStartY  = e.clientY;
-    isDragging  = false;
-    section.setPointerCapture(e.pointerId);
-    pauseAuto();
-  });
- 
-  section.addEventListener("pointermove", (e) => {
-    if (dragStartX === null || e.pointerType === "touch") return;
-    const dx = e.clientX - dragStartX;
-    const dy = e.clientY - dragStartY;
-    if (!isDragging && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
-      isDragging = true;
-    }
-  });
- 
-  section.addEventListener("pointerup", (e) => {
-    if (dragStartX === null || e.pointerType === "touch") return;
-    const dx = e.clientX - dragStartX;
-    const dy = e.clientY - dragStartY;
-    if (isDragging && Math.abs(dx) > DRAG_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
-      goTo(dx < 0 ? current + 1 : current - 1);
-      resetAuto();
-    } else {
-      resumeAuto();
-    }
-    dragStartX = dragStartY = null;
-    isDragging = false;
-  });
- 
-  section.addEventListener("pointercancel", () => {
-    dragStartX = dragStartY = null;
-    isDragging = false;
-    resumeAuto();
-  });
- 
-  /* ── ResizeObserver ──────────────────────────
-     Re-snaps translate if the viewport changes
-     (orientation flip, split-screen, address bar
-     appearing/hiding on mobile).
-  ─────────────────────────────────────────── */
-  let resizeTimer = null;
- 
-  const resizeObserver = new ResizeObserver(() => {
-    // Debounce — only act after resize settles
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      // Snap to current slide without animation
-      track.style.transition = "none";
-      track.style.transform  = `translateX(-${current * 100}%)`;
-      // Re-enable transitions after a paint
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          track.style.transition = "";
-        });
-      });
-    }, 150);
-  });
- 
-  resizeObserver.observe(section);
- 
-  /* ── Init ────────────────────────────────── */
-  goTo(0, { immediate: true });
-  startAuto();
- 
+
+  // No autoplay for visitors who prefer reduced motion
+  const applyMotion = () => section.classList.toggle('is-static', motionQuery.matches);
+  motionQuery.addEventListener('change', applyMotion);
+  applyMotion();
 })();
  
 // ─── WHATSAPP CONFIGURATION────────────────────────────
@@ -806,28 +605,6 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   // Scroll animations are managed cleanly by the class-based SCROLL REVEAL observer above.
-
-// FAQ SECTION
-document.addEventListener("DOMContentLoaded", function () {
-  const faqItems = document.querySelectorAll(".faq-item");
-
-  faqItems.forEach(item => {
-    const button = item.querySelector(".faq-q");
-    if (button) {
-      button.addEventListener("click", () => {
-        const isActive = item.classList.contains("active");
-
-        // Close all items (optional: remove this block if you want multiple open)
-        faqItems.forEach(i => i.classList.remove("active"));
-
-        // Toggle current
-        if (!isActive) {
-          item.classList.add("active");
-        }
-      });
-    }
-  });
-});
 
 // DOWNLOAD BROCHURE
 document.addEventListener("DOMContentLoaded", function () {

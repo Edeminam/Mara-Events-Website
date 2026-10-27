@@ -188,7 +188,7 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 0 24px;
+  padding: 0 var(--gutter);
   max-width: 900px;
   margin: 0 auto;
 }
@@ -288,7 +288,7 @@
 
 /* ─── WHY SECTION ────────────────────────────── */
 .vm-why {
-  padding: 100px 0;
+  padding: var(--section-y) 0;
   background: #fff;
 }
 
@@ -365,7 +365,7 @@
 
 /* ─── REFERRAL SECTION ───────────────────────── */
 .vm-referral {
-  padding: 112px 0;
+  padding: var(--section-y) 0;
   background: linear-gradient(160deg, #001150 0%, #003279 55%, #0d2257 100%);
   position: relative;
   overflow: hidden;
@@ -383,7 +383,7 @@
 .vm-referral-inner {
   position: relative;
   z-index: 2;
-  max-width: 1040px;
+  max-width: var(--content-max);
 }
 
 .vm-referral-header {
@@ -571,7 +571,7 @@
 
 /* ─── DIRECTORY ──────────────────────────────── */
 .vm-directory {
-  padding: 100px 0;
+  padding: var(--section-y) 0;
   background: #f8f9fb;
 }
 
@@ -917,7 +917,7 @@
 
 /* ─── REGISTRATION SECTION ───────────────────── */
 .vm-register {
-  padding: 100px 0;
+  padding: var(--section-y) 0;
   background: #fff;
 }
 
@@ -1246,85 +1246,6 @@
   color: var(--accent);
 }
 
-/* ─── FAQ SECTION ────────────────────────────── */
-.vm-faq {
-  padding: 100px 0;
-  background: #f8f9fb;
-}
-
-.vm-faq-list {
-  max-width: 760px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.vm-faq-item {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  overflow: hidden;
-  transition: var(--transition);
-}
-
-.vm-faq-item.open {
-  border-color: rgba(33, 116, 233, 0.25);
-  box-shadow: 0 8px 32px rgba(33, 116, 233, 0.08);
-}
-
-.vm-faq-q {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 22px 24px;
-  font-family: var(--font);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-dark);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  transition: var(--transition);
-}
-
-.vm-faq-q:hover {
-  color: var(--accent);
-}
-
-.vm-faq-icon {
-  flex-shrink: 0;
-  font-size: 14px;
-  color: var(--accent);
-  transition: transform 0.3s ease;
-}
-
-.vm-faq-item.open .vm-faq-icon {
-  transform: rotate(180deg);
-}
-
-.vm-faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.3s ease;
-}
-
-.vm-faq-item.open .vm-faq-a {
-  max-height: 300px;
-  padding: 0 24px 22px;
-}
-
-.vm-faq-a p {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.7;
-  border-top: 1px solid var(--border);
-  padding-top: 16px;
-}
-
 /* ─── CONTACT MODAL ──────────────────────────── */
 .vm-contact-modal {
   position: fixed;
@@ -1490,7 +1411,7 @@
   }
 
   .vm-referral {
-    padding: 80px 0;
+    padding: var(--section-y) 0;
   }
 
   .vm-commission-tiers {

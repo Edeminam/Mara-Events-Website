@@ -6,11 +6,6 @@
   background: #ffffff;
 }
 
-/* Narrower content column; the shared footer keeps its normal full width */
-.careers-page main .container {
-  max-width: 1040px;
-}
-
 /* ─── HERO ─────────────────────────────────── */
 .careers-hero {
   position: relative;
@@ -118,7 +113,7 @@
 
 /* ─── WHY JOIN ─────────────────────────────── */
 .careers-why {
-  padding: 88px 0;
+  padding: var(--section-y) 0;
 }
 
 .careers-why-grid {
@@ -154,7 +149,7 @@
 
 /* ─── OPEN ROLES ───────────────────────────── */
 .careers-openings {
-  padding: 88px 0 112px;
+  padding: var(--section-y) 0;
   background: #f7f8fa;
   scroll-margin-top: 80px;
 }
@@ -333,7 +328,7 @@
   }
 
   .careers-why {
-    padding: 64px 0;
+    padding: var(--section-y) 0;
   }
 
   .careers-why-grid,
@@ -343,7 +338,7 @@
   }
 
   .careers-openings {
-    padding: 64px 0 80px;
+    padding: var(--section-y) 0;
   }
 
   .careers-job {

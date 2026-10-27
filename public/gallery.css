@@ -222,7 +222,7 @@ video {
 
 /* ─── VIDEO SECTION ─────────────────────────── */
 .gallery-video-section {
-  padding: 90px 0 80px;
+  padding: var(--section-y) 0;
   background: #0a1628;
   position: relative;
   overflow: hidden;
@@ -391,7 +391,7 @@ video {
 
 /* ─── GALLERY GRID SECTION ──────────────────── */
 .gallery-page-section {
-  padding: 90px 0 80px;
+  padding: var(--section-y) 0;
   background: linear-gradient(180deg, #f8f9fc 0%, #ffffff 100%);
   position: relative;
 }
@@ -996,7 +996,7 @@ video {
 /* ─── CTA BAND ──────────────────────────────── */
 .gallery-cta-band {
   background: linear-gradient(135deg, var(--accent) 0%, #0a1628 100%);
-  padding: 72px 24px;
+  padding: 72px var(--gutter);
   position: relative;
   overflow: hidden;
 }

@@ -226,79 +226,75 @@
   <main id="main-content">
 
   <!-- HERO -->
-  <section class="hero" id="hero">
+  <section class="home-hero" id="hero" aria-label="Mara Events">
 
-    <!-- Carousel Track -->
-    <div class="hero-carousel" id="heroCarousel">
-      <div class="hero-slides" id="heroSlides">
+    <!-- Background photos (cross-fade) -->
+    <div class="home-hero-media" id="heroSlides">
+        <figure class="home-hero-slide is-active" data-caption="Wedding reception">
+          <img src="images/wedding-reception-colourful-drapes-lanterns.webp" alt="Elegant wedding venue" fetchpriority="high" decoding="async" />
+        </figure>
+        <figure class="home-hero-slide" data-caption="Marquee wedding">
+          <img src="images/wedding-reception-clear-marquee.webp" alt="Wedding reception in a clear marquee with draped fabric, hanging floral installations and a white dance floor" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="home-hero-slide" data-caption="Corporate meeting">
+          <img src="images/corporate-meeting-room-u-shape.webp" alt="Conference room set up for a corporate meeting, with tables arranged in a U-shape under a chandelier" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="home-hero-slide" data-caption="Conference banquet">
+          <img src="images/banquet-hall-red-linen-round-tables.webp" alt="Banquet hall with round tables in red linens, gold chairs and projection screens on stage" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="home-hero-slide" data-caption="Gala dinner">
+          <img src="images/gala-ballroom-blue-linen-chandeliers.webp" alt="Ballroom set for a gala dinner, with blue table linens, hydrangea centrepieces and crystal chandeliers" loading="lazy" decoding="async" />
+        </figure>
+        <figure class="home-hero-slide" data-caption="Reception">
+          <img src="images/reception-hall-white-table-setting.webp" alt="Reception hall with white-dressed tables and chairs, folded napkins and chandeliers" loading="lazy" decoding="async" />
+        </figure>
+    </div>
+    <div class="home-hero-shade" aria-hidden="true"></div>
 
-        <div class="hero-slide">
-          <img src="images/wedding-reception-colourful-drapes-lanterns.webp" alt="Elegant wedding venue" class="hero-bg" fetchpriority="high" decoding="async" />
-          <div class="hero-overlay"></div>
+    <div class="home-hero-inner">
+      <div class="home-hero-copy">
+        <p class="home-hero-kicker"><span aria-hidden="true"></span>Event planning &amp; management in Nigeria</p>
+        <h1 class="home-hero-title">Extraordinary events, <em>expertly</em> delivered.</h1>
+        <p class="home-hero-text">Weddings, conferences, corporate events, galas, and private celebrations, planned end to end. Trusted since 2020, and the official event planner for AICCEES for four consecutive editions.</p>
+        <div class="home-hero-ctas">
+          <a href="#book" class="home-hero-btn home-hero-btn--primary">
+            <span>Plan your event</span>
+            <span class="home-hero-btn-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+          <a href="https://youtu.be/9k1JPbEp_DE?si=oxVFL0jQ3sl_1BKq" class="home-hero-btn home-hero-btn--ghost" id="playVideoBtn">
+            <span class="home-hero-play" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
+            </span>
+            <span>Watch our story</span>
+          </a>
         </div>
-
-        <div class="hero-slide">
-          <img src="images/wedding-reception-clear-marquee.webp" alt="Wedding reception in a clear marquee with draped fabric, hanging floral installations and a white dance floor" class="hero-bg" fetchpriority="low" loading="lazy" />
-          <div class="hero-overlay"></div>
-        </div>
-
-        <div class="hero-slide">
-          <img src="images/corporate-meeting-room-u-shape.webp" alt="Conference room set up for a corporate meeting, with tables arranged in a U-shape under a chandelier" class="hero-bg" fetchpriority="low" loading="lazy" />
-          <div class="hero-overlay"></div>
-        </div>
-
-        <div class="hero-slide">
-          <img src="images/banquet-hall-red-linen-round-tables.webp" alt="Banquet hall with round tables in red linens, gold chairs and projection screens on stage" class="hero-bg" fetchpriority="low" loading="lazy" />
-          <div class="hero-overlay"></div>
-        </div>
-
-        <div class="hero-slide">
-          <img src="images/gala-ballroom-blue-linen-chandeliers.webp" alt="Ballroom set for a gala dinner, with blue table linens, hydrangea centrepieces and crystal chandeliers" class="hero-bg" fetchpriority="low" loading="lazy" />
-          <div class="hero-overlay"></div>
-        </div>
-
-        <div class="hero-slide">
-          <img src="images/reception-hall-white-table-setting.webp" alt="Reception hall with white-dressed tables and chairs, folded napkins and chandeliers" class="hero-bg" fetchpriority="low" loading="lazy" />
-          <div class="hero-overlay"></div>
-        </div>
-
       </div>
-    </div>
 
-    <!-- Hero Content (stays above slides) -->
-    <div class="hero-content">
-      <h1 class="hero-title">EXTRAORDINARY EVENTS, <br> EXPERTLY DELIVERED</h1>
-      <p class="hero-subtitle">Planning events across Nigeria since 2020, and official event planner for AICCEES for 4 consecutive editions.</p>
-      <div class="hero-actions">
-        <a href="#book" class="hero-btn">
-          <span class="hero-btn-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.5"/><path d="M2 8h1M21 8h1M2 16h1M21 16h1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </span>
-          <span>Book Your Event Now</span>
-        </a>
-        <a href="https://youtu.be/9k1JPbEp_DE?si=oxVFL0jQ3sl_1BKq" class="hero-btn-video" id="playVideoBtn">
-          <span class="hero-btn-video-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-          </span>
-          <span>Watch Our Video</span>
-        </a>
+      <!-- Slide rail -->
+      <div class="home-hero-rail">
+        <p class="home-hero-caption">
+          <span class="home-hero-count"><b id="heroCurrent">01</b> / 06</span>
+          <span class="home-hero-caption-text" id="heroCaption">Wedding reception</span>
+        </p>
+        <div class="home-hero-bars" id="heroDots">
+        <button type="button" class="home-hero-bar is-active" data-index="0" aria-label="Show photo 1: Wedding reception" aria-current="true"><span></span></button>
+        <button type="button" class="home-hero-bar" data-index="1" aria-label="Show photo 2: Marquee wedding"><span></span></button>
+        <button type="button" class="home-hero-bar" data-index="2" aria-label="Show photo 3: Corporate meeting"><span></span></button>
+        <button type="button" class="home-hero-bar" data-index="3" aria-label="Show photo 4: Conference banquet"><span></span></button>
+        <button type="button" class="home-hero-bar" data-index="4" aria-label="Show photo 5: Gala dinner"><span></span></button>
+        <button type="button" class="home-hero-bar" data-index="5" aria-label="Show photo 6: Reception"><span></span></button>
+        </div>
+        <div class="home-hero-arrows">
+          <button type="button" class="home-hero-arrow" id="heroPrev" aria-label="Previous photo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="home-hero-arrow" id="heroNext" aria-label="Next photo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
       </div>
-    </div>
-
-    <!-- Dot Indicators -->
-    <div class="hero-dots" id="heroDots">
-      <button class="hero-dot active" data-index="0" aria-label="Slide 1"></button>
-      <button class="hero-dot" data-index="1" aria-label="Slide 2"></button>
-      <button class="hero-dot" data-index="2" aria-label="Slide 3"></button>
-      <button class="hero-dot" data-index="3" aria-label="Slide 4"></button>
-      <button class="hero-dot" data-index="4" aria-label="Slide 5"></button>
-      <button class="hero-dot" data-index="5" aria-label="Slide 6"></button>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator">
-      <span></span>
-      <span></span>
     </div>
 
   </section>
@@ -306,7 +302,7 @@
   <!-- CREDIBILITY STRIP -->
   <section class="cred-strip" aria-label="About Mara Events">
     <div class="cred-strip-inner">
-      <img src="/images/mara-events-logo-white.webp" alt="Mara Events" class="cred-strip-logo" width="268" height="88" loading="lazy" />
+      <img src="images/mara-events-logo-white.webp" alt="Mara Events" class="cred-strip-logo" width="268" height="88" loading="lazy" />
       <span class="cred-strip-sep" aria-hidden="true"></span>
       <ul class="cred-strip-list">
         <li><i class="fa-solid fa-award" aria-hidden="true"></i> <span>Official event planner for <strong>AICCEES</strong>, 4 consecutive editions</span></li>
@@ -633,123 +629,119 @@
   </section>
 
   <!-- SHOWCASE -->
-  <section class="team" id="team">
+  <section class="showcase" id="showcase" aria-labelledby="showcaseHeading">
+    <div class="container">
+      <div class="showcase-head">
+        <div>
+          <span class="showcase-eyebrow">What we do</span>
+          <h2 class="showcase-title" id="showcaseHeading">Every detail, <em>considered</em>.</h2>
+        </div>
+        <div class="showcase-intro">
+          <p>From the first idea to the final toast, our team plans, designs and runs events that feel effortless for you and unforgettable for your guests.</p>
+          <a href="#book" class="showcase-link">Start planning <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
 
-    <div class="cards-row">
- 
-      <!-- Card 1: text top-left -->
-      <div class="card card--top-left">
-        <img src="images/gala-ballroom-blue-linen-chandeliers.webp" alt="Ballroom set for a gala dinner with blue linens and crystal chandeliers" loading="lazy" width="360" height="640" />
-        <div class="card-overlay">
-          <div class="text-badge">
-            <h3>End-to-End Planning</h3>
-            <p>From first concept to final toast, we manage every detail, vendor, &amp; timeline, and delivery.</p>
+      <div class="showcase-panels">
+        <article class="showcase-panel" tabindex="0">
+          <img src="images/gala-ballroom-blue-linen-chandeliers.webp" alt="Ballroom set for a gala dinner with blue linens and crystal chandeliers" loading="lazy" decoding="async" width="720" height="960" />
+          <div class="showcase-panel-body">
+            <div class="showcase-panel-top">
+              <span class="showcase-panel-num">01</span>
+              <span class="showcase-panel-tag">Planning</span>
+            </div>
+            <div class="showcase-panel-copy">
+              <h3>End-to-end planning</h3>
+              <p>From first concept to final toast, we manage every detail, vendor, timeline and delivery.</p>
+            </div>
           </div>
-        </div>
-      </div>
- 
-      <!-- Card 2: text bottom-center -->
-      <div class="card card--bottom-center">
-        <img src="images/bride-and-bridesmaids-dancing.webp" alt="Bride in a gold gown dancing with bridesmaids holding hand fans" loading="lazy" width="360" height="640" />
-        <div class="card-overlay">
-          <div class="text-badge">
-            <h3>Complete Event Management</h3>
-            <p>We oversee every stage of your event, ensuring precision, coordination, and a seamless experience from start to finish.</p>
+        </article>
+        <article class="showcase-panel" tabindex="0">
+          <img src="images/bride-and-bridesmaids-dancing.webp" alt="Bride in a gold gown dancing with bridesmaids holding hand fans" loading="lazy" decoding="async" width="720" height="960" />
+          <div class="showcase-panel-body">
+            <div class="showcase-panel-top">
+              <span class="showcase-panel-num">02</span>
+              <span class="showcase-panel-tag">Management</span>
+            </div>
+            <div class="showcase-panel-copy">
+              <h3>Complete event management</h3>
+              <p>We oversee every stage of your event, ensuring precision, coordination and a seamless experience from start to finish.</p>
+            </div>
           </div>
-        </div>
-      </div>
- 
-      <!-- Card 3: text top-right -->
-      <div class="card card--top-right">
-        <img src="images/arewa-style-dining-tent.webp" alt="Arewa-style dining tent with low tables, lanterns and red rugs" loading="lazy" width="360" height="640" />
-        <div class="card-overlay">
-          <div class="text-badge">
-            <h3>Custom-Crafted Events</h3>
-            <p>Every event is a unique story. We don’t believe in one-size-fits-all. From intimate gatherings to large-scale celebrations, we design experiences that reflect your personality, style, and vision.</p>
+        </article>
+        <article class="showcase-panel" tabindex="0">
+          <img src="images/arewa-style-dining-tent.webp" alt="Arewa-style dining tent with low tables, lanterns and red rugs" loading="lazy" decoding="async" width="720" height="960" />
+          <div class="showcase-panel-body">
+            <div class="showcase-panel-top">
+              <span class="showcase-panel-num">03</span>
+              <span class="showcase-panel-tag">Design</span>
+            </div>
+            <div class="showcase-panel-copy">
+              <h3>Custom-crafted events</h3>
+              <p>Every event is a unique story. From intimate gatherings to large-scale celebrations, we design experiences that reflect your personality, style and vision.</p>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- GALLERY TEASER -->
-  <section class="gallery-teaser-section" id="gallery-preview">
+  <section class="gallery-teaser" id="gallery-preview" aria-labelledby="galleryTeaserHeading">
     <div class="container">
-      <div class="gallery-teaser-header">
-        <div class="gallery-teaser-header-left">
-          <p class="gallery-tag">OUR WORK</p>
-          <h2 class="section-heading">MOMENTS WE'VE <span>CRAFTED</span></h2>
-          <p class="section-sub">A glimpse into the extraordinary events we've brought to life.</p>
+      <div class="gallery-teaser-head">
+        <div>
+          <span class="gallery-teaser-eyebrow">Our work</span>
+          <h2 class="gallery-teaser-title" id="galleryTeaserHeading">Moments we've <em>crafted</em>.</h2>
         </div>
-        <a href="/gallery" class="gallery-teaser-btn">
-          <span>View Full Gallery</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
+        <div class="gallery-teaser-intro">
+          <p>A glimpse of the weddings, conferences and celebrations we've brought to life.</p>
+          <a href="/gallery" class="gallery-teaser-link">View the full gallery <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
       </div>
 
       <div class="gallery-teaser-grid">
-        <a href="/gallery" class="gallery-teaser-card">
-          <div class="gallery-teaser-img-wrap">
-            <img src="images/gallery/military-wedding-couple-under-sword-arch-mara-events.webp" alt="Groom in army dress uniform and bride in a sequinned gown walking under a sword arch" loading="lazy" />
-            <div class="gallery-teaser-overlay">
-              <span class="gallery-teaser-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-            </div>
-          </div>
+        <a href="/gallery" class="gallery-teaser-tile gallery-teaser-tile--a">
+          <img src="images/gallery/couple-first-dance-cold-smoke-mara-events.webp" alt="Couple sharing their first dance in cold smoke under a gold-framed floral stage" loading="lazy" decoding="async" width="1080" height="1080" />
+          <span class="gallery-teaser-label">White wedding</span>
+          <span class="gallery-teaser-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
-
-        <a href="/gallery" class="gallery-teaser-card">
-          <div class="gallery-teaser-img-wrap">
-            <img src="images/gallery/couple-first-dance-cold-smoke-mara-events.webp" alt="Couple sharing their first dance in cold smoke under a gold-framed floral stage" loading="lazy" />
-            <div class="gallery-teaser-overlay">
-              <span class="gallery-teaser-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-            </div>
-          </div>
+        <a href="/gallery" class="gallery-teaser-tile gallery-teaser-tile--b">
+          <img src="images/gallery/aiccees-2025-full-conference-hall-mara-events.webp" alt="Full conference hall of delegates at AICCEES 2025" loading="lazy" decoding="async" width="1600" height="1067" />
+          <span class="gallery-teaser-label">Conference</span>
+          <span class="gallery-teaser-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
-
-        <a href="/gallery" class="gallery-teaser-card">
-          <div class="gallery-teaser-img-wrap">
-            <img src="images/gallery/military-wedding-guard-of-honour-green-lighting-mara-events.webp" alt="Military guard of honour lining a green-lit aisle under hanging candle lights" loading="lazy" />
-            <div class="gallery-teaser-overlay">
-              <span class="gallery-teaser-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-            </div>
-          </div>
+        <a href="/gallery" class="gallery-teaser-tile gallery-teaser-tile--c">
+          <img src="images/gallery/military-wedding-guard-of-honour-green-lighting-mara-events.webp" alt="Military guard of honour lining a green-lit aisle under hanging candle lights" loading="lazy" decoding="async" width="1024" height="1280" />
+          <span class="gallery-teaser-label">Military wedding</span>
+          <span class="gallery-teaser-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
-
-        <a href="/gallery" class="gallery-teaser-card">
-          <div class="gallery-teaser-img-wrap">
-            <img src="images/gallery/tosin-and-kayode-traditional-wedding-couple-dancing-mara-events.webp" alt="Bride in a blue gele and groom in a blue agbada dancing at their traditional wedding" loading="lazy" />
-            <div class="gallery-teaser-overlay">
-              <span class="gallery-teaser-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-            </div>
-          </div>
+        <a href="/gallery" class="gallery-teaser-tile gallery-teaser-tile--d">
+          <img src="images/gallery/tosin-and-kayode-traditional-wedding-couple-dancing-mara-events.webp" alt="Bride in a blue gele and groom in a blue agbada dancing at their traditional wedding" loading="lazy" decoding="async" width="1280" height="856" />
+          <span class="gallery-teaser-label">Traditional wedding</span>
+          <span class="gallery-teaser-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
       </div>
     </div>
   </section>
 
-
-
-
-
   <!-- FAQ -->
-  <section class="faq-section" id="faq">
-    <div class="container">
-      <h2 class="section-heading">FREQUENTLY ASKED <span class="heading-regular">QUESTIONS</span></h2>
+  <section class="faq-block" id="faq" aria-labelledby="faqHeading">
+    <div class="container faq-block-grid">
+      <div class="faq-intro">
+        <span class="faq-eyebrow">FAQ</span>
+        <h2 class="faq-title" id="faqHeading">Frequently asked questions</h2>
+        <p class="faq-lead">Everything you need to know about planning your event with Mara Events.</p>
+      </div>
       <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span>What types of events does Mara Events organise?</span>
-            <span class="faq-icon">+</span>
-          </button>
+        <details class="faq-item" name="faq">
+          <summary class="faq-q"><span>What types of events does Mara Events organise?</span><span class="faq-toggle" aria-hidden="true"></span></summary>
           <div class="faq-a">
             <p>Mara Events organises a wide range of events, including weddings, conferences and seminars, product launches, award ceremonies, VIP dinners, birthdays and anniversaries, baby showers, and cultural and community celebrations. Our goal is to create meaningful experiences for every attendee.</p>
           </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span>How much does event planning cost in Nigeria?</span>
-            <span class="faq-icon">+</span>
-          </button>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary class="faq-q"><span>How much does event planning cost in Nigeria?</span><span class="faq-toggle" aria-hidden="true"></span></summary>
           <div class="faq-a">
             <p>Most of the cost is the event itself: venue, catering, AV, décor and logistics. Typical all-in budgets for corporate events in Nigeria:</p>
             <div class="faq-table-wrap">
@@ -766,25 +758,19 @@
             <p><strong>Planning fee:</strong> event management usually costs 10 to 20% of the total budget, or a flat fee for simpler events. On a ₦5M event, that's about ₦500K to ₦1M. Set aside another 10 to 15% as contingency for fuel surcharges, extra catering and last-minute changes.</p>
             <p>Weddings and private celebrations are priced to your guest list, venue and style. Pick a budget band in the <a href="#book">booking form</a> and we'll send a tailored quote, or read the full breakdown in <a href="/blog/cost-corporate-event-nigeria">How Much Does It Really Cost to Plan a Corporate Event in Nigeria?</a></p>
           </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span>Do Mara Events offer full-service planning or just day-of coordination?</span>
-            <span class="faq-icon">+</span>
-          </button>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary class="faq-q"><span>Do Mara Events offer full-service planning or just day-of coordination?</span><span class="faq-toggle" aria-hidden="true"></span></summary>
           <div class="faq-a">
             <p>We offer both full-service planning and day-of coordination packages. Full-service planning includes everything from concept development to post-event wrap-up, while day-of coordination focuses on seamless execution on the event day. We also offer hybrid packages tailored to your specific needs.</p>
           </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">
-            <span>Do Mara Events plan weddings outside Abuja?</span>
-            <span class="faq-icon">+</span>
-          </button>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary class="faq-q"><span>Do Mara Events plan weddings outside Abuja?</span><span class="faq-toggle" aria-hidden="true"></span></summary>
           <div class="faq-a">
             <p>Yes! We plan weddings and events in Abuja, Lagos, and across Nigeria. Our team has successfully executed events in multiple cities, and we're equipped to handle destination weddings as well. Contact us to discuss your specific location and requirements.</p>
           </div>
-        </div>
+        </details>
       </div>
     </div>
   </section>
@@ -1071,7 +1057,7 @@
       <div class="mtb-actions">
         <a href="https://flutterwave.com/pay/b6egox7yzyeu" target="_blank" rel="noopener noreferrer" class="mtb-btn-register" id="mtbRegisterBtn" aria-label="Register for Mara Events Training">
           <span>Register</span>
-          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <i class="fa-solid fa-arrow-right-from-square"></i>
         </a>
         <button type="button" class="mtb-btn-close" id="mtbCloseBtn" aria-label="Dismiss training announcement">
           <i class="fa-solid fa-xmark"></i>
