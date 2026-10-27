@@ -6101,3 +6101,112 @@ summary:focus-visible,
 
 
 
+/* =============================================
+   CREDIBILITY STRIP (sits under each page hero)
+   ============================================= */
+.cred-strip {
+  position: relative;
+  z-index: 2;
+  background: #071536;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.82);
+  font-family: var(--font);
+}
+
+.cred-strip-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 28px;
+  flex-wrap: wrap;
+}
+
+.cred-strip-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-right: -14px;
+}
+
+.cred-strip-logo {
+  height: 34px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.cred-strip-sep {
+  width: 1px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.cred-strip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 28px;
+}
+
+.cred-strip-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.cred-strip-list strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.cred-strip-list i {
+  flex-shrink: 0;
+  color: #64b5ff;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+  .cred-strip-sep {
+    display: none;
+  }
+
+  .cred-strip-inner {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cred-strip-label {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .cred-strip-inner {
+    padding: 20px;
+  }
+
+  .cred-strip-logo {
+    height: 30px;
+  }
+
+  .cred-strip-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    max-width: 330px;
+  }
+
+  .cred-strip-list li {
+    font-size: 0.86rem;
+  }
+}

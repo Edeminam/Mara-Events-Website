@@ -45,6 +45,19 @@ def article_template(filename, title, meta_desc, keywords, hero_img, category_cl
       <div class="article-hero-meta"><span><i class="fa-solid fa-user"></i> Mara Events Team</span><span><i class="fa-regular fa-calendar"></i> July 27, 2026</span><span><i class="fa-regular fa-clock"></i> {read_time}</span></div>
     </div>
   </header>
+
+  <!-- CREDIBILITY STRIP -->
+  <section class="cred-strip" aria-label="About Mara Events">
+    <div class="cred-strip-inner">
+      <img src="/images/mara-events-logo-white.webp" alt="Mara Events" class="cred-strip-logo" width="268" height="88" loading="lazy" />
+      <span class="cred-strip-sep" aria-hidden="true"></span>
+      <ul class="cred-strip-list">
+        <li><i class="fa-solid fa-award" aria-hidden="true"></i> <span>Official event planner for <strong>AICCEES</strong>, 4 consecutive editions</span></li>
+        <li><i class="fa-solid fa-star" aria-hidden="true"></i> <span><strong>200+ events</strong> delivered since 2020</span></li>
+        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span>Events across <strong>Abuja &amp; Lagos</strong></span></li>
+      </ul>
+    </div>
+  </section>
   <div class="article-layout">
     <article class="article-content">
       <img src="{back}images/{hero_img}" alt="{title}" class="article-cover-img" loading="eager" />
