@@ -281,7 +281,7 @@
               <span class="mtb-badge"><i class="fa-solid fa-bullhorn"></i> Announcement</span>
               <span class="mtb-tag">Mara Academy</span>
             </div>
-            <p class="mtb-title">Enrolment Open: Training Starts 30 Oct 2026</p>
+            <p class="mtb-title">Training Has Started: Enrolment Still Open</p>
             <p class="mtb-sub">6-Week 100% Online Masterclass • ₦80,000</p>
           </div>
           <div class="mtb-actions">
@@ -378,10 +378,10 @@
           <div class="tab-marquee-container">
             <div class="tab-marquee-track">
               <span class="tab-msg">
-                <strong>📢 Enrolment Open:</strong> Online Classes &amp; Training Start 30 October 2026 — 6-Week Event Planning &amp; Management Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • 100% Virtual, Live Online Classes • Certification Included • Register Now!
+                <strong>📢 Training Has Started:</strong> Enrolment Still Open for Our 100% Online Classes — 6-Week Event Planning &amp; Management Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • 100% Virtual, Live Online Classes • Certification Included • Register Now!
               </span>
               <span class="tab-msg" aria-hidden="true">
-                <strong>📢 Enrolment Open:</strong> Online Classes &amp; Training Start 30 October 2026 — 6-Week Event Planning &amp; Management Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • 100% Virtual, Live Online Classes • Certification Included • Register Now!
+                <strong>📢 Training Has Started:</strong> Enrolment Still Open for Our 100% Online Classes — 6-Week Event Planning &amp; Management Masterclass <span class="tab-highlight">Tuition: ₦80,000</span> • 100% Virtual, Live Online Classes • Certification Included • Register Now!
               </span>
             </div>
           </div>

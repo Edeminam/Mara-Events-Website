@@ -12,7 +12,7 @@ def nav_footer(back="../"):
 
 def footer(back="../"):
     return f"""
-  <footer class="footer dark-section"><div class="container"><div class="footer-top"><h2 class="footer-heading">SET THE STAGE FOR<br>YOUR <span>NEXT EVENT.</span></h2><a href="{back}index.html#book" class="footer-cta">Book Now →</a></div><div class="footer-mid"><div class="footer-brand"><a href="{back}index.html" class="nav-logo"><img src="{back}images/Mara Event logo white.png" alt="Mara Events Logo" width="268" height="88" style="height:88px;width:268px;" loading="lazy"></a><p>Nigeria's leading event planning company.</p></div><div class="footer-links-group"><h5>Quick Links</h5><ul><li><a href="{back}index.html">Home</a></li><li><a href="{back}training.html">Training</a></li><li><a href="{back}blog.html">Blog</a></li></ul></div><div class="footer-links-group"><h5>Contact</h5><ul><li><a href="tel:+2349011046473">+2349011046473</a></li><li>Abuja, Nigeria</li></ul></div></div><div class="footer-bottom"><span>©2026 Mara Events. All rights reserved.</span><div class="footer-legal"><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a></div></div></div></footer>
+  <footer class="footer dark-section"><div class="container"><div class="footer-top"><h2 class="footer-heading">SET THE STAGE FOR<br>YOUR <span>NEXT EVENT.</span></h2><a href="{back}index.html#book" class="footer-cta">Book Now →</a></div><div class="footer-mid"><div class="footer-brand"><a href="{back}index.html" class="nav-logo"><img src="{back}images/Mara Event logo white.png" alt="Mara Events Logo" width="268" height="88" style="height:88px;width:268px;" loading="lazy"></a><p>Nigeria's leading event planning company.</p></div><div class="footer-links-group"><h5>Quick Links</h5><ul><li><a href="{back}index.html">Home</a></li><li><a href="{back}training.html">Training</a></li><li><a href="{back}blog.html">Blog</a></li></ul></div><div class="footer-links-group"><h5>Contact</h5><ul><li><a href="tel:+2349011046473">+2349011046473</a></li><li>Abuja, Nigeria</li></ul></div></div><div class="footer-bottom"><span>©2026 Mara Events. All rights reserved.</span><div class="footer-legal"><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a></div></div></div></footer>
   <script defer src="{back}script.js"></script>
 """
 
@@ -272,7 +272,7 @@ articles = [
           <li><strong>Assessment:</strong> Practical assignments at each module + final capstone project</li>
         </ul>
 
-        <p>Ready to transform your passion for events into a certified profession? Enrolment is open for our next cohort, which starts on 30 October 2026 and runs 100% online. <a href="../training.html">Register on the Mara Academy page.</a></p>
+        <p>Ready to transform your passion for events into a certified profession? Our 100% online training has started, and enrolment is still open. <a href="../training.html">Register on the Mara Academy page.</a></p>
 """
     },
     {
@@ -329,7 +329,7 @@ articles = [
 
         <div class="article-callout">
           <h4><i class="fa-solid fa-rocket"></i> How to Start Your Events Career</h4>
-          <p>The fastest path into Nigeria's events industry is structured training combined with hands-on experience. Mara Academy's certification program equips you with both, through live online classes you can join from anywhere. Enrolment is open for our next cohort, which starts on 30 October 2026 and runs 100% online. <a href="../training.html">Register for the next cohort.</a></p>
+          <p>The fastest path into Nigeria's events industry is structured training combined with hands-on experience. Mara Academy's certification program equips you with both, through live online classes you can join from anywhere. Our 100% online training has started, and enrolment is still open. <a href="../training.html">Register for the next cohort.</a></p>
         </div>
 
         <h2>The Common Traits of Successful Event Professionals in Nigeria</h2>
@@ -396,7 +396,7 @@ articles = [
           <li>Leads to a recognised certification that adds credibility to your profile</li>
         </ul>
 
-        <p>Mara Academy's certification program was built on exactly these principles. If you're ready to make the leap, our next cohort starts on 30 October 2026 and runs 100% online. <a href="../training.html">Enrolment is open, so register today.</a></p>
+        <p>Mara Academy's certification program was built on exactly these principles. If you're ready to make the leap, our 100% online training has started. <a href="../training.html">Enrolment is still open, so register today.</a></p>
 """
     },
     {
@@ -707,7 +707,7 @@ articles = [
 
         <div class="article-callout">
           <h4><i class="fa-solid fa-briefcase"></i> Ready to Build a Professional Event Business?</h4>
-          <p>Mara Academy's certification program includes a dedicated module on building and pricing your event management business — covering registration, contracts, pricing, and business development. Enrolment is open for our next cohort, which starts on 30 October 2026 and runs 100% online. <a href="../training.html">Join our next training cohort.</a></p>
+          <p>Mara Academy's certification program includes a dedicated module on building and pricing your event management business — covering registration, contracts, pricing, and business development. Our 100% online training has started, and enrolment is still open. <a href="../training.html">Join our next training cohort.</a></p>
         </div>
 
         <h2>Common Mistakes to Avoid</h2>
