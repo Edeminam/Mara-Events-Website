@@ -565,3 +565,20 @@
     padding: 40px 22px;
   }
 }
+
+/* Head office map */
+.contact-map {
+  margin-top: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fff;
+  aspect-ratio: 4 / 3;
+}
+
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
