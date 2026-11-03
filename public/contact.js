@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (typeof emailjs === 'undefined') {
-      showError('Sorry, we could not send your enquiry right now. Please reach us on WhatsApp or at info@mara-events.com.');
+      showError('Sorry, we could not send your enquiry right now. Please reach us on WhatsApp or at maraeventsplanning@gmail.com.');
       return;
     }
 
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((err) => {
         // Never report success when the message was not sent; the visitor's text stays in the form
         console.error('EmailJS Error:', err);
-        showError('Sorry, we could not send your enquiry. Please try again, or reach us on WhatsApp or at info@mara-events.com.');
+        showError('Sorry, we could not send your enquiry. Please try again, or reach us on WhatsApp or at maraeventsplanning@gmail.com.');
       })
       .finally(() => {
         submitBtn.disabled = false;
