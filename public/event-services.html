@@ -29,7 +29,7 @@
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet" />
 
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -38,7 +38,7 @@
 
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
-  <link rel="preload" as="image" href="images/gallery/military-wedding-guard-of-honour-green-lighting-mara-events.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="images/gallery/couple-first-dance-cold-smoke-mara-events.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="service.css" />
@@ -268,36 +268,47 @@
   <main id="main-content">
 
     <!-- HERO -->
-    <header class="es-hero" id="hero">
-      <div class="container es-hero-grid">
+    <header class="es-hero" id="hero" style="--es-slide-ms: 6500ms">
+      <div class="es-hero-media" aria-hidden="true">
+        <img class="es-hero-slide is-active" src="images/gallery/couple-first-dance-cold-smoke-mara-events.webp" alt="" style="object-position: 62% 35%" fetchpriority="high" decoding="async" />
+        <img class="es-hero-slide" data-src="images/gallery/aiccees-2025-stage-lighting-lectern-mara-events.webp" alt="" style="object-position: 60% 45%" decoding="async" />
+        <img class="es-hero-slide" data-src="images/gallery/traditional-wedding-couple-with-groomsmen-mara-events.webp" alt="" style="object-position: 70% 30%" decoding="async" />
+        <img class="es-hero-slide" data-src="images/gallery/military-wedding-lit-sword-salute-mara-events.webp" alt="" style="object-position: 50% 40%" decoding="async" />
+      </div>
+      <div class="es-hero-veil" aria-hidden="true"></div>
+      <div class="es-hero-grain" aria-hidden="true"></div>
+
+      <div class="container es-hero-inner">
         <div class="es-hero-copy">
-          <nav class="es-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span>Event services</span></nav>
-          <span class="es-eyebrow">Event planning &amp; management</span>
-          <h1>Every event in Nigeria, <em>planned to perfection.</em></h1>
-          <p class="es-hero-lede">Mara Events is a full-service event planning company in Abuja. We plan and manage weddings, corporate events, conferences, galas and private celebrations across Nigeria, with one team handling everything from the first idea to the last guest.</p>
-          <div class="es-hero-actions">
+          <nav class="es-breadcrumb es-rise" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span>Event services</span></nav>
+          <span class="es-eyebrow es-rise">Event planning &amp; management · Nigeria</span>
+          <h1 class="es-rise">Every event in Nigeria, <span class="es-serif">planned to perfection.</span></h1>
+          <p class="es-hero-lede es-rise">Mara Events is a full-service event planning company in Abuja. We plan and manage weddings, corporate events, conferences, galas and private celebrations across Nigeria, with one team handling everything from the first idea to the last guest.</p>
+          <div class="es-hero-actions es-rise">
             <a href="#enquire" class="es-btn es-btn--primary" data-track="hero-book">Book Your Event <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             <a href="https://wa.me/2349011046473?text=Hi%20Mara%20Events%2C%20I%27d%20like%20to%20plan%20an%20event." target="_blank" rel="noopener" class="es-btn es-btn--ghost" data-track="hero-whatsapp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp</a>
           </div>
+        </div>
+      </div>
+
+      <span class="es-hero-scroll" aria-hidden="true">Scroll</span>
+
+      <div class="es-hero-bar">
+        <div class="container es-hero-bar-inner">
           <div class="es-hero-proof">
             <span><i class="fa-solid fa-award" aria-hidden="true"></i> Official planner, AICCEES</span>
             <span><i class="fa-solid fa-star" aria-hidden="true"></i> 200+ events since 2020</span>
             <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Abuja, Lagos &amp; nationwide</span>
           </div>
-        </div>
-        <div class="es-hero-mosaic">
-          <figure>
-            <img src="images/gallery/military-wedding-guard-of-honour-green-lighting-mara-events.webp" alt="Military guard of honour lining a green-lit aisle at a wedding planned by Mara Events" fetchpriority="high" width="1024" height="1280" />
-            <figcaption>Weddings</figcaption>
-          </figure>
-          <figure>
-            <img src="images/gallery/thumbs/md/aiccees-2025-stage-lighting-lectern-mara-events.webp" alt="AICCEES 2025 conference stage lit for the opening session" />
-            <figcaption>Conferences</figcaption>
-          </figure>
-          <figure>
-            <img src="images/gallery/thumbs/md/traditional-wedding-couple-with-groomsmen-mara-events.webp" alt="Couple in coral beads with groomsmen in red caps at a traditional wedding" />
-            <figcaption>Traditional ceremonies</figcaption>
-          </figure>
+          <div class="es-hero-now">
+            <p class="es-hero-caption" id="esHeroCaption" aria-live="polite"><strong>Now showing</strong><span>White wedding reception</span></p>
+            <div class="es-hero-dots" role="group" aria-label="Choose a photo">
+              <button type="button" class="es-hero-dot is-active" aria-label="Photo 1: White wedding reception" aria-current="true" data-caption="White wedding reception"></button>
+              <button type="button" class="es-hero-dot" aria-label="Photo 2: AICCEES conference stage" data-caption="AICCEES conference stage"></button>
+              <button type="button" class="es-hero-dot" aria-label="Photo 3: Traditional wedding" data-caption="Traditional wedding"></button>
+              <button type="button" class="es-hero-dot" aria-label="Photo 4: Military wedding" data-caption="Military wedding"></button>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -749,6 +760,39 @@
     </div>
   </footer>
 
+  <script>
+    /* Hero slideshow: slow cross-fade with a gentle zoom; pauses when the tab is hidden */
+    (function () {
+      var hero = document.getElementById('hero');
+      if (!hero) return;
+      var slides = [].slice.call(hero.querySelectorAll('.es-hero-slide'));
+      var dots = [].slice.call(hero.querySelectorAll('.es-hero-dot'));
+      var caption = document.getElementById('esHeroCaption');
+      var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var ms = 6500, i = 0, timer = null;
+
+      function load(img) { if (img && img.dataset.src) { img.src = img.dataset.src; img.removeAttribute('data-src'); } }
+      function show(n) {
+        n = (n + slides.length) % slides.length;
+        load(slides[n]); load(slides[(n + 1) % slides.length]);
+        slides[i].classList.remove('is-active'); dots[i].classList.remove('is-active'); dots[i].removeAttribute('aria-current');
+        i = n;
+        slides[i].classList.add('is-active'); dots[i].setAttribute('aria-current', 'true');
+        void dots[i].offsetWidth; dots[i].classList.add('is-active');
+        if (caption) caption.lastElementChild.textContent = dots[i].dataset.caption;
+      }
+      function play() { stop(); if (!still) timer = setInterval(function () { show(i + 1); }, ms); }
+      function stop() { if (timer) clearInterval(timer); timer = null; }
+
+      dots.forEach(function (d, n) { d.addEventListener('click', function () { show(n); play(); }); });
+      document.addEventListener('visibilitychange', function () {
+        hero.classList.toggle('is-paused', document.hidden);
+        document.hidden ? stop() : play();
+      });
+      window.addEventListener('load', function () { load(slides[1]); });
+      play();
+    })();
+  </script>
   <script>
     /* Sticky "Book Your Event" bar on phones: show after the hero, hide over the form */
     (function () {
