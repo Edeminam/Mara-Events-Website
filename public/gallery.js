@@ -305,7 +305,7 @@
         if (lbImg) {
           lbImg.style.display = 'block';
           if (img) {
-            lbImg.src = img.src;
+            lbImg.src = img.dataset.full || img.currentSrc || img.src;
             lbImg.alt = img.alt || label;
           }
           lbImg.style.opacity   = '1';
