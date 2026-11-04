@@ -1,0 +1,771 @@
+/* =============================================
+   Mara Events — event-services.css
+   "All event services" hub page (/event-services).
+   Builds on styles.css + service.css (nav, footer,
+   FAQ, enquiry form). Everything here is prefixed es-.
+   ============================================= */
+
+.es-page {
+  --es-ink: #0b1430;
+  --es-navy: #0d2257;
+  --es-blue: #2174e9;
+  --es-sky: #7cb6ff;
+  --es-gold: #c9a45c;
+  --es-mute: #5b6680;
+  --es-line: rgba(11, 20, 48, 0.1);
+  --es-soft: #f5f7fb;
+  background: #fff;
+  color: var(--es-ink);
+}
+
+.es-page :is(h1, h2, h3) {
+  letter-spacing: -0.025em;
+}
+
+.es-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--es-blue);
+}
+
+.es-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+
+.es-section {
+  padding: clamp(72px, 9vw, 120px) 0;
+}
+
+.es-head {
+  max-width: 680px;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.es-head h2 {
+  margin: 16px 0 14px;
+  font-size: clamp(30px, 4.2vw, 46px);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.es-head p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--es-mute);
+}
+
+/* ─── BUTTONS ─────────────────────────────── */
+.es-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+
+.es-btn--primary {
+  background: var(--es-blue);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(33, 116, 233, 0.35);
+}
+
+.es-btn--primary:hover {
+  background: #1a5bc4;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(33, 116, 233, 0.45);
+}
+
+.es-btn--ghost {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.es-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.es-btn--ghost .fa-whatsapp {
+  color: #25d366;
+  font-size: 18px;
+}
+
+.es-btn i.fa-arrow-right {
+  transition: transform 0.25s ease;
+}
+
+.es-btn:hover i.fa-arrow-right {
+  transform: translateX(4px);
+}
+
+/* ─── HERO ────────────────────────────────── */
+.es-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 168px 0 96px;
+  background:
+    radial-gradient(1200px 600px at 85% 10%, rgba(33, 116, 233, 0.28), transparent 60%),
+    linear-gradient(160deg, #050c24 0%, #0b1a45 55%, #0d2257 100%);
+  color: #fff;
+}
+
+.es-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+
+.es-breadcrumb {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.es-breadcrumb a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.es-breadcrumb a:hover {
+  color: #fff;
+}
+
+.es-hero .es-eyebrow {
+  color: var(--es-sky);
+}
+
+.es-hero h1 {
+  margin: 20px 0 22px;
+  font-size: clamp(38px, 5.6vw, 66px);
+  font-weight: 800;
+  line-height: 1.04;
+}
+
+.es-hero h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #7cb6ff, #c9dcff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.es-hero-lede {
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.es-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.es-hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.es-hero-proof span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.es-hero-proof i {
+  color: var(--es-gold);
+}
+
+/* Mosaic of real event photos */
+.es-hero-mosaic {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  height: clamp(440px, 46vw, 580px);
+}
+
+.es-hero-mosaic figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #0b1a45;
+}
+
+.es-hero-mosaic figure:first-child {
+  grid-row: span 2;
+}
+
+.es-hero-mosaic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.es-hero-mosaic figure:hover img {
+  transform: scale(1.05);
+}
+
+.es-hero-mosaic figcaption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(5, 12, 36, 0.62);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+/* ─── POSITIONING / STATS ─────────────────── */
+.es-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+
+.es-intro h2 {
+  margin: 16px 0 0;
+  font-size: clamp(30px, 4.2vw, 46px);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.es-intro-copy p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--es-mute);
+}
+
+.es-intro-copy p + p {
+  margin-top: 18px;
+}
+
+.es-intro-copy strong {
+  color: var(--es-ink);
+}
+
+/* ─── EVENTS WE PLAN ──────────────────────── */
+.es-events {
+  background: var(--es-soft);
+}
+
+.es-event-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.es-event {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 1px 0 var(--es-line);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.es-event:hover,
+.es-event:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(11, 20, 48, 0.12);
+}
+
+.es-event:focus-visible {
+  outline: 3px solid var(--es-blue);
+  outline-offset: 3px;
+}
+
+.es-event-media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #e7ecf5;
+}
+
+.es-event-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.es-event:hover .es-event-media img {
+  transform: scale(1.06);
+}
+
+.es-event-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 26px 26px 28px;
+}
+
+.es-event-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--es-blue);
+}
+
+.es-event h3 {
+  margin: 10px 0 10px;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.es-event p {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--es-mute);
+}
+
+.es-event-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--es-navy);
+}
+
+.es-event-link i {
+  transition: transform 0.25s ease;
+}
+
+.es-event:hover .es-event-link i {
+  transform: translateX(4px);
+}
+
+.es-events-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  padding: 22px 28px;
+  border: 1px solid var(--es-line);
+  border-radius: 18px;
+  background: #fff;
+  font-size: 15px;
+  color: var(--es-mute);
+}
+
+.es-events-foot strong {
+  color: var(--es-ink);
+}
+
+.es-events-foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--es-blue);
+}
+
+/* ─── WHY MARA (dark) ─────────────────────── */
+.es-why {
+  background: linear-gradient(160deg, #050c24 0%, #0d2257 100%);
+  color: #fff;
+}
+
+.es-why .es-head p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.es-why .es-eyebrow {
+  color: var(--es-sky);
+}
+
+.es-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.es-pillar {
+  padding: 36px 28px 8px 0;
+}
+
+.es-pillar + .es-pillar {
+  padding-left: 28px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.es-pillar-num {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--es-gold);
+}
+
+.es-pillar h3 {
+  margin: 18px 0 12px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.es-pillar p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.es-why-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(56px, 7vw, 88px);
+  padding: 36px 40px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.es-why-cta h3 {
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.es-why-cta p {
+  margin-top: 6px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+/* ─── PROOF ───────────────────────────────── */
+.es-proof-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.es-quote {
+  margin: 0;
+}
+
+.es-quote-mark {
+  display: block;
+  width: 48px;
+  height: 36px;
+  margin-bottom: 24px;
+  fill: var(--es-blue);
+  opacity: 0.9;
+}
+
+.es-quote blockquote {
+  margin: 0;
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--es-ink);
+}
+
+.es-quote figcaption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.es-quote-avatar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--es-navy);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.es-quote figcaption strong {
+  display: block;
+  font-size: 16px;
+}
+
+.es-quote figcaption span span {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--es-mute);
+}
+
+.es-mini-quotes {
+  display: grid;
+  gap: 16px;
+}
+
+.es-mini-quote {
+  margin: 0;
+  padding: 24px 26px;
+  border: 1px solid var(--es-line);
+  border-radius: 18px;
+  background: var(--es-soft);
+}
+
+.es-mini-quote blockquote {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--es-ink);
+}
+
+.es-mini-quote figcaption {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--es-navy);
+}
+
+.es-mini-quote figcaption span {
+  font-weight: 500;
+  color: var(--es-mute);
+}
+
+.es-stars {
+  margin-bottom: 10px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--es-gold);
+}
+
+/* ─── PROCESS ─────────────────────────────── */
+.es-process {
+  background: var(--es-soft);
+}
+
+.es-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  counter-reset: es-step;
+}
+
+.es-step {
+  position: relative;
+  padding: 32px 28px;
+  border-radius: 20px;
+  background: #fff;
+  counter-increment: es-step;
+}
+
+.es-step::before {
+  content: "0" counter(es-step);
+  display: block;
+  margin-bottom: 22px;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--es-blue);
+}
+
+.es-step h3 {
+  margin-bottom: 10px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.es-step p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--es-mute);
+}
+
+/* ─── STICKY MOBILE CTA ───────────────────── */
+.es-sticky {
+  display: none;
+}
+
+/* ─── RESPONSIVE ──────────────────────────── */
+@media (max-width: 1080px) {
+  .es-pillars,
+  .es-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .es-pillar:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .es-pillar:nth-child(n + 3) {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    margin-top: 28px;
+  }
+}
+
+@media (max-width: 992px) {
+  .es-hero {
+    padding: 132px 0 72px;
+  }
+
+  .es-hero-grid,
+  .es-intro,
+  .es-proof-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .es-hero-mosaic {
+    height: 360px;
+  }
+
+  .es-event-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .es-hero h1 {
+    font-size: 36px;
+  }
+
+  .es-hero-lede {
+    font-size: 16px;
+  }
+
+  .es-hero-actions .es-btn {
+    width: 100%;
+  }
+
+  .es-hero-mosaic {
+    height: 280px;
+    gap: 10px;
+  }
+
+  .es-hero-mosaic figure {
+    border-radius: 16px;
+  }
+
+  .es-hero-mosaic figcaption {
+    display: none;
+  }
+
+  .es-event-grid,
+  .es-pillars,
+  .es-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .es-pillar,
+  .es-pillar + .es-pillar {
+    padding: 28px 0 0;
+    margin-top: 0;
+    border-left: 0;
+  }
+
+  .es-pillar + .es-pillar {
+    margin-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .es-why-cta {
+    padding: 28px 24px;
+  }
+
+  .es-why-cta .es-btn {
+    width: 100%;
+  }
+
+  .es-events-foot {
+    padding: 20px;
+  }
+
+  /* Sticky booking bar on phones, shown once the hero has scrolled away */
+  .es-sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 -8px 24px rgba(11, 20, 48, 0.1);
+    transform: translateY(110%);
+    transition: transform 0.35s ease;
+  }
+
+  .es-sticky.is-visible {
+    transform: none;
+  }
+
+  .es-sticky .es-btn {
+    flex: 1;
+    min-height: 48px;
+    padding: 0 16px;
+    font-size: 14px;
+  }
+
+  .es-sticky .es-btn--wa {
+    flex: 0 0 48px;
+    padding: 0;
+    background: #25d366;
+    color: #fff;
+  }
+
+  /* keep the floating WhatsApp bubble clear of the bar */
+  .es-page.es-sticky-on .wa-btn {
+    bottom: 84px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .es-page *,
+  .es-page *::before {
+    transition: none !important;
+  }
+}
