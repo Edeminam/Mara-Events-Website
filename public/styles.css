@@ -6444,3 +6444,14 @@ summary:focus-visible,
     animation: none;
   }
 }
+
+/* Homepage headings: descriptive sentence-case text in the HTML (better for
+   search and screen readers), shown in the original all-caps style. */
+.about-us-heading,
+#why-choose .section-heading,
+#events .section-heading,
+#testimonials .section-heading,
+#book .section-heading,
+.main-events-grid .event-card-body h3 {
+  text-transform: uppercase;
+}
