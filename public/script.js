@@ -606,22 +606,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Scroll animations are managed cleanly by the class-based SCROLL REVEAL observer above.
 
-// DOWNLOAD BROCHURE
-document.addEventListener("DOMContentLoaded", function () {
-  const downloadBtn = document.querySelector(".banner__btn1");
-  if (downloadBtn) {
-    downloadBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      const link = document.createElement("a");
-      link.href = "files/mara-events-brochure.pdf";
-      link.download = "Mara Events Brochure.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
-  }
-});
-
 /* =============================================
    IMAGE PROTECTION HANDLERS
    ============================================= */
