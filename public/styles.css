@@ -2652,6 +2652,20 @@ body.nav-open {
   max-width: 380px;
 }
 
+.footer-brand .footer-location {
+  padding-top: 0.75rem;
+  color: var(--text-light);
+  letter-spacing: 0.04em;
+}
+
+.footer-location i {
+  margin-right: 6px;
+}
+
+.footer-brand .footer-cities {
+  padding-top: 0.4rem;
+}
+
 .footer-links-group h5 {
   font-size: 12px;
   font-weight: 700;
