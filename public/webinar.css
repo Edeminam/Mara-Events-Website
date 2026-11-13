@@ -944,6 +944,18 @@
   color: var(--wb-sky);
 }
 
+.wb-replay-sub {
+  margin: 72px 0 28px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.wb-replay-sub-title {
+  margin-top: 8px;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--white);
+}
 .wb-replay-cta {
   display: flex;
   align-items: center;
