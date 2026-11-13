@@ -1,80 +1,90 @@
 /* =============================================
    Mara Events — webinar.js
-   Countdown to the next session and the mobile
-   sticky register bar
+   Replay players, share button and scroll reveal
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ─── COUNTDOWN ──────────────────────────────────────────────────────
-  const countdown = document.querySelector('[data-countdown]');
-  if (countdown) {
-    const start = new Date(countdown.dataset.countdown).getTime();
-    const LIVE_WINDOW = 2 * 60 * 60 * 1000; // treat the session as live for two hours
-    const grid = countdown.querySelector('.wb-countdown-grid');
-    const label = countdown.querySelector('.wb-countdown-label');
-    const done = countdown.querySelector('.wb-countdown-done');
-    const units = {
-      days: countdown.querySelector('[data-unit="days"]'),
-      hours: countdown.querySelector('[data-unit="hours"]'),
-      minutes: countdown.querySelector('[data-unit="minutes"]'),
-      seconds: countdown.querySelector('[data-unit="seconds"]')
-    };
-    const pad = (n) => String(n).padStart(2, '0');
+  // ─── REPLAY PLAYERS ─────────────────────────────────────────────────
+  // Each poster is a real YouTube link, so it still works without JS.
+  // With JS we swap in the embed on click, and only one video plays at a time.
+  let active = null; // { player, poster, iframe }
 
-    const tick = () => {
-      const diff = start - Date.now();
-      if (diff <= 0) {
-        grid.hidden = true;
-        label.hidden = true;
-        done.hidden = false;
-        done.textContent = diff > -LIVE_WINDOW
-          ? 'We are live now. Join with the Google Meet link shared at registration.'
-          : 'This session has ended. Thank you to everyone who joined.';
-        clearInterval(timer);
-        return;
-      }
-      units.days.textContent = pad(Math.floor(diff / 86400000));
-      units.hours.textContent = pad(Math.floor(diff / 3600000) % 24);
-      units.minutes.textContent = pad(Math.floor(diff / 60000) % 60);
-      units.seconds.textContent = pad(Math.floor(diff / 1000) % 60);
-    };
+  const restore = () => {
+    if (!active) return;
+    active.iframe.replaceWith(active.poster);
+    active = null;
+  };
 
-    const timer = setInterval(tick, 1000);
-    tick();
-  }
-
-  // ─── REPLAY PLAYER ──────────────────────────────────────────────────
-  // Show the cover image first and only load YouTube when someone presses play.
   document.querySelectorAll('.wb-player[data-youtube-id]').forEach((player) => {
     const poster = player.querySelector('.wb-player-poster');
-    poster.addEventListener('click', () => {
+    if (!poster) return;
+
+    poster.addEventListener('click', (event) => {
+      // Let modified clicks (new tab, etc.) behave like a normal link
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+      event.preventDefault();
+      restore();
+
       const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube.com/embed/${player.dataset.youtubeId}?autoplay=1&rel=0`;
-      iframe.title = poster.getAttribute('aria-label').replace('Play the replay: ', '');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${player.dataset.youtubeId}?autoplay=1&rel=0&modestbranding=1`;
+      iframe.title = poster.dataset.title || 'Webinar replay';
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
       iframe.referrerPolicy = 'strict-origin-when-cross-origin';
       iframe.allowFullscreen = true;
       poster.replaceWith(iframe);
       iframe.focus();
+      active = { player, poster, iframe };
     });
   });
 
-  // ─── STICKY REGISTER BAR (MOBILE) ───────────────────────────────────
-  // Shown once the hero button scrolls away, hidden again at the final CTA.
-  const sticky = document.getElementById('wbSticky');
-  const heroCta = document.getElementById('heroRegister');
-  const finalCta = document.getElementById('finalRegister');
-  if (sticky && heroCta && finalCta && 'IntersectionObserver' in window) {
-    const seen = { hero: true, final: false };
-    const update = () => {
-      const show = !seen.hero && !seen.final;
-      sticky.classList.toggle('is-visible', show);
-      sticky.setAttribute('aria-hidden', String(!show));
-      sticky.querySelector('a').tabIndex = show ? 0 : -1;
-      document.body.classList.toggle('wb-sticky-on', show);
+  // ─── SHARE ──────────────────────────────────────────────────────────
+  const shareBtn = document.querySelector('[data-share]');
+  const shareLabel = document.querySelector('[data-share-label]');
+  const shareStatus = document.querySelector('[data-share-status]');
+  if (shareBtn) {
+    const url = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+    const title = 'Free event planning webinar replay: Will AI Replace Event Planners?';
+    let resetTimer;
+
+    const flash = (text) => {
+      if (shareLabel) shareLabel.textContent = text;
+      if (shareStatus) shareStatus.textContent = text;
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        if (shareLabel) shareLabel.textContent = 'Share this webinar';
+        if (shareStatus) shareStatus.textContent = '';
+      }, 2200);
     };
-    new IntersectionObserver(([entry]) => { seen.hero = entry.isIntersecting; update(); }).observe(heroCta);
-    new IntersectionObserver(([entry]) => { seen.final = entry.isIntersecting; update(); }).observe(finalCta);
+
+    shareBtn.addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, url });
+        } catch (_) { /* user cancelled */ }
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(url);
+        flash('Link copied');
+      } catch (_) {
+        window.prompt('Copy this link:', url);
+      }
+    });
+  }
+
+  // ─── SCROLL REVEAL ──────────────────────────────────────────────────
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  if (revealEls.length && !reduceMotion && 'IntersectionObserver' in window) {
+    document.body.classList.add('wb-js');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach((el) => revealObserver.observe(el));
   }
 });
