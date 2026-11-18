@@ -76,6 +76,7 @@ body {
 
 img {
   max-width: 100%;
+  height: auto; /* keeps the aspect ratio when width/height attributes are set */
   display: block;
 }
 
@@ -3177,7 +3178,7 @@ body.nav-open {
   position: relative;
   min-height: 100vh;
   min-height: 100svh; /* fill the visible screen, ignoring mobile browser bars */
-  background-image: url('images/conference-hall-theatre-seating.webp');
+  background-image: url('/images/conference-hall-theatre-seating.webp');
   background-size: cover;
   background-position: center;
   display: flex;

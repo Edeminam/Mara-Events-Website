@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- build:head -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex" />
-  <title>Page not found | Mara Events</title>
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <meta name="theme-color" content="#003279" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Fonts: connect early, swap in once loaded so text is never invisible -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&amp;display=swap" />
+
+  <!-- Icons (non-blocking) -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
-  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+
+  <!-- Base styles shared by every page -->
+  <link rel="stylesheet" href="/assets/css/styles.css?v=7c49b26a" />
+
+  <!-- Google tag (Ads) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18234290449"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18234290449');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yy40g37y6s");
+  </script>
+  <!-- /build:head -->
+
+  <meta name="robots" content="noindex" />
+  <title>Page Not Found | Mara Events</title>
   <style>
     /* Page-not-found panel; the navbar comes from styles.css */
     .nf {
@@ -44,22 +78,16 @@
     .nf-btn:hover { background: #ffffff; color: #0d2257; }
     .nf-btn:focus-visible { outline: 3px solid #ffffff; outline-offset: 3px; }
   </style>
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "yy40g37y6s");
-  </script>
+  
 </head>
 <body>
+  <!-- build:nav -->
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <nav class="navbar scrolled" id="navbar" aria-label="Main">
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Mara Events home">
-        <img src="/images/mara-events-logo.webp" alt="Mara Events Logo" width="140" height="36" class="nav-logo-img">
+        <img src="/images/mara-events-logo.webp" alt="Mara Events logo" width="140" height="36" class="nav-logo-img">
       </a>
       <ul class="nav-links" id="navLinks">
         <li class="nav-dropdown">
@@ -165,6 +193,7 @@
       </div>
     </div>
   </nav>
+  <!-- /build:nav -->
 
   <main id="main-content" class="nf">
     <div class="nf-inner">
@@ -191,6 +220,9 @@
     </div>
   </section>
 
-  <script defer src="/nav.js"></script>
+  <!-- build:scripts -->
+  <script defer src="/assets/js/nav.js?v=fab15406"></script>
+  <script defer src="/assets/js/site.js?v=58e417bd"></script>
+  <!-- /build:scripts -->
 </body>
 </html>

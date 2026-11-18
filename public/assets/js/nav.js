@@ -1,12 +1,25 @@
 /* =============================================
    Mara Events — nav.js
-   Universal Navbar & Dynamic Mobile Menu Controller
-   Works across all pages seamlessly
+   Runs on every page:
+     1. Navbar: scroll state, mobile menu, active link
+     2. Events dropdown (desktop) and Events group (mobile)
+     3. Mara Academy announcements: top ticker bar + scroll banner
    ============================================= */
 
 'use strict';
 
 (function () {
+  // ─── ACADEMY ANNOUNCEMENT ───────────────────────────────────────────
+  // Edit this one object when a new cohort opens. It feeds both the ticker
+  // bar above the navbar and the pop-up banner shown after scrolling.
+  const ACADEMY = {
+    title: 'Cohort 2 Registration Open: Starts Jan 11, 2027',
+    subtitle: '6-Week Online Event Planning Course • ₦80,000',
+    ticker: '<strong>📢 Cohort 2 Registration Is Open:</strong> Classes Start January 11, 2027 — 6-Week Online Event Planning &amp; Management Certification Course <span class="tab-highlight">Tuition: ₦80,000</span> • 100% Virtual, Live Online Classes • Certification Included • Register Now!',
+    registerUrl: 'https://flutterwave.com/pay/b6egox7yzyeu',
+    registerLabel: 'Register for Mara Academy Cohort 2',
+  };
+
   function initNavigation() {
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
@@ -281,11 +294,11 @@
               <span class="mtb-badge"><i class="fa-solid fa-bullhorn"></i> Announcement</span>
               <span class="mtb-tag">Mara Academy</span>
             </div>
-            <p class="mtb-title">Cohort 2 Registration Open: Starts Jan 11, 2027</p>
-            <p class="mtb-sub">6-Week Online Event Planning Course • ₦80,000</p>
+            <p class="mtb-title">${ACADEMY.title}</p>
+            <p class="mtb-sub">${ACADEMY.subtitle}</p>
           </div>
           <div class="mtb-actions">
-            <a href="https://flutterwave.com/pay/b6egox7yzyeu" target="_blank" rel="noopener noreferrer" class="mtb-btn-register" id="mtbRegisterBtn" aria-label="Register for Mara Academy Cohort 2">
+            <a href="${ACADEMY.registerUrl}" target="_blank" rel="noopener noreferrer" class="mtb-btn-register" id="mtbRegisterBtn" aria-label="${ACADEMY.registerLabel}">
               <span>Register</span>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
@@ -377,16 +390,12 @@
           </div>
           <div class="tab-marquee-container">
             <div class="tab-marquee-track">
-              <span class="tab-msg">
-                <strong>📢 Cohort 2 Registration Is Open:</strong> Classes Start January 11, 2027 — 6-Week Online Event Planning &amp; Management Certification Course <span class="tab-highlight">Tuition: ₦80,000</span> • 100% Virtual, Live Online Classes • Certification Included • Register Now!
-              </span>
-              <span class="tab-msg" aria-hidden="true">
-                <strong>📢 Cohort 2 Registration Is Open:</strong> Classes Start January 11, 2027 — 6-Week Online Event Planning &amp; Management Certification Course <span class="tab-highlight">Tuition: ₦80,000</span> • 100% Virtual, Live Online Classes • Certification Included • Register Now!
-              </span>
+              <span class="tab-msg">${ACADEMY.ticker}</span>
+              <span class="tab-msg" aria-hidden="true">${ACADEMY.ticker}</span>
             </div>
           </div>
           <div class="tab-actions">
-            <a href="https://flutterwave.com/pay/b6egox7yzyeu" target="_blank" rel="noopener noreferrer" class="tab-btn-register" id="tabRegisterBtn" aria-label="Register for Mara Academy Cohort 2">
+            <a href="${ACADEMY.registerUrl}" target="_blank" rel="noopener noreferrer" class="tab-btn-register" id="tabRegisterBtn" aria-label="${ACADEMY.registerLabel}">
               <span>Register</span>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
@@ -442,5 +451,3 @@
     onReady();
   }
 })();
-
-

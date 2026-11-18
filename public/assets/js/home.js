@@ -1,15 +1,109 @@
 /* =============================================
-   MARA EVENTS — script.js
+   Mara Events — home.js
+   Homepage only:
+     1. Hero photo slideshow
+     2. Testimonial slider
+     3. Event enquiry form (EmailJS) and success dialog
+     4. Promo video dialog
    ============================================= */
 
-"use strict";
+'use strict';
 
+// Older browsers lack <dialog closedby="any">; close when the backdrop is clicked.
+function closeOnBackdropClick(dialog) {
+  if ('closedBy' in HTMLDialogElement.prototype) return;
+  dialog.addEventListener('click', (event) => {
+    if (event.target !== dialog) return;
+    const r = dialog.getBoundingClientRect();
+    const inside = r.top <= event.clientY && event.clientY <= r.bottom &&
+                   r.left <= event.clientX && event.clientX <= r.right;
+    if (!inside) dialog.close();
+  });
+}
+
+// ─── 1. HERO SLIDESHOW ───────────────────────────────────────────────
+// Cross-fades the homepage hero photos. Each progress bar fills over one
+// slide's duration (in CSS); when it finishes, the next photo shows.
+(function () {
+  const section  = document.getElementById('hero');
+  const slides   = section ? [...section.querySelectorAll('.home-hero-slide')] : [];
+  const bars     = section ? [...section.querySelectorAll('.home-hero-bar')] : [];
+  if (slides.length < 2) return;
+
+  const caption  = document.getElementById('heroCaption');
+  const counter  = document.getElementById('heroCurrent');
+  const prevBtn  = document.getElementById('heroPrev');
+  const nextBtn  = document.getElementById('heroNext');
+  const total    = slides.length;
+  let current    = 0;
+
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function goTo(index) {
+    index = (index + total) % total;
+    slides[current].classList.remove('is-active');
+    bars[current].classList.remove('is-active');
+    bars[current].removeAttribute('aria-current');
+
+    current = index;
+    slides[current].classList.add('is-active');
+    // Restart the fill animation even when the same bar becomes active again
+    const fill = bars[current].firstElementChild;
+    fill.style.animation = 'none';
+    void fill.offsetWidth;
+    fill.style.animation = '';
+    bars[current].classList.add('is-active');
+    bars[current].setAttribute('aria-current', 'true');
+
+    caption.textContent = slides[current].dataset.caption;
+    counter.textContent = String(current + 1).padStart(2, '0');
+  }
+
+  // Advance when the active bar finishes filling
+  bars.forEach((bar, i) => {
+    bar.addEventListener('click', () => goTo(i));
+    bar.firstElementChild.addEventListener('animationend', () => {
+      if (i === current) goTo(current + 1);
+    });
+  });
+  prevBtn?.addEventListener('click', () => goTo(current - 1));
+  nextBtn?.addEventListener('click', () => goTo(current + 1));
+
+  // Pause while the visitor is reading, hovering or the tab is hidden
+  const setPaused = (on) => section.classList.toggle('is-paused', on);
+  section.addEventListener('mouseenter', () => setPaused(true));
+  section.addEventListener('mouseleave', () => setPaused(false));
+  section.addEventListener('focusin', () => setPaused(true));
+  section.addEventListener('focusout', (e) => {
+    if (!section.contains(e.relatedTarget)) setPaused(false);
+  });
+  document.addEventListener('visibilitychange', () => setPaused(document.hidden));
+
+  // Arrow keys while focus is inside the hero
+  section.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+
+  // Swipe on touch screens
+  let touchX = null;
+  section.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  section.addEventListener('touchend', (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 48) goTo(current + (dx < 0 ? 1 : -1));
+    touchX = null;
+  }, { passive: true });
+
+  // No autoplay for visitors who prefer reduced motion
+  const applyMotion = () => section.classList.toggle('is-static', motionQuery.matches);
+  motionQuery.addEventListener('change', applyMotion);
+  applyMotion();
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Navbar handling is managed centrally by nav.js across all pages
-
-  // ─── TESTIMONIAL SLIDER ─────────────────────────────────────────────
+  // ─── 2. TESTIMONIAL SLIDER ──────────────────────────────────────────
   const slider    = document.getElementById('testimonialSlider');
   const track     = document.getElementById('testimonialTrack');
   const prevBtn   = document.getElementById('prevBtn');
@@ -78,31 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ─── SCROLL REVEAL ──────────────────────────────────────────────────
-  const revealEls = document.querySelectorAll(
-    '.about-us-inner, .event-card, .testimonial-slider, .book-inner, .footer-top'
-  );
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const children = entry.target.querySelectorAll(':scope > *');
-        children.forEach((child, idx) => {
-          setTimeout(() => child.classList.add('visible'), idx * 60);
-        });
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
-  revealEls.forEach(el => {
-    el.classList.add('reveal');
-    observer.observe(el);
-  });
-
-
-  // ─── BOOKING FORM ───────────────────────────────────────────────────
+  // ─── 3. ENQUIRY FORM ────────────────────────────────────────────────
   const form = document.getElementById('bookForm');
   const eventSelect = document.getElementById("event");
   const otherEventGroup = document.getElementById("otherEventGroup");
@@ -366,49 +436,10 @@ document.addEventListener('DOMContentLoaded', () => {
       successDialog.close();
     });
 
-    // Fallback for browsers without closedby support
-    if (!('closedBy' in HTMLDialogElement.prototype)) {
-      successDialog.addEventListener('click', (event) => {
-        if (event.target !== successDialog) return;
-
-        const rect = successDialog.getBoundingClientRect();
-        const isDialogContent = (
-          rect.top <= event.clientY &&
-          event.clientY <= rect.top + rect.height &&
-          rect.left <= event.clientX &&
-          event.clientX <= rect.left + rect.width
-        );
-
-        if (isDialogContent) return;
-
-        successDialog.close();
-      });
-    }
+    closeOnBackdropClick(successDialog);
   }
 
-  // ─── SMOOTH ANCHOR SCROLL ───────────────────────────────────────────
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const targetId = link.getAttribute('href');
-      if (targetId === '#') return;
-      if (targetId === '#hero') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-      }
-      const target = document.querySelector(targetId);
-      if (target) {
-        e.preventDefault();
-        const topBar = document.getElementById('topAnnouncementBar');
-        const topBarHeight = (topBar && !topBar.classList.contains('dismissed')) ? topBar.offsetHeight : 0;
-        const offset = (navbar ? navbar.offsetHeight : 68) + topBarHeight + 12;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
-  });
-
-  // ─── VIDEO DIALOG MODAL ──────────────────────────────────────────────
+  // ─── 4. PROMO VIDEO DIALOG ───────────────────────────────────────────
   const videoDialog = document.getElementById('videoDialog');
   const videoIframe = document.getElementById('videoIframe');
   const playVideoBtn = document.getElementById('playVideoBtn');
@@ -440,277 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Fallback for browsers without closedby support
-    if (!('closedBy' in HTMLDialogElement.prototype)) {
-      videoDialog.addEventListener('click', (event) => {
-        if (event.target !== videoDialog) return;
-
-        const rect = videoDialog.getBoundingClientRect();
-        const isDialogContent = (
-          rect.top <= event.clientY &&
-          event.clientY <= rect.top + rect.height &&
-          rect.left <= event.clientX &&
-          event.clientX <= rect.left + rect.width
-        );
-
-        if (isDialogContent) return;
-
-        videoDialog.close();
-      });
-    }
+    closeOnBackdropClick(videoDialog);
   }
 
 });
-
-// ─── HERO SLIDESHOW ──────────────────────────────────────────────────
-// Cross-fades the homepage hero photos. Each progress bar fills over one
-// slide's duration (in CSS); when it finishes, the next photo shows.
-(function () {
-  const section  = document.getElementById('hero');
-  const slides   = section ? [...section.querySelectorAll('.home-hero-slide')] : [];
-  const bars     = section ? [...section.querySelectorAll('.home-hero-bar')] : [];
-  if (slides.length < 2) return;
-
-  const caption  = document.getElementById('heroCaption');
-  const counter  = document.getElementById('heroCurrent');
-  const prevBtn  = document.getElementById('heroPrev');
-  const nextBtn  = document.getElementById('heroNext');
-  const total    = slides.length;
-  let current    = 0;
-
-  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  function goTo(index) {
-    index = (index + total) % total;
-    slides[current].classList.remove('is-active');
-    bars[current].classList.remove('is-active');
-    bars[current].removeAttribute('aria-current');
-
-    current = index;
-    slides[current].classList.add('is-active');
-    // Restart the fill animation even when the same bar becomes active again
-    const fill = bars[current].firstElementChild;
-    fill.style.animation = 'none';
-    void fill.offsetWidth;
-    fill.style.animation = '';
-    bars[current].classList.add('is-active');
-    bars[current].setAttribute('aria-current', 'true');
-
-    caption.textContent = slides[current].dataset.caption;
-    counter.textContent = String(current + 1).padStart(2, '0');
-  }
-
-  // Advance when the active bar finishes filling
-  bars.forEach((bar, i) => {
-    bar.addEventListener('click', () => goTo(i));
-    bar.firstElementChild.addEventListener('animationend', () => {
-      if (i === current) goTo(current + 1);
-    });
-  });
-  prevBtn?.addEventListener('click', () => goTo(current - 1));
-  nextBtn?.addEventListener('click', () => goTo(current + 1));
-
-  // Pause while the visitor is reading, hovering or the tab is hidden
-  const setPaused = (on) => section.classList.toggle('is-paused', on);
-  section.addEventListener('mouseenter', () => setPaused(true));
-  section.addEventListener('mouseleave', () => setPaused(false));
-  section.addEventListener('focusin', () => setPaused(true));
-  section.addEventListener('focusout', (e) => {
-    if (!section.contains(e.relatedTarget)) setPaused(false);
-  });
-  document.addEventListener('visibilitychange', () => setPaused(document.hidden));
-
-  // Arrow keys while focus is inside the hero
-  section.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') goTo(current - 1);
-    if (e.key === 'ArrowRight') goTo(current + 1);
-  });
-
-  // Swipe on touch screens
-  let touchX = null;
-  section.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
-  section.addEventListener('touchend', (e) => {
-    if (touchX === null) return;
-    const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 48) goTo(current + (dx < 0 ? 1 : -1));
-    touchX = null;
-  }, { passive: true });
-
-  // No autoplay for visitors who prefer reduced motion
-  const applyMotion = () => section.classList.toggle('is-static', motionQuery.matches);
-  motionQuery.addEventListener('change', applyMotion);
-  applyMotion();
-})();
- 
-// ─── WHATSAPP CONFIGURATION────────────────────────────
-
-(function initWhatsApp () {
-    /* ---- Config — update phone & message as needed ---- */
-    const PHONE   = '2349011046473';           // international format, no +
-    const MESSAGE = encodeURIComponent('Hello! I\'d like to book an event with Mara Events.');
-    const WA_URL  = `https://wa.me/${PHONE}?text=${MESSAGE}`;
- 
-    /* ---- Build the button ---- */
-    const btn = document.createElement('a');
-    btn.href        = WA_URL;
-    btn.target      = '_blank';
-    btn.rel         = 'noopener noreferrer';
-    btn.className   = 'wa-btn';
-    btn.setAttribute('aria-label', 'Chat with us on WhatsApp');
-    btn.innerHTML   = `
-      <span class="wa-icon">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path fill="#fff" d="
-            M16 3C8.832 3 3 8.832 3 16c0 2.34.636 4.614 1.842 6.596L3 29l6.587-1.83A12.94 12.94 0 0016 29c7.168 0 13-5.832 13-13S23.168 3 16 3z
-          "/>
-          <path fill="#25D366" d="
-            M16 5c-6.065 0-11 4.935-11 11 0 2.13.614 4.18 1.778 5.943l.3.466-1.233 4.51 4.637-1.213.452.268A10.944 10.944 0 0016 27c6.065 0 11-4.935 11-11S22.065 5 16 5z
-          "/>
-          <path fill="#fff" d="
-            M21.6 18.8c-.3-.15-1.763-.87-2.037-.968-.273-.1-.472-.15-.672.15-.198.3-.771.968-.945 1.168-.173.2-.347.224-.647.074-.3-.15-1.267-.467-2.413-1.489-.891-.795-1.493-1.776-1.668-2.076-.174-.3-.018-.462.132-.61.134-.132.3-.347.448-.52.148-.175.198-.3.298-.498.1-.2.05-.375-.025-.524-.075-.15-.672-1.62-.921-2.218-.242-.583-.488-.503-.672-.512l-.572-.01c-.2 0-.523.074-.797.374-.273.3-1.045 1.021-1.045 2.49s1.07 2.888 1.22 3.087c.149.2 2.105 3.212 5.1 4.502.713.307 1.27.49 1.703.628.716.228 1.368.195 1.883.118.575-.085 1.763-.72 2.012-1.415.248-.695.248-1.292.173-1.417-.074-.124-.273-.198-.572-.347z
-          "/>
-        </svg>
-      </span>
-      <span class="wa-label">Chat with us</span>
-    `;
-
-    document.body.appendChild(btn);
-
-    /* ---- Visibility logic ---- */
-    const heroSection  = document.getElementById('hero');
-    if (!heroSection) { btn.classList.add('visible'); return; }
-
-    let   visible      = false;
-    let   rafScheduled = false;
-
-    const update = () => {
-      rafScheduled = false;
-      const heroBottom = heroSection.getBoundingClientRect().bottom;
-      // Show once user scrolls past hero bottom; hide if back in hero
-      const shouldShow = heroBottom <= 0;
-      if (shouldShow === visible) return;
-      visible = shouldShow;
-      btn.classList.toggle('visible', visible);
-    };
-
-    const onScroll = () => {
-      if (!rafScheduled) {
-        rafScheduled = true;
-        requestAnimationFrame(update);
-      }
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    update(); // initial check
-  })();
-
-  // Scroll animations are managed cleanly by the class-based SCROLL REVEAL observer above.
-
-/* =============================================
-   IMAGE PROTECTION HANDLERS
-   ============================================= */
-(function () {
-  'use strict';
-
-
-
-  /* ── PREVENT IMAGE RIGHT-CLICK / COPY / DRAG ────────────── */
-  document.addEventListener('contextmenu', e => {
-    if (e.target.tagName === 'IMG' || e.target.closest('.gallery-grid') || e.target.closest('.gallery-teaser-grid') || e.target.closest('.gallery-lightbox')) {
-      e.preventDefault();
-      return false;
-    }
-  });
-
-  document.addEventListener('dragstart', e => {
-    if (e.target.tagName === 'IMG') {
-      e.preventDefault();
-      return false;
-    }
-  });
-
-  /* ── WEBINAR TOPIC PROPOSAL FORM HANDLER ────────── */
-  (function () {
-    const proposalForm = document.getElementById('proposalForm');
-    const successDialog = document.getElementById('proposalSuccessDialog');
-    const closeBtn = document.getElementById('closeProposalSuccessBtn');
-
-    if (!proposalForm) return; // Not on webinar page — bail early
-
-    if (typeof emailjs !== 'undefined') {
-      try { emailjs.init("djfFVv8ATRg9mo_1u"); } catch (err) {}
-    }
-
-    proposalForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('proposalName')?.value.trim();
-      const email = document.getElementById('proposalEmail')?.value.trim();
-      const topic = document.getElementById('proposalTopic')?.value.trim();
-
-      if (!name || !email || !topic) {
-        alert('Please fill in all required fields.');
-        return;
-      }
-
-      const submitBtn = proposalForm.querySelector('button[type="submit"]');
-      const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Submitting...</span> <i class="fa-solid fa-spinner fa-spin"></i>';
-      }
-
-      const emailParams = {
-        name: name,
-        from_name: name,
-        user_name: name,
-        email: email,
-        reply_to: email,
-        message: `Webinar Industry Challenge / Topic Suggestion:\n\nName: ${name}\nEmail: ${email}\nTopic/Challenge: ${topic}`,
-        topic: topic,
-        service_type: "Webinar Advocacy Proposal"
-      };
-
-      const showSuccess = () => {
-        proposalForm.reset();
-        if (successDialog && typeof successDialog.showModal === 'function') {
-          successDialog.showModal();
-        } else {
-          alert('Thank you! Your topic suggestion has been sent.');
-        }
-      };
-
-      const resetBtn = () => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnHTML;
-        }
-      };
-
-      if (typeof emailjs !== 'undefined') {
-        emailjs.send("service_6vspc2j", "template_87ahk4b", emailParams)
-          .then(() => {
-            showSuccess();
-          })
-          .catch((err) => {
-            // Do not report success when the message was not sent (the visitor's text stays in the form)
-            console.error("EmailJS Error:", err);
-            alert('Sorry, we could not send your topic suggestion. Please try again in a moment.');
-          })
-          .finally(() => {
-            resetBtn();
-          });
-      } else {
-        console.error("EmailJS is not defined.");
-        alert('Sorry, we could not send your topic suggestion. Please try again in a moment.');
-        resetBtn();
-      }
-    });
-
-    if (closeBtn && successDialog) {
-      closeBtn.addEventListener('click', () => {
-        successDialog.close();
-      });
-    }
-  })();
-
-})();

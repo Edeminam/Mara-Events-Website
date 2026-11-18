@@ -9,11 +9,9 @@
 (function () {  /* ── 1. Inject CSS and EmailJS SDK if not present ── */
   function injectDependencies() {
     if (!document.querySelector('link[href*="consultation-modal.css"]')) {
-      const isSubpage = window.location.pathname.includes('/blog/');
-      const href = isSubpage ? '../consultation-modal.css' : 'consultation-modal.css';
       const link = document.createElement('link');
       link.rel  = 'stylesheet';
-      link.href = href;
+      link.href = '/assets/css/consultation-modal.css';
       document.head.appendChild(link);
     }
     ensureEmailJS();

@@ -73,7 +73,7 @@
 
   function playFeaturedVideoPopup() {
     openVideoModal(
-      'images/gallery/event-production-highlights-mara-events.mp4',
+      '/images/gallery/event-production-highlights-mara-events.mp4',
       'landscape',
       '<i class="fa-solid fa-film"></i> Behind The Scenes &bull; Event Highlights',
       'See Us In Action &mdash; Mara Events Highlights',
