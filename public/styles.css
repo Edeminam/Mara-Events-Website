@@ -3234,6 +3234,32 @@ body.nav-open {
   line-height: 1.6;
 }
 
+.academy-title {
+  font-size: clamp(32px, min(5vw, 8vh), 60px);
+}
+
+.academy-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 16px 28px;
+  border-radius: 100px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.academy-hero-cta:hover,
+.academy-hero-cta:focus-visible {
+  background: var(--accent-hover);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
   .academy-hero {
     padding: 128px 0 64px;
